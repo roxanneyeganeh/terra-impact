@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter Tight', sans-serif;
+      background-color: #0A121C;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .auth-wrapper {
+      background-color: #0A121C;
+      border: 0.2px solid #5A5A5A80;
+      backdrop-filter: blur(5px);
+      padding: 40px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input {
+      padding: 12px;
+      background-color: #0A121C;
+      color: white;
+      border: 0.2px solid #5A5A5A80;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background-color: white;
+      color: #0A121C;
+      border: none;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button svg {
+      transition: transform 0.3s ease;
+    }
+
+    button:hover svg {
+      transform: translateX(4px);
+    }
+
+    .toggle-text {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .toggle-text span {
+      color: white;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    canvas {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-wrapper" id="authBox">
+    <h2 id="formTitle">Create Account</h2>
+    <form id="authForm">
+      <input type="text" id="nameField" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">
+        Continue
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+          stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </button>
+    </form>
+    <div class="toggle-text">
+      Already have an account? <span onclick="toggleForm()">Log in</span>
+    </div>
+  </div>
+  
+  <form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="hidden" name="form-name" value="waitlist" />
+  <input name="bot-field" />
+</form>
+
+  <script>
+    const nameField = document.getElementById('nameField');
+    const formTitle = document.getElementById('formTitle');
+    const toggleText = document.querySelector('.toggle-text');
+    let isSignUp = true;
+
+    function toggleForm() {
+      isSignUp = !isSignUp;
+      if (isSignUp) {
+        formTitle.innerText = 'Create Account';
+        nameField.style.display = 'block';
+        toggleText.innerHTML = `Already have an account? <span onclick="toggleForm()">Log in</span>`;
+      } else {
+        formTitle.innerText = 'Log In';
+        nameField.style.display = 'none';
+        toggleText.innerHTML = `Don't have an account? <span onclick="toggleForm()">Sign up</span>`;
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+  <script src="menu.js"></script>
+</body>
+</html>

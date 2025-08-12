@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stylish Product Page</title>
+  <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet"/>
+  <link rel="stylesheet" href="productpage.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script> 
+  <script src="productpage.js" defer></script>
+  <script src="menu.js"></script>
+</head>
+<body>
+  <div class="canvas-background"></div>
+
+  <div class="product-layout">
+    <div class="product-image">
+      <div class="image-cropper">
+        <div class="image-cropper-inner">
+          <img id="canvasImage" src="your-image.png" alt="Canvas Image" />
+        </div>
+      </div>
+    </div> <!-- end product-image -->
+
+    <div class="product-info">
+      <h1>Terra Impact</h1>
+       <p class="price">£59.99</p>
+      <p class="description">
+        a fully plastic-free water bottle made from recycled stainless steel and biodegradable materials. Designed for durability and sustainability, it helps you cut down on single-use waste without compromising on quality or design.
+      </p>
+      <div class="collapsible">
+        <button class="collapsible-btn">Description <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>Each bottle features a unique mosaic print generated from your personal input. This pattern reflects your environmental choices and serves as a visual reminder of the positive impact you’re making.</p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <button class="collapsible-btn">Materials <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>TERRA is made from recycled stainless steel and biodegradable materials, completely free of plastic. Both the bottle and its packaging are designed with sustainability in mind, using low-impact processes and renewable energy throughout production.</p>
+        </div>
+      </div>
+
+      <!-- New Shipping Instructions Section -->
+      <div class="collapsible">
+        <button class="collapsible-btn">Shipping Details <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>All orders will be custom made. Please allow <b>6–8 weeks from launch date</b> for production and shipping.</p>
+<p>We’ll email you as soon as pre-orders open. Thanks for your patience and commitment to sustainability.</p>
+
+        </div>
+      </div>
+<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="hidden" name="form-name" value="waitlist" />
+  <input name="bot-field" />
+</form>
+
+     
+      <button class="buy-btn">Join Waitlist</button>
+    </div> <!-- end product-info -->
+  </div> <!-- end product-layout -->
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+    });
+
+    document.querySelectorAll('.collapsi

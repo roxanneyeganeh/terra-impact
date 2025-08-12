@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sustainability Mosaic</title>
+  <link rel="stylesheet" href="generator.css" />
+</head>
+<body>
+  <!-- Menu will be created dynamically by menu.js -->
+
+  <div id="controls">
+    <!-- <h2>Terra Impact</h2> -->
+
+    <label for="commute">Which mode of transport do you use most often?</label>
+    <select id="commute">
+      <option value="drive">Car</option>
+      <option value="public">Public Transport</option>
+      <option value="bike">Bike</option>
+      <option value="walk">Walk</option>
+    </select>
+
+    <label>Do you recycle regularly at home?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="recycle" value="yes" checked> Yes</label>
+      <label><input type="radio" name="recycle" value="no"> No</label>
+    </div>
+
+    <label for="plasticItems">How many single-use plastic items do you use per week?</label>
+    <input type="number" id="plasticItems" value="5" min="0" max="50">
+
+    <label>Do you use energy-efficient appliances or light bulbs?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="energyEfficient" value="yes" checked> Yes</label>
+      <label><input type="radio" name="energyEfficient" value="no"> No</label>
+    </div>
+
+    <label>Do you compost your food or garden waste?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="compost" value="yes" checked> Yes</label>
+      <label><input type="radio" name="compost" value="no"> No</label>
+    </div>
+
+    <label>Do you avoid buying products with excessive packaging?</label>
+    <div class="radio-group">
+      <label><input type="radio" name="excessivePackaging" value="yes" checked> Yes</label>
+      <label><input type="radio" name="excessivePackaging" value="no"> No</label>
+    </div>
+
+    <label for="bottleCount">How many refillable bottles do you currently own?</label>
+    <input type="number" id="bottleCount" value="1" min="0" max="10">
+  </div>
+
+  <div id="canvas-container"></div>
+
+  <!-- <div id="bottom-right-text">
+    Designed and Developed by <br>
+    <a href="https://designedbyroxanne.com" target="_blank" rel="noopener noreferrer">Roxanne Yeganeh</a>
+  </div> -->
+<!-- 
+  <div id="fact-container">
+    <p class="fact1">The average person uses 167 plastic bottles annually, many of which end up in landfills or oceans.</p>
+    <p class="fact2">Plastic bottles can take up to 450 years to decompose, polluting soil and water for centuries.</p>
+    <p class="fact3">Globally, plastic production is expected to double by 2040, making reuse and reduction more urgent than ever.</p>
+  </div> -->
+
+  <button id="add-to-basket-btn">Add to Basket</button>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
+    document.getElementById('add-to-basket-btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      const canvas = document.querySelector('canvas');
+      if (!canvas) {
+        alert("Canvas not found!");
+        return;
+      }
+      const imgData = canvas.toDataURL("image/png");
+      sessionStorage.setItem("savedCanvasImage", imgData);
+      window.location.href = "productpage.html";
+    });
+    
+  </script>
+
+  <!-- p5 and your scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+  <script src="menu.js"></script>
+  <script src="generator.js"></script>
+
+  <form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="hidden" name="form-name" value="waitlist" />
+  <input name="bot-field" />
+</form>
+
+
+</body>
+</html>
