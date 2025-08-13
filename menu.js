@@ -37,7 +37,7 @@ function createMenuBar() {
   menuBar.style('justify-content', 'space-between');
   menuBar.style('padding', '0 30px');
   menuBar.style('background-color',
-    (window.location.pathname.split('/').pop() === 'index.html', 'terra_ocean_impact_with_buttons.html'|| window.location.pathname.split('/').pop() === '')
+    (window.location.pathname.split('/').pop() === '/index', '/terra_ocean_impact_with_buttons'|| window.location.pathname.split('/').pop() === '')
       ? '#0A121C80' : '#0A121Cff'
   );
   menuBar.style('backdrop-filter', 'blur(16px)');
@@ -100,22 +100,22 @@ function createMenuBar() {
   logo.style('height', '30px');
   logo.style('cursor', 'pointer');
   logo.style('pointer-events', 'auto');
-  logo.mousePressed(() => window.location.href = 'index.html');
+  logo.mousePressed(() => window.location.href = '/index');
 
   // Right Menu Buttons
   buildBtn = createSpan('Build').parent(rightContainer);
   styleMenuItem(buildBtn);
-  buildBtn.mousePressed(() => window.location.href = 'generator.html');
+  buildBtn.mousePressed(() => window.location.href = '/generator');
 
   learnBtn = createSpan('About').parent(rightContainer);
   styleMenuItem(learnBtn);
 learnBtn.mousePressed(() => {
   const currentPage = window.location.pathname.split('/').pop();
-  if (currentPage === 'index.html' || currentPage === '') {
+  if (currentPage === 'index' || currentPage === '') {
     const target = document.getElementById('learnMoreSection');
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   } else {
-    window.location.href = 'index.html#learnMoreSection';
+    window.location.href = '/learnMoreSection';
   }
 });
 
