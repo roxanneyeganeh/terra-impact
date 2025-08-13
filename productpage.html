@@ -67,4 +67,12 @@
       document.body.classList.add('loaded');
     });
 
-    document.querySelectorAll('.collapsi
+    document.querySelectorAll('.collapsible-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.parentElement;
+        section.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
