@@ -37,7 +37,7 @@ function createMenuBar() {
   menuBar.style('justify-content', 'space-between');
   menuBar.style('padding', '0 30px');
   menuBar.style('background-color',
-    (window.location.pathname.split('/').pop() === '/index', '/terra_ocean_impact_with_buttons'|| window.location.pathname.split('/').pop() === '')
+    (window.location.pathname.split('/').pop() === '/index', '/about'|| window.location.pathname.split('/').pop() === '')
       ? '#0A121C80' : '#0A121Cff'
   );
   menuBar.style('backdrop-filter', 'blur(16px)');
@@ -115,7 +115,7 @@ learnBtn.mousePressed(() => {
     const target = document.getElementById('learnMoreSection');
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   } else {
-    window.location.href = '/learnMoreSection';
+    window.location.href = 'indexlearnMoreSection';
   }
 });
 

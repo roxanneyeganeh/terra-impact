@@ -206,7 +206,7 @@ function addToBasket() {
 function saveAndRedirect() {
   let imgData = canvas.toDataURL("image/png");
   sessionStorage.setItem("savedCanvasImage", imgData);
-  window.location.href = "index2.html";
+  window.location.href = "/productpage";
 }
 
 function mousePressed() {
