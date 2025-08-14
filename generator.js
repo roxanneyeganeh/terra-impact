@@ -206,7 +206,7 @@ function addToBasket() {
 function saveAndRedirect() {
   let imgData = canvas.toDataURL("image/png");
   sessionStorage.setItem("savedCanvasImage", imgData);
-  window.location.href = "/productpage";
+  window.location.href = "/trace-by-terra";
 }
 
 function mousePressed() {

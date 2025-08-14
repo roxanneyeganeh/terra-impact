@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trace By Terra</title>
+  <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet"/>
+  <link rel="stylesheet" href="productpage.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script> 
+  <script src="productpage.js" defer></script>
+  <script src="menu.js"></script>
+</head>
+<body>
+  <div class="canvas-background"></div>
+
+  <div class="product-layout">
+    <div class="product-image">
+      <div class="image-cropper">
+        <div class="image-cropper-inner">
+          <img id="canvasImage" src="your-image.png" alt="Canvas Image" />
+        </div>
+      </div>
+    </div> <!-- end product-image -->
+
+    <div class="product-info">
+      <h1>Trace by Terra</h1>
+       <p class="price">£59.99</p>
+      <p class="description">
+        a fully plastic-free water bottle made from recycled stainless steel and biodegradable materials. Designed for durability and sustainability, it helps you cut down on single-use waste without compromising on quality or design.
+      </p>
+      <div class="collapsible">
+        <button class="collapsible-btn">Description <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>Each bottle features a unique mosaic print generated from your personal input. This pattern reflects your environmental choices and serves as a visual reminder of the positive impact you’re making.</p>
+        </div>
+      </div>
+
+      <div class="collapsible">
+        <button class="collapsible-btn">Materials <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>TERRA is made from recycled stainless steel and biodegradable materials, completely free of plastic. Both the bottle and its packaging are designed with sustainability in mind, using low-impact processes and renewable energy throughout production.</p>
+        </div>
+      </div>
+
+      <!-- New Shipping Instructions Section -->
+      <div class="collapsible">
+        <button class="collapsible-btn">Shipping Details <span class="arrow">▼</span></button>
+        <div class="collapsible-content">
+          <p>All orders will be custom made. Please allow <b>6–8 weeks from launch date</b> for production and shipping.</p>
+<p>We’ll email you as soon as pre-orders open. Thanks for your patience and commitment to sustainability.</p>
+
+        </div>
+      </div>
+<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
+  <input type="email" name="email" />
+  <input type="hidden" name="form-name" value="waitlist" />
+  <input name="bot-field" />
+</form>
+
+     
+      <button class="buy-btn">Join Waitlist</button>
+    </div> <!-- end product-info -->
+  </div> <!-- end product-layout -->
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('loaded');
+    });
+
+    document.querySelectorAll('.collapsible-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.parentElement;
+        section.classList.toggle('open');
+      });
+    });
+  </script>
+<div id="waitlistModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+     background-color:#0A121Caa; display:flex; align-items:center; justify-content:center; z-index:2000; font-family:'Inter Tight', sans-serif;">
+  <div style="background:#0A121C; padding:40px; border-radius:16px; max-width:420px; width:90%; box-shadow:0 0 12px rgba(255,255,255,0.05); border:0.2px solid #5A5A5A80; color:white; position:relative;">
+    
+    <!-- Fixed close button -->
+    <button id="closeModal" style="
+        position:absolute; 
+        top:16px; 
+        right:16px; 
+        background:none; 
+        border:none; 
+        font-size:28px; 
+        color:white; 
+        cursor:pointer; 
+        line-height:1;">&times;</button>
+    
+    <h2 style="margin:0 0 30px; font-weight:600; font-size:28px; text-align:center;">Join Our Waitlist</h2>
+    
+    <form name="waitlist" method="POST" data-netlify="true" id="waitlistForm" style="display:flex; flex-direction:column; gap:20px;">
+      <input type="hidden" name="form-name" value="waitlist" />
+      <input type="email" name="email" placeholder="Your email" required style="padding:12px; background-color:#0A121C; color:white; border:0.2px solid #5A5A5A80; border-radius:6px; font-size:16px;" />
+      <button type="submit" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 24px; background-color:white; color:#0A121C; border:none; border-radius:999px; font-weight:500; font-size:16px; cursor:pointer; transition:background 0.3s ease;">
+        Submit
+        <svg class="arrow-icon" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </button>
+    </form>
+
+    <div id="confirmationMessage" style="display:none; margin-top:15px; font-size:14px; color:#aaa; text-align:center;">We’ll notify you once we launch.</div>
+    <div id="errorMessage" style="display:none; margin-top:15px; font-size:14px; color:#ff5555; text-align:center;"></div>
+    
+  </div>
+</div>
+
+<script>
+  // Animate arrow on hover
+  const submitBtn = document.querySelector('#waitlistForm button');
+  const arrow = submitBtn.querySelector('.arrow-icon');
+
+  submitBtn.addEventListener('mouseenter', () => {
+    arrow.style.transform = 'translateX(4px)';
+  });
+
+  submitBtn.addEventListener('mouseleave', () => {
+    arrow.style.transform = 'translateX(0)';
+  });
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const productBtn = document.querySelector('.buy-btn');
+    const modal = document.getElementById('waitlistModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const form = document.getElementById('waitlistForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Open modal on button click
+    productBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      form.style.display = 'flex';
+      confirmationMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      form.reset();
+    });
+
+    // Netlify form submission
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          confirmationMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+        } else {
+          errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+          errorMessage.style.display = 'block';
+        }
+      }).catch(() => {
+        errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+        errorMessage.style.display = 'block';
+      });
+    });
+  });
+</script>
+
+  
+</body>
+</html>
