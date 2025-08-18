@@ -136,8 +136,8 @@ let modelScaleX = map(windowWidth, 400, 1400, 1.9, 1.9);
 let modelScaleY = map(windowHeight, 400, 1400, 1.3, 1.5);
 scale(modelScaleX, modelScaleY);
 
-let translateX = map(windowWidth, 0, 1400, -50, -50);
-translate(translateX, 0, 0);
+let translateX = map(windowWidth, 0, 1400, 0, -70);
+translate(translateX, -20, 0);
 
 
 // Flip bottle right side up

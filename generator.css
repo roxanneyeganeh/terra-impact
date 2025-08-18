@@ -114,30 +114,61 @@ body {
 
 /* Add to basket button fixed next to left panel */
 #add-to-basket-btn {
-  background-color: #0A121C;
+  background-color: transparent;
   color: white;
   font-family: 'Inter Tight', sans-serif;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 4px;
+ 
   font-size: 0.9;
-  border: 0.2px solid #ffffff;
+     border: 1px solid white;
+      border-radius: 999px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3 ease;
   display: inline-block;
+
+  
 
 
   position: fixed;
   bottom: 80px;
-  right: 34px; /* right of left panel */
+right: 48%; /* right of left panel */
   z-index: 13;
 }
 
+
 #add-to-basket-btn:hover {
   /* background-color: #58d68d; */
-    border: 0.2px solid #aaa;
-     color: #aaa;
+    background-color: white;
+     color: #000000;
 }
+
+/* Add to basket button fixed next to left panel */
+#button2 {
+  background-color: transparent;
+  color: white;
+  font-family: 'Inter Tight', sans-serif;
+  padding: 12px 24px;
+  border: none;
+ 
+  font-size: 0.9;
+     border: 1px solid white;
+      border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3 ease;
+  display: inline-block;
+  position: fixed;
+  bottom: 80px;
+  right: 41%; /* right of left panel */
+  z-index: 13;
+}
+
+#button2:hover {
+  /* background-color: #58d68d; */
+    background-color: white;
+     color: #000000;
+}
+
 
 /* Labels */
 label {
@@ -157,19 +188,19 @@ select, input[type=number] {
   margin-bottom: 18px;
   width: 100%;
   box-sizing: border-box;
-  padding: 8px 10px;
+       padding: 12px 19px;
   font-size: 0.9rem;
   background: #0A121C;
   color: rgb(255, 255, 255);
-  border: 1px solid #5A5A5A80;
-  border-radius: 4px;
+  border: 1px solid #ffffff80;
+  border-radius: 99px;
   transition: background-color 0.3s ease;
 }
 
 select:focus, input[type=number]:focus {
   outline: none;
   background-color: #ffffff;
-  color: #0A121C;
+  color: #000000;
 }
 
 /* Radio buttons container */
