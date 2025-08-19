@@ -60,9 +60,43 @@
 </form>
 
      
-      <button class="buy-btn">Join Waitlist</button>
-    </div> <!-- end product-info -->
-  </div> <!-- end product-layout -->
+<div class="action-buttons">
+  <button class="buy-btn">Join Waitlist</button>
+  <button class="save-btn">Save Design</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const saveBtn = document.querySelector('.save-btn');
+    const designImage = document.getElementById('canvasImage');
+
+    saveBtn.addEventListener('click', () => {
+      try {
+        // Save the design src (could be base64 if generated dynamically)
+        const designSrc = designImage.src;
+        localStorage.setItem('savedDesign', designSrc);
+
+        // Optional: Give user feedback
+        saveBtn.textContent = "Design Saved!";
+        saveBtn.disabled = true;
+        setTimeout(() => {
+          saveBtn.textContent = "Save Design";
+          saveBtn.disabled = false;
+        }, 2000);
+      } catch (err) {
+        console.error("Error saving design:", err);
+        alert("Could not save your design. Please try again.");
+      }
+    });
+
+    // Optional: Restore design if it exists
+    const savedDesign = localStorage.getItem('savedDesign');
+    if (savedDesign) {
+      designImage.src = savedDesign;
+    }
+  });
+</script>
+
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {

@@ -112,62 +112,38 @@ body {
   100% {opacity: 0;}
 }
 
-/* Add to basket button fixed next to left panel */
-#add-to-basket-btn {
+.action-buttons {
+  display: flex;
+  gap: 10px;                 /* consistent spacing */
+  justify-content: center;   /* center horizontally */
+  position: fixed;           /* anchor container at bottom */
+  bottom: 80px;              /* distance from bottom */
+  left: 50%;                 /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 13;
+  flex-wrap: wrap;           /* wrap on smaller screens */
+}
+
+/* Buttons inside container */
+.action-buttons button {
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  border: 1px solid white;
+  border-radius: 999px;
+
   background-color: transparent;
   color: white;
-  font-family: 'Inter Tight', sans-serif;
-  padding: 12px 24px;
-  border: none;
- 
-  font-size: 0.9;
-     border: 1px solid white;
-      border-radius: 999px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3 ease;
-  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  
-
-
-  position: fixed;
-  bottom: 80px;
-right: 48%; /* right of left panel */
-  z-index: 13;
+/* Hover effect for buttons */
+.action-buttons button:hover {
+  background-color: white;
+  color: #000000;
 }
 
 
-#add-to-basket-btn:hover {
-  /* background-color: #58d68d; */
-    background-color: white;
-     color: #000000;
-}
-
-/* Add to basket button fixed next to left panel */
-#button2 {
-  background-color: transparent;
-  color: white;
-  font-family: 'Inter Tight', sans-serif;
-  padding: 12px 24px;
-  border: none;
- 
-  font-size: 0.9;
-     border: 1px solid white;
-      border-radius: 999px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3 ease;
-  display: inline-block;
-  position: fixed;
-  bottom: 80px;
-  right: 41%; /* right of left panel */
-  z-index: 13;
-}
-
-#button2:hover {
-  /* background-color: #58d68d; */
-    background-color: white;
-     color: #000000;
-}
 
 
 /* Labels */

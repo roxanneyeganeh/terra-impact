@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Saved Designs</title>
+  <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Futura PT', sans-serif;
+      background: #0A121C;
+      color: white;
+      margin: 0;
+      min-height: 100vh;
+      /* Only menu.js elements will be positioned absolute/fixed */
+    }
+
+    /* Center saved design container independently */
+    .saved-container-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative; /* keeps it above menu effects */
+      z-index: 1; /* make sure menu doesn't overlap */
+    }
+
+    .container {
+      background: #121A25;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    #savedImage {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    #noDesign {
+      font-size: 18px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      font-family: 'Inter Tight', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 8px;
+      text-decoration: none;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn-primary {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .btn-primary:hover {
+        background: #ffffff;
+      color: black;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Wrapper that keeps container centered -->
+  <div class="saved-container-wrapper">
+    <div class="container">
+      <h1>My Saved Design</h1>
+      <img id="savedImage" />
+      <p id="noDesign" style="display:none;">No saved design found.</p>
+
+      <div>
+        <a href="trace-by-terra.html" class="btn btn-primary">Back to Shop</a>
+        <button id="clearDesign" class="btn btn-secondary">Clear Saved Design</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const savedDesign = localStorage.getItem('savedDesign');
+    const img = document.getElementById('savedImage');
+    const noDesign = document.getElementById('noDesign');
+    const clearBtn = document.getElementById('clearDesign');
+
+    if (savedDesign) {
+      img.src = savedDesign;
+    } else {
+      img.style.display = 'none';
+      noDesign.style.display = 'block';
+    }
+
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem('savedDesign');
+      img.style.display = 'none';
+      noDesign.style.display = 'block';
+     
+    });
+  </script>
+
+  <!-- P5.js and menu.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+  <script src="menu.js"></script>
+
+</body>
+</html>

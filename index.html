@@ -4,15 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home</title>
-  <script>
-  // Detect mobile devices
-  if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    // Replace the entire body with a message
-    document.addEventListener("DOMContentLoaded", function() {
-      document.body.innerHTML = "<h1 style='text-align:center;margin-top:20%;font-family:sans-serif;'>This webpage is desktop only.</h1>";
-    });
-  }
-</script>
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 
@@ -272,15 +263,54 @@ backdrop-filter: blur(5px);
       .footer-column {
         margin-bottom: 30px;
       }
+
+          #mosaic {
+      display: none !important;
     }
+    }
+
+    
   </style>
 </head>
 <body>
 
- 
+ <style>
+  @media (max-width: 768px) {
+    img[alt="Top Banner Image"] {
+      height: 400px; /* make taller on mobile */
+      object-fit: cover;
+      aspect-ratio: 3/3.3; /* keeps image filling height without stretching */
+      margin-top: 40px; /* optional: adjust spacing */
+      z-index: -10;
+    }
+  }
+</style>
+
    <img src="assets/product.jpg" alt="Top Banner Image" style="width: 100%; height: auto; margin-top: 60px;" />
 
+<style>
+  @media (max-width: 768px) {
+    /* Container padding smaller on mobile */
+    div[style*="padding: 60px 170px 60px 170px"] {
+      padding: 40px 20px 40px 20px !important;
+    }
 
+    /* Heading smaller on mobile */
+    .heading {
+      font-size: 40px !important;
+      line-height: 50px !important;
+      margin-bottom: 150px !important;
+      /* padding-top: 20px !important; */
+      /* text-align: left !important; */
+      padding: 20px;
+    }
+
+    /* Optional: reduce top margin of outer flex container */
+    div[style*="margin-top: -10px"] {
+      margin-top: -5px !important;
+    }
+  }
+</style>
 
 <div style="background: black; display: flex; justify-content: center; margin-top: -10px;">
   <div style="
@@ -363,6 +393,26 @@ climate awareness
       </div>
     </div>
   </div> -->
+
+
+<style>
+  @media (max-width: 768px) {
+    .main-text2 {
+      display: block; /* stack columns vertically */
+     
+      padding: 10px 20px !important; /* smaller padding */
+      margin-top: -120px !important; /* adjust negative margin */
+        margin-bottom: 70px !important; /* adjust negative margin */
+      text-align: center; /* optional: center text on mobile */
+    }
+
+    .main-text2 > div:last-child {
+       margin-left: 0 !important;
+      max-width: 90vw !important; /* take most of mobile width */
+      width: 90vw !important;
+    }
+  }
+</style>
 
 <!-- Secondary Text Grid -->
 <div style="display: grid; place-items: center; ">
@@ -759,6 +809,30 @@ climate awareness
   }
 </style>
 
+<style>
+  @media (max-width: 768px) {
+    #learnMoreSection {
+      position: relative !important; /* stack below */
+      
+  top: 0;
+  margin-left: -30px;
+ 
+  display: flex;
+  flex-direction: column;
+  padding-right: 100px !important; /* add space from right edge */
+
+    }
+    
+    #learnMoreSection p {
+      width: 100% !important; /* full width on mobile */
+     
+    }
+
+    #learnMoreSection div:first-child {
+      font-size: 28px !important; /* smaller title for mobile */
+    }
+  }
+</style>
 
 
 <!-- Learn More Section -->
@@ -823,6 +897,27 @@ climate awareness
 
 
   <div id="datapattern"></div>
+
+
+  <style>
+  @media (max-width: 768px) {
+    #spinbot div[style*="max-width: 600px;"] {
+      width: 90vw; /* shrink the entire form container on mobile */
+    }
+
+    #spinbot input[type="email"] {
+    
+      width: 100%;
+      left: 0 !important;
+    }
+
+    #spinbot button[type="submit"] {
+      flex-shrink: 0; /* prevent button from shrinking */
+      right: 0 !important;
+    }
+  }
+</style>
+
 
 <!-- Spinbot Section -->
 <div id="spinbot" style="position: relative; justify-content: center;">

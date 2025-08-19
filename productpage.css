@@ -72,8 +72,8 @@ canvas {
   width: 950px;
   height: 600px;
   position: absolute;
-  top: -10px;
-  left: -70px;
+  top: 30px;
+  left: -85px;
 }
 
 /* Product information box */
@@ -86,7 +86,7 @@ canvas {
 }
 
 .product-info h1 {
-  font-size: 30px;
+  font-size: 25px;
   margin: 0 0 10px 0;
   color: #ffffff;
     font-family: 'Inter Tight', sans-serif;
@@ -160,6 +160,12 @@ canvas {
   transform: rotate(180deg);
 }
 
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
 .buy-btn {
   background-color: #0A121C;
   color: white;
@@ -178,6 +184,33 @@ canvas {
 }
 
 .buy-btn:hover {
+  /* background-color: #aaae; */
+  color: rgba(0, 0, 0);
+  background-color: white;
+ 
+}
+
+
+
+
+.save-btn {
+  background-color: #0A121C;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3 ease;
+  display: inline-block;
+
+
+  border: 1px solid white;
+  font-family: 'Inter Tight', sans-serif;
+  margin-top: 10px; /* pushes the button down */
+}
+
+.save-btn:hover {
   /* background-color: #aaae; */
   color: rgba(0, 0, 0);
   background-color: white;
@@ -212,8 +245,8 @@ canvas {
 
   .image-cropper-inner img#canvasImage {
     position: absolute;
-    top: -70px;
-    left: -55px;
+    top: -45px;
+    left: -70px;
     width: 850px;
     height: 570px;
   }
@@ -221,5 +254,6 @@ canvas {
   .product-info {
     width: 100%;
     max-width: 450px;
+    margin-top: -60px;
   }
 }
