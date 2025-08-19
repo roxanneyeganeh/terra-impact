@@ -1022,22 +1022,41 @@ climate awareness
 </div>
 
 <style>
+  /* placeholder light gray */
   #waitlistForm input::placeholder {
     color: #aaaaaa90 !important;
     opacity: 1;
   }
 
+  /* typed text always white */
   #waitlistForm input {
     color: white !important;
     background-color: #5A5A5A30 !important;
+    border: 0.2px solid #5A5A5A80;
   }
 
-  #waitlistForm input:-webkit-autofill {
+  /* Chrome/Safari autofill fix */
+  #waitlistForm input:-webkit-autofill,
+  #waitlistForm input:-webkit-autofill:hover, 
+  #waitlistForm input:-webkit-autofill:focus, 
+  #waitlistForm input:-webkit-autofill:active {
     -webkit-text-fill-color: white !important;
     -webkit-box-shadow: 0 0 0px 1000px #5A5A5A30 inset !important;
     background-color: #5A5A5A30 !important;
   }
+
+  /* Firefox autofill fix */
+  input:-moz-autofill {
+    box-shadow: 0 0 0px 1000px #5A5A5A30 inset !important;
+    -moz-text-fill-color: white !important;
+  }
+
+  /* ensure caret is visible */
+  #waitlistForm input {
+    caret-color: white !important;
+  }
 </style>
+
 
 <script>
 async function handleSubmit(event) {
