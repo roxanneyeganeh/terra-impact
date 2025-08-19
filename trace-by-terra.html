@@ -163,11 +163,12 @@ form.addEventListener('submit', function (e) {
     body: new URLSearchParams(formData).toString()
   }).then(response => {
     if (response.ok) {
-      // Hide the form
+      // Hide the form and show confirmation
       form.style.display = 'none';
+      confirmationMessage.style.display = 'block';
       errorMessage.style.display = 'none';
 
-      // Replace modal title with full thank you message
+      // CHANGE modal title ONLY ON SUBMIT
       modal.querySelector('h2').textContent = "Thank you! We’ll notify you once we launch";
     } else {
       errorMessage.textContent = 'Oops! There was a problem submitting your form.';
@@ -178,6 +179,7 @@ form.addEventListener('submit', function (e) {
     errorMessage.style.display = 'block';
   });
 });
+
 
   
 </body>
