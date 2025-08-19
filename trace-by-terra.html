@@ -65,37 +65,6 @@
   <button class="save-btn">Save Design</button>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const saveBtn = document.querySelector('.save-btn');
-    const designImage = document.getElementById('canvasImage');
-
-    saveBtn.addEventListener('click', () => {
-      try {
-        // Save the design src (could be base64 if generated dynamically)
-        const designSrc = designImage.src;
-        localStorage.setItem('savedDesign', designSrc);
-
-        // Optional: Give user feedback
-        saveBtn.textContent = "Design Saved!";
-        saveBtn.disabled = true;
-        setTimeout(() => {
-          saveBtn.textContent = "Save Design";
-          saveBtn.disabled = false;
-        }, 2000);
-      } catch (err) {
-        console.error("Error saving design:", err);
-        alert("Could not save your design. Please try again.");
-      }
-    });
-
-    // Optional: Restore design if it exists
-    const savedDesign = localStorage.getItem('savedDesign');
-    if (savedDesign) {
-      designImage.src = savedDesign;
-    }
-  });
-</script>
 
 
   <script>
@@ -185,29 +154,30 @@
     });
 
     // Netlify form submission
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          confirmationMessage.style.display = 'block';
-          errorMessage.style.display = 'none';
-        } else {
-          errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-          errorMessage.style.display = 'block';
-        }
-      }).catch(() => {
-        errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-        errorMessage.style.display = 'block';
-      });
-    });
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(formData).toString()
+  }).then(response => {
+    if (response.ok) {
+      // Hide the form
+      form.style.display = 'none';
+      errorMessage.style.display = 'none';
+
+      // Replace modal title with full thank you message
+      modal.querySelector('h2').textContent = "Thank you! We’ll notify you once we launch";
+    } else {
+      errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+      errorMessage.style.display = 'block';
+    }
+  }).catch(() => {
+    errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+    errorMessage.style.display = 'block';
   });
-</script>
+});
 
   
 </body>
