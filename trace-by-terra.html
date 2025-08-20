@@ -131,52 +131,62 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const productBtn = document.querySelector('.buy-btn');
-    const modal = document.getElementById('waitlistModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const form = document.getElementById('waitlistForm');
-    const confirmationMessage = document.getElementById('confirmationMessage');
-    const errorMessage = document.getElementById('errorMessage');
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('waitlistModal');
+  const closeModalBtn = document.getElementById('closeModal');
+  const form = document.getElementById('waitlistForm');
+  const confirmationMessage = document.getElementById('confirmationMessage');
+  const errorMessage = document.getElementById('errorMessage');
+  const productBtn = document.querySelector('.buy-btn');
 
-    // Open modal on button click
-    productBtn.addEventListener('click', () => {
-      modal.style.display = 'flex';
-    });
+  // Open modal
+  productBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
 
-    // Close modal
-    closeModalBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-      form.style.display = 'flex';
-      confirmationMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
-      form.reset();
-    });
+  // Close modal via X button
+  closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    form.style.display = 'flex';
+    confirmationMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+    form.reset();
+  });
 
-    // Netlify form submission
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          confirmationMessage.style.display = 'block';
-          errorMessage.style.display = 'none';
-        } else {
-          errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-          errorMessage.style.display = 'block';
-        }
-      }).catch(() => {
+  // Optional: Close modal if clicking outside the content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModalBtn.click(); // re-use close logic
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    }).then(response => {
+      if (response.ok) {
+        form.style.display = 'none';
+        confirmationMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+      } else {
         errorMessage.textContent = 'Oops! There was a problem submitting your form.';
         errorMessage.style.display = 'block';
-      });
+      }
+    }).catch(() => {
+      errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+      errorMessage.style.display = 'block';
     });
   });
+});
 </script>
+
+
+
 
   
 </body>
