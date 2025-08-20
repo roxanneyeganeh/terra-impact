@@ -66,7 +66,6 @@
 </div>
 
 
-
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('loaded');
@@ -154,47 +153,30 @@
     });
 
     // Netlify form submission
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('waitlistModal');
-  const form = document.getElementById('waitlistForm');
-  const confirmationMessage = document.getElementById('confirmationMessage');
-  const errorMessage = document.getElementById('errorMessage');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    })
-    .then(response => {
-      if (response.ok) {
-        // Hide the form and error
-        form.style.display = 'none';
-        errorMessage.style.display = 'none';
-        
-        // Update the H2 text only on submit
-        const modalTitle = modal.querySelector('h2');
-        if (modalTitle) {
-          modalTitle.textContent = "Thank you! We’ll notify you once we launch";
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          confirmationMessage.style.display = 'block';
+          errorMessage.style.display = 'none';
+        } else {
+          errorMessage.textContent = 'Oops! There was a problem submitting your form.';
+          errorMessage.style.display = 'block';
         }
-      } else {
+      }).catch(() => {
         errorMessage.textContent = 'Oops! There was a problem submitting your form.';
         errorMessage.style.display = 'block';
-      }
-    })
-    .catch(() => {
-      errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-      errorMessage.style.display = 'block';
+      });
     });
   });
-});
-
-
 </script>
+
   
 </body>
 </html>
