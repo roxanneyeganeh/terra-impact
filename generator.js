@@ -2,16 +2,16 @@ const seabornedeep = [
   "#e74c3c",   // soft red
   "#3498db",  // light blue
   "#2ecc71",  // mint green
-  "rgb(155, 89, 182)",  // violet
+  "#9b59b6",  // violet
   "rgb(241, 196, 15)",  // amber
   "#e67e22",  // orange
-  "rgb(149, 165, 166)", // muted gray-blue
+  "#95a5a6", // muted gray-blue
   "rgb(243, 156, 18)",  // golden orange
   "#1abc9c",  // teal
-  "rgb(127, 140, 141)", // dark gray
+  "#7f8c8d", // dark gray
   "rgb(93, 173, 226)",  // sky blue
   "#58d68d",  // light green
-  "rgb(245, 176, 65)",  // light orange
+  "#f5b041",  // light orange
   "rgb(169, 204, 227)", // soft blue
   "rgb(255, 99, 132)",  // coral pink
   "rgb(118, 68, 138)"   // deep plum

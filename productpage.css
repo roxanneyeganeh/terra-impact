@@ -221,39 +221,3 @@ canvas {
   body {
     overflow-y: auto;
   }
-
-  .product-layout {
-    flex-direction: column;
-    padding: 20px;
-    align-items: center;
-  }
-
-  .image-cropper {
-    max-width: 450px;
-    height: 450px;
-    position: relative;
-  }
-
-  .image-cropper-inner {
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    bottom: 15px;
-    left: -10px;
-    overflow: hidden;
-  }
-
-  .image-cropper-inner img#canvasImage {
-    position: absolute;
-    top: -45px;
-    left: -70px;
-    width: 850px;
-    height: 570px;
-  }
-
-  .product-info {
-    width: 100%;
-    max-width: 450px;
-    margin-top: -60px;
-  }
-}
