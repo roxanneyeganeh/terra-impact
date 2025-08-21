@@ -266,4 +266,17 @@ select:focus, input[type=number]:focus {
   margin-left: 320px; /* offset from fixed left panel */
   background: #0A121C;
   position: relative;
-  height: calc(100vh - 60px)
+  height: calc(100vh - 60px); /* full height minus top padding */
+  overflow: auto; /* allow scroll inside canvas container if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Canvas styling */
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+

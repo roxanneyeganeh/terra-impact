@@ -112,4 +112,30 @@
     </div>
   </div>
 
- 
+  <script>
+    const savedDesign = localStorage.getItem('savedDesign');
+    const img = document.getElementById('savedImage');
+    const noDesign = document.getElementById('noDesign');
+    const clearBtn = document.getElementById('clearDesign');
+
+    if (savedDesign) {
+      img.src = savedDesign;
+    } else {
+      img.style.display = 'none';
+      noDesign.style.display = 'block';
+    }
+
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem('savedDesign');
+      img.style.display = 'none';
+      noDesign.style.display = 'block';
+     
+    });
+  </script>
+
+  <!-- P5.js and menu.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
+  <script src="menu.js"></script>
+
+</body>
+</html>
