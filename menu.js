@@ -18,22 +18,28 @@ function createMenuBar() {
   let oldMenu = select('#menuBar');
   if (oldMenu) oldMenu.remove();
 
-  // Main menu bar
-  menuBar = createDiv().id('menuBar');
-  menuBar.style('position', 'fixed');
-  menuBar.style('top', '0');
-  menuBar.style('left', '0');
-  menuBar.style('width', '100%');
-  menuBar.style('height', '80px');
-  menuBar.style('display', 'flex');
-  menuBar.style('align-items', 'center');
-  menuBar.style('justify-content', 'space-between');
-  menuBar.style('padding', '0 30px');
-  menuBar.style('backdrop-filter', 'blur(16px)');
-  menuBar.style('-webkit-backdrop-filter', 'blur(16px)');
-  menuBar.style('z-index', '1000');
-  menuBar.style('border-bottom', '0.2px solid #5A5A5A80');
-  menuBar.style('font-size', '15px');
+
+// Main menu bar
+menuBar = createDiv().id('menuBar');
+menuBar.style('position', 'fixed');
+menuBar.style('left', '0');
+menuBar.style('right', '0'); 
+menuBar.style('top', '0'); 
+
+menuBar.style('width', 'auto'); // let left+right define width  // 🚨 FORCE exact viewport width
+menuBar.style('max-width', '100vw'); 
+menuBar.style('overflow-x', 'hidden'); // prevent any horizontal overflow
+menuBar.style('height', '80px');
+menuBar.style('display', 'flex');
+menuBar.style('align-items', 'center');
+menuBar.style('justify-content', 'space-between');
+menuBar.style('padding', '0 30px');
+menuBar.style('backdrop-filter', 'blur(16px)');
+menuBar.style('-webkit-backdrop-filter', 'blur(16px)');
+menuBar.style('z-index', '1000');
+menuBar.style('border-bottom', '0.2px solid #5A5A5A80');
+menuBar.style('font-size', '15px');
+
 
   // Set background based on page
   const page = window.location.pathname.split('/').pop();
@@ -48,6 +54,7 @@ function createMenuBar() {
   leftContainer.style('display', 'flex');
   leftContainer.style('align-items', 'center');
   leftContainer.style('gap', '12px');
+  
 
   // Center container (Logo)
   centerContainer = createDiv().parent(menuBar);
@@ -59,13 +66,17 @@ function createMenuBar() {
   centerContainer.style('align-items', 'center');
   centerContainer.style('pointer-events', 'none');
 
-  // Right container (About, Account, Heart)
-  rightContainer = createDiv().parent(menuBar);
-  rightContainer.style('display', 'flex');
-  rightContainer.style('align-items', 'center');
-  rightContainer.style('gap', '20px');
-  rightContainer.style('position', 'relative');
-  rightContainer.style('z-index', '1001');
+// Right container (About, Account, Heart)
+rightContainer = createDiv().parent(menuBar);
+rightContainer.style('display', 'flex');
+rightContainer.style('align-items', 'center');
+rightContainer.style('gap', '20px');
+
+// Keep it fixed in the same spot
+rightContainer.style('position', 'relative');
+  // distance from top of page
+
+
 
   // --- Join Waitlist (outline pill) ---
   pillBtn = createButton('Join Waitlist').parent(leftContainer);
