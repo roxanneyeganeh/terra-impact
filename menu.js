@@ -7,6 +7,7 @@ function setup() {
   createCanvas(windowWidth, 0); // invisible p5 canvas
   createMenuBar();
   createWaitlistModal();
+   injectGlobalStyles(); 
 }
 
 function draw() {
@@ -133,6 +134,7 @@ learnBtn.mousePressed(() => {
 });
 
 
+
   // Account link
   let accountBtn = createSpan('Account').parent(rightContainer);
   styleMenuItem(accountBtn);
@@ -167,7 +169,50 @@ heartBtn.style('align-items', 'center');
   `;
   document.head.appendChild(style);
 
+
+
   handleMenuResize();
+}
+
+function injectGlobalStyles() {
+  // Heart hover CSS
+  let heartStyle = document.createElement('style');
+  heartStyle.innerHTML = `
+    .heart-icon {
+      fill: transparent;
+      transition: fill 0.2s ease;
+    }
+    .heart-icon:hover {
+      fill: white;
+    }
+  `;
+  document.head.appendChild(heartStyle);
+
+  // Menu item underline CSS
+  let menuStyle = document.createElement('style');
+  menuStyle.innerHTML = `
+    .menu-item {
+      display: inline-block;
+      position: relative;
+    }
+    .menu-item::after {
+       content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px; /* adjust this so it matches your menu bar bottom */
+  height: 2px;
+  width: 0;
+  background: #4da2ff;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+    }
+    .menu-item:hover::after {
+      width: 100%;
+      opacity: 1;
+    }
+  `;
+  document.head.appendChild(menuStyle);
 }
 
 function styleMenuItem(elem) {
@@ -176,9 +221,10 @@ function styleMenuItem(elem) {
   elem.style('font-family', "'Inter Tight', sans-serif");
   elem.style('cursor', 'pointer');
   elem.style('padding', '8px 12px');
-  elem.style('transition', 'color 0.3s ease');
-  elem.mouseOver(() => elem.style('color', '#aaa'));
-  elem.mouseOut(() => elem.style('color', 'white'));
+  elem.style('position', 'relative'); // needed for pseudo-element placement
+
+  // Give each menu item a class so we can style with CSS
+  elem.addClass('menu-item');
 }
 
 // --- Waitlist Modal ---
