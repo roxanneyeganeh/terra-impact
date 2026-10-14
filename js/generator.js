@@ -173,7 +173,7 @@
         'assets/bottle.obj',
         true,
         (m) => {
-          model = m;
+          model = Terra.mosaic.wrapUVs(m);
           loading.classList.add('is-done');
         },
         () => {

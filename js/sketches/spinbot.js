@@ -47,7 +47,7 @@
         'assets/bottle.obj',
         true,
         (m) => {
-          model = m;
+          model = Terra.mosaic.wrapUVs(m);
           if (reduce) {
             t = 0.62;
             rot.y = 35;

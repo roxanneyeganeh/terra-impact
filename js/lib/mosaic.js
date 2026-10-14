@@ -157,31 +157,78 @@
    * graphics `g` (square). `p` is the owning p5 instance.
    */
   function renderTexture(p, g, colors, rows) {
-    rows = rows || 7;
-    const W = g.width;
-    const count = 27;
-    const bsz = W / count;
-    const sz = (W - bsz * 2) / rows;
+    // Seamless texture: a whole number of tiles edge to edge, no border, so it
+    // wraps around the bottle (and repeats vertically) without a visible join.
+    rows = rows || 5; // 5 tiles around the bottle ≈ the original tile size
+    const sz = g.width / rows;
     const geo = geometry(sz);
-    const org = bsz + sz / 2;
 
     g.push();
     g.background(0);
     for (let c = 0; c < rows; c++) {
-      for (let r = 0; r < rows; r++) drawTile(g, geo, r * sz + org, c * sz + org, colors);
-    }
-
-    if (!g._terraBorder || g._terraBorder.width !== Math.round(bsz)) {
-      g._terraBorder = borderTile(p, Math.round(bsz));
-    }
-    const tile = g._terraBorder;
-    for (let i = 0; i < count; i++) {
-      g.image(tile, i * bsz, 0, bsz, bsz);
-      g.image(tile, W - bsz, i * bsz, bsz, bsz);
-      g.image(tile, i * bsz, W - bsz, bsz, bsz);
-      g.image(tile, 0, i * bsz, bsz, bsz);
+      for (let r = 0; r < rows; r++) drawTile(g, geo, (r + 0.5) * sz, (c + 0.5) * sz, colors);
     }
     g.pop();
+  }
+
+  /**
+   * Replace the model's UVs with a clean cylindrical wrap: u goes once around
+   * the bottle (0 → 1), v follows the height at the same scale, so tiles stay
+   * square and the pattern meets itself at the back with no vertical line.
+   * The join is placed where the model already has split vertices.
+   */
+  function wrapUVs(m) {
+    const V = m.vertices;
+    const uv = m.uvs;
+    const n = V.length;
+    if (!n || !uv || !uv.length) return m;
+    // p5 stores model UVs either as [u, v] pairs (loadModel) or flat
+    const nested = Array.isArray(uv[0]);
+    const getU = (i) => (nested ? uv[i][0] : uv[i * 2]);
+    const setUV = (i, a, b) => {
+      if (nested) uv[i] = [a, b];
+      else { uv[i * 2] = a; uv[i * 2 + 1] = b; }
+    };
+
+    let minY = Infinity, maxR = 0;
+    for (const v of V) {
+      minY = Math.min(minY, v.y);
+      maxR = Math.max(maxR, Math.hypot(v.x, v.z));
+    }
+    const circ = 2 * Math.PI * maxR;
+    const angle = (v) => ((Math.atan2(v.z, v.x) / (2 * Math.PI)) % 1 + 1) % 1;
+
+    // find the existing seam: same position, very different original u
+    const groups = new Map();
+    V.forEach((v, i) => {
+      const k = `${v.x.toFixed(3)},${v.y.toFixed(3)},${v.z.toFixed(3)}`;
+      (groups.get(k) || groups.set(k, []).get(k)).push(i);
+    });
+    const votes = new Map();
+    groups.forEach((ids) => {
+      if (ids.length < 2) return;
+      const us = ids.map(getU);
+      if (Math.max(...us) - Math.min(...us) < 0.3) return;
+      const a = Math.round(angle(V[ids[0]]) * 64) / 64;
+      votes.set(a, (votes.get(a) || 0) + 1);
+    });
+    let seam = 0, best = 0;
+    votes.forEach((c, a) => { if (c > best) { best = c; seam = a; } });
+
+    const u = new Float32Array(n);
+    V.forEach((v, i) => (u[i] = (angle(v) - seam + 1) % 1));
+
+    // vertices on the seam: give the copy used by "far side" faces u = 1
+    const onSeam = (i) => u[i] < 1e-3 || u[i] > 1 - 1e-3;
+    const toOne = new Uint8Array(n);
+    for (const f of m.faces) {
+      if (!f.some(onSeam)) continue;
+      const far = f.some((i) => !onSeam(i) && u[i] > 0.5);
+      f.forEach((i) => { if (onSeam(i) && far) toOne[i] = 1; });
+    }
+
+    V.forEach((v, i) => setUV(i, toOne[i] ? 1 : onSeam(i) ? 0 : u[i], (v.y - minY) / circ));
+    return m;
   }
 
   /**
@@ -256,5 +303,5 @@
     p.pop();
   }
 
-  Terra.mosaic = { geometry, drawTile, hitSlot, renderTexture, drawBottle, borderTile };
+  Terra.mosaic = { geometry, drawTile, hitSlot, renderTexture, wrapUVs, drawBottle, borderTile };
 })(window);
