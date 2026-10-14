@@ -18,7 +18,7 @@
     [226, 354, 0.2], [184, 374, 0.4], [225, 374, 0.4], [201, 428, 0.3],
   ];
   const N = LAYOUT.length;
-  const MAX_H = 560;
+  const MAX_H = 420;
 
   new p5((p) => {
     const outline = [];

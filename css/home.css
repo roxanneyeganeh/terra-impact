@@ -74,7 +74,7 @@
 }
 .mosaic-intro {
   width: 100%;
-  max-width: 440px;
+  max-width: 330px;
   aspect-ratio: 1 / 1.14;
   display: grid;
   place-items: center;
