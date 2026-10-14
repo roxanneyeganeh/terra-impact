@@ -186,12 +186,14 @@
 
   /**
    * Draw the textured bottle + cap into a WEBGL p5 instance.
-   * Lighting/material values match the original sketches.
+   * Matte, evenly lit body (no specular streak); glossy dark cap.
    */
   function drawBottle(p, model, tex, rot) {
-    p.directionalLight(255, 255, 255, 0, -1, -100);
-    p.directionalLight(255, 255, 255, 0.5, -1, -0.5);
-    p.ambientLight(80);
+    // Diffuse-only lighting: p5 adds the ambient term on top of the texture
+    // (washes colours out), so light the body with soft directional lights.
+    p.directionalLight(225, 225, 225, 0, 0, -1);
+    p.directionalLight(90, 90, 90, -1, 0, -0.3);
+    p.directionalLight(90, 90, 90, 1, 0, -0.3);
 
     p.push();
     p.rotateX(180);
@@ -200,9 +202,8 @@
     p.rotateY(rot.y || 0);
     p.rotateZ(rot.z || 0);
 
-    p.ambientMaterial(80);
-    p.specularMaterial(255);
-    p.shininess(20);
+    // matte finish: no specular highlight on the body (avoids the bright streak)
+    p.ambientMaterial(0);
     p.texture(tex);
     p.noStroke();
     p.model(model);

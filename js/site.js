@@ -32,7 +32,6 @@
   const navLinks = [
     { href: '/generator', label: 'Build' },
     { href: '/about', label: 'About' },
-    { href: '/trace-by-terra', label: 'The Bottle' },
   ];
 
   function isActive(href) {
