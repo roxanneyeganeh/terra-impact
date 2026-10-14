@@ -167,7 +167,7 @@
         <button type="button" class="modal-close icon-btn" aria-label="Close" data-close>${icons.close}</button>
         <p class="eyebrow">Launching soon</p>
         <h2 id="waitlist-title">Join our waitlist</h2>
-        <p class="muted">Be the first to know when TerraTrace launches and pre-orders open.</p>
+        <p class="muted">Be the first to know when Terra launches and pre-orders open.</p>
         <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-ajax class="stack-form">
           <input type="hidden" name="form-name" value="waitlist">
           <p hidden><label>Don’t fill this out: <input name="bot-field"></label></p>

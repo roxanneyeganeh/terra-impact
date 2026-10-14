@@ -14,7 +14,7 @@
   if (img) {
     const el = document.getElementById('product-image');
     el.src = img;
-    el.alt = 'Your personalised TerraTrace bottle design';
+    el.alt = 'Your personalised Terra bottle design';
     el.closest('.media-frame').classList.add('is-design');
     document.getElementById('design-badge').hidden = false;
     const cta = document.getElementById('build-cta');
