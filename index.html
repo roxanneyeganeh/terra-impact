@@ -1,1330 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Terra Impact — Personalised, data-driven bottles</title>
+  <meta name="description" content="Terra turns your everyday environmental choices into a unique mosaic pattern printed on a plastic-free, reusable bottle.">
+  <meta name="theme-color" content="#0A121C">
+  <meta property="og:title" content="Terra Impact">
+  <meta property="og:description" content="Turn your choices into visuals. Build a bottle that reflects your environmental impact.">
+  <meta property="og:image" content="assets/product.jpg">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-
-  <!-- Import Futura PT font -->
-  <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap');
-
-
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      font-family: 'Inter Tight', sans-serif;
-      background: #0A121C !important;
-      position: relative;
-      color: white;
-    }
-
-    /* Reset margin/padding on all direct children of body to avoid extra space */
-    body > * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    canvas {
-      display: flex;
-      margin: 0;
-      padding: 0;
-      max-width: 100vw;
-    }
-
-#fact-section {
-  position: relative;
-  width: 100%;
-  padding: 10px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  align-items: center;
-  gap: 10px;
-  background: transparent;
-  z-index: 1;
-
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-top: 0.2px solid #5A5A5A80;
-}
-
-/* Simulated gradient borders on left and right */
-#fact-section::before,
-#fact-section::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  pointer-events: none;
-  z-index: 2;
-}
-
-#fact-section::before {
-  left: 0;
-  background: linear-gradient(to bottom, #162a4299, transparent);
-}
-
-#fact-section::after {
-  right: 0;
-  background: linear-gradient(to bottom, #5A5A5A80, transparent);
-}
-
-
-#fact-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  /* background:
-    url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="rgba(0,98,255,0.3)" d="M0,160 C360,240 1080,80 1440,160 L1440,320 L0,320 Z"><animate attributeName="d" dur="15s" repeatCount="indefinite" values="M0,160 C360,240 1080,80 1440,160 L1440,320 L0,320 Z;M0,80 C360,0 1080,320 1440,240 L1440,320 L0,320 Z;M0,160 C360,240 1080,80 1440,160 L1440,320 L0,320 Z" /></path></svg>') no-repeat center / cover,
-    
-    url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="rgba(0,98,255,0.2)" d="M0,200 C480,100 960,280 1440,200 L1440,320 L0,320 Z"><animate attributeName="d" dur="10s" repeatCount="indefinite" values="M0,200 C480,100 960,280 1440,200 L1440,320 L0,320 Z;M0,100 C480,280 960,100 1440,180 L1440,320 L0,320 Z;M0,200 C480,100 960,280 1440,200 L1440,320 L0,320 Z" /></path></svg>') no-repeat center / cover,
-    
-    url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="rgba(0,98,255,0.15)" d="M0,220 C360,120 1080,280 1440,220 L1440,320 L0,320 Z"><animate attributeName="d" dur="20s" repeatCount="indefinite" values="M0,220 C360,120 1080,280 1440,220 L1440,320 L0,320 Z;M0,140 C360,260 1080,100 1440,180 L1440,320 L0,320 Z;M0,220 C360,120 1080,280 1440,220 L1440,320 L0,320 Z" /></path></svg>') no-repeat center / cover;
-
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); */
-}
-
-
-    #fact-heading {
-      color: rgb(255, 255, 255);
-      font-size: 36px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin: 0;
-    }
-
-  #fact-container.fact-box-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 50px;
-  padding: 100px 0px;
-  max-width: 90%;
-  margin: 50px auto;
-  position: relative;
-  z-index: 2;
-}
-
-.fact-box {
-  flex: 0 0 20%;
-  background-color: rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.1); /* slight dark overlay */
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px); /* for Safari */
-
-  padding: 70px 55px;
-  border-radius: 50px;
-  border: 0.2px solid #5A5A5A80;
-  color: white;
-  text-align: center;
-  font-size: 18px;
-  line-height: 1.5;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-
-
-/* .fact-box:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-5px);
-} */
-
-/* Responsive wrap only below 768px */
-@media (max-width: 768px) {
-  #fact-container.fact-box-wrapper {
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .fact-box {
-    flex: 1 1 auto;
-    max-width: 90%;
-  }
-}
-
-
-    /* Inline styles from your page */
-    body {
-      overflow-x: hidden;
-    }
-
-    /* Footer styles */
-    .footer {
-      background-color: #0A121C99;
-      color: #aaa;
-      padding: 40px 20px;
-      border-top: 0.2px solid #5A5A5A80;
-    }
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-column {
-      flex: 1 1 200px;
-      margin: 10px;
-    }
-
-    .footer-column h4 {
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-column ul li a {
-      color: #aaa;
-      text-decoration: none;
-    }
-
-    .footer-column ul li a:hover {
-      /* text-decoration: underline; */
-      color: white;
-    }
-
-    .footer-column form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .footer-column input[type="email"] {
-      padding: 8px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: #0A121C;
-      border: 0.2px solid #5A5A5A80;
-      color: white;
-    }
-
-    .footer-column button {
-      padding: 8px;
-      background-color: #ffffff;
-      color: #0A121C;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .footer-column button:hover {
-      background-color: #ffffff;
-      opacity: 0.8;
-    }
-
-    .social-icons a img {
-      width: 24px;
-      margin-right: 10px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-
-    @media (max-width: 768px) {
-      .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .footer-column {
-        margin-bottom: 30px;
-      }
-
-          #mosaic {
-      display: none !important;
-    }
-    }
-
-    
-  </style>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
-<body>
+<body class="page-home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
 
- <style>
-  @media (max-width: 768px) {
-    img[alt="Top Banner Image"] {
-      height: 400px; /* make taller on mobile */
-      object-fit: cover;
-      aspect-ratio: 3/3.3; /* keeps image filling height without stretching */
-      margin-top: 40px; /* optional: adjust spacing */
-      z-index: -10;
-    }
-  }
-</style>
+  <main id="main">
 
-   <img src="assets/product.jpg" alt="Top Banner Image" style="width: 100%; height: auto; margin-top: 60px;" />
-
-<style>
-  @media (max-width: 768px) {
-    /* Container padding smaller on mobile */
-    div[style*="padding: 60px 170px 60px 170px"] {
-      padding: 40px 20px 40px 20px !important;
-    }
-
-    /* Heading smaller on mobile */
-    .heading {
-      font-size: 40px !important;
-      line-height: 50px !important;
-      margin-bottom: 150px !important;
-      /* padding-top: 20px !important; */
-      /* text-align: left !important; */
-      padding: 20px;
-    }
-
-    /* Optional: reduce top margin of outer flex container */
-    div[style*="margin-top: -10px"] {
-      margin-top: -5px !important;
-    }
-  }
-</style>
-
-<div style="background: black; display: flex; justify-content: center; margin-top: -10px;">
-  <div style="
-    border-top: 0.2px solid #5A5A5A80;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    background: #0A121C;
-    padding: 60px 170px 60px 170px;
-  ">
-    <div class="heading slide-in" style="
-      text-align: center;
-      font-weight: 400;
-      line-height: 60px; 
-      font-size: 50px;
-      color: white;
-      margin-bottom: 120px;
-      padding-top: 50px;
-      opacity: 0;
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      transform: translateY(50px);
-    ">
-      Terra’s goal is to accelerate 
-climate awareness
-      through personalised, 
-      data-driven products
-      that reflect your 
-      environmental impact.
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Scroll animation
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const target = document.querySelector('.slide-in');
-    if (target) observer.observe(target);
-  });
-</script>
-
-
-
-
-
-
-
-  <!-- Main Text Grid
-  <div style="display: grid; place-items: center; padding: 0 20px; border-top: 0.2px solid #aaaaaa90; border-bottom: 0.2px solid #aaaaaa90;">
-    <div class="main-text" style="
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      text-align: left;
-      font-weight: 400;
-      letter-spacing: 4px;
-      line-height: 25px;
-      font-size: 20px;
-      color: white;
-      margin-left: 30px;
-      margin-right: 30px;
-      margin-top: 70px;
-      margin-bottom: 70px;
-      text-transform: uppercase;
-    ">
-      <div>
-        An experience that turns your choices into visuals. Highlighting the tangible difference individuals can make by bringing visibility to the often unseen effects of their actions.
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="hero-media">
+        <img src="assets/product.jpg" alt="TerraTrace bottles printed with personalised mosaic patterns" fetchpriority="high">
       </div>
-      <div>
-        This design-driven experience fosters eco-consciousness and encourages a more responsible relationship with the environment.
-      </div>
-    </div>
-  </div> -->
-
-
-<style>
-  @media (max-width: 768px) {
-    .main-text2 {
-      display: block; /* stack columns vertically */
-     
-      padding: 10px 20px !important; /* smaller padding */
-      margin-top: -120px !important; /* adjust negative margin */
-        margin-bottom: 70px !important; /* adjust negative margin */
-      text-align: center; /* optional: center text on mobile */
-    }
-
-    .main-text2 > div:last-child {
-       margin-left: 0 !important;
-      max-width: 90vw !important; /* take most of mobile width */
-      width: 90vw !important;
-    }
-  }
-</style>
-
-<!-- Secondary Text Grid -->
-<div style="display: grid; place-items: center; ">
-  <div class="main-text2" style="
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 150px;
-    text-align: left;
-    font-weight: 300;
-  font-family: 'Inter Tight', sans-serif;
-    font-size: 18px;
-    color: white;
-    padding: 70px 30px;
-    max-width: 100%;
-    margin-top: -120px;
-  ">
-    <div id="mosaic" style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    ">
-      <!-- Left column content -->
-    </div>
-
-    <div style="margin-left: 10px; max-width: 400px;">
-      An experience that turns your choices into visuals. Highlighting the tangible difference individuals can make by bringing visibility to the often unseen effects of their actions.
-      <br><br>
-      This design-driven experience fosters eco-consciousness and encourages a more responsible relationship with the environment.
-
-<!-- Pill Buttons -->
-<div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-  <!-- First Button -->
-  <a href="/generator" style="text-decoration: none;">
-    <button style="
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border: none;
-      background-color: #4da2ff;
-      color: rgb(255, 255, 255);
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    "
-    onmouseover="this.style.backgroundColor='#1c88ff'; this.querySelector('svg').style.transform = 'translateX(4px)'"
-    onmouseout="this.style.backgroundColor='#4da2ff'; this.querySelector('svg').style.transform = 'translateX(0px)'">
-      Start Building
-    </button>
-  </a>
-
-  
-
-  <!-- Second Button -->
-  <a href="/about" style="text-decoration: none;">
-    <button style="
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border: none;
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    "
-    onmouseover="this.style.backgroundColor='white'; this.style.color='black'; this.querySelector('svg').style.transform = 'translateX(4px)'"
-    onmouseout="this.style.backgroundColor='transparent'; this.style.color='white'; this.querySelector('svg').style.transform = 'translateX(0px)'">
-      Learn More
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        style="transition: transform 0.3s ease;">
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <polyline points="12 5 19 12 12 19" />
-      </svg>
-    </button>
-  </a>
-</div>
-
-
-    </div>
-  </div>
-</div>
-
-
-  
-<style>
-@keyframes slideGradientReverse {
-  from {
-    background-position: 200% 50%;
-  }
-  to {
-    background-position: 0% 50%;
-  }
-}
-
-.animated-gradient {
-  background: linear-gradient(to right, #3498db, #ffffff, #5DADD2);
-  background-size: 200% 100%;
-  background-repeat: repeat-x;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: slideGradientReverse 5s linear infinite;
-}
-
-
-.fact-box {
-  position: relative;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  background: rgba(255,255,255,0.05);
-  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-  overflow: visible;
-}
-
-.fact-box .arrow-icon {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  transform: rotate(-45deg);
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.fact-box:hover .arrow-icon {
-  animation: shootUpFromBottomLeft 0.3s ease-out;
-}
-
-.fact-box .arrow-icon svg {
-  stroke: white;
-  width: 20px;
-  height: 20px;
-  transition: stroke 0.3s ease;
-}
-
-/* 🔥 Arrow "shoot up" animation from bottom left */
-@keyframes shootUpFromBottomLeft {
-  0% {
-    opacity: 0;
-    transform: rotate(-45deg) translate(-10px, 10px) scale(1);
-  }
-
-  100% {
-    opacity: 1;
-    transform: rotate(-45deg) translate(4, -4px) scale(1);
-    
-  }
-
-    100% {
-    opacity: 1;
-    transform: rotate(-45deg) translate(0, 0) scale(1);
-    
-  }
-}
-
-.fact-box.color1:hover,
-.fact-box.color2:hover,
-.fact-box.color3:hover {
-  background: linear-gradient(90deg, rgba(26, 188, 156, 0.8), rgba(93, 173, 226, 0.5));
-  border-color: rgba(26, 188, 156, 0.9);
-  box-shadow: 0 0 15px rgba(26, 188, 156, 0.8);
-}
-
-
-
-
-
-
-</style>
-
-
-<section id="fact-section">
-  <div id="fact-container" class="fact-box-wrapper">
-    <a href="https://www.earthday.org/fact-sheet-single-use-plastics/" class="fact-box color1" target="_blank" rel="noopener noreferrer">
-      The average person uses 167 plastic bottles annually, many of which end up in landfills or oceans.
-      <span class="arrow-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </span>
-    </a>
-    <a href="https://www.un.org/en/exhibits/exhibit/in-images-plastic-forever" class="fact-box color2" target="_blank" rel="noopener noreferrer">
-      Plastic bottles can take up to 450 years to decompose, polluting soil and water for centuries.
-      <span class="arrow-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </span>
-    </a>
-    <a href="https://www.sciencedirect.com/science/article/pii/S2352550924002823" class="fact-box color3" target="_blank" rel="noopener noreferrer">
-      Globally, plastic production is expected to double by 2040, making reuse and reduction more urgent than ever.
-      <span class="arrow-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </span>
-    </a>
-  </div>
-</section>
-
-
-<script>
-  document.querySelectorAll('#fact-container a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();        // Stop navigation in current tab
-      e.stopImmediatePropagation(); // Stop all other click handlers
-      window.open(this.href, '_blank', 'noopener,noreferrer'); // Open link in a new tab
-    });
-  });
-</script>
-
-
-<style>
-  .fact-box {
-  text-decoration: none;
-  color: inherit; /* keeps the existing text color */
-  display: block; /* ensures the whole box is clickable */
-}
-
-</style>
-
-
-
-
-
-
-<!-- Title Above Cards -->
-<div style="text-align: center; margin-bottom: 60px; margin-top: 20px;">
-  <h2 style="
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 50px;
-    font-weight: 400;
-    color: white;
-    margin-bottom: 40px;
-  ">
-   Our Mission
-  </h2>
-  <p style="
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 22px;
-    font-weight: 300;
-    color: #a3a9b6;
-    margin-top: 20px;
-    width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-  ">
-    We believe stopping plastic pollution starts with clear and measurable action. 
-  </p>
-<a href="/about" style="text-decoration: none;">
-  <button
-    style="
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 999px !important;
-      background-color: #465167;
-      color: #f5f4f8;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      margin-top: 30px;
-      margin-bottom: -40px;
-    "
-    onmouseover="this.style.backgroundColor='#747c8d'; this.querySelector('.arrow-icon').style.transform = 'translateX(4px)';"
-    onmouseout="this.style.backgroundColor='#465167'; this.querySelector('.arrow-icon').style.transform = 'translateX(0)';"
-  >
-    Learn More
-    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none"
-         stroke="#f5f4f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-         style="transition: transform 0.3s ease;">
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
-  </button>
-</a>
-
-
-</div>
-
-
-
-<div style="margin-top:-40px; margin-bottom:40px; display: flex; justify-content: center; gap: 10px; padding: 80px 5vw; flex-wrap: wrap; align-items: flex-start;">
-  
-
-  <!-- Card 1 -->
-  <div style="width: 500px;  border: 0.2px solid #5A5A5A80; display: flex; flex-direction: column; border-radius: 30px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background-color: #111;">
-    <!-- Image -->
-    <div style="height: 300px;">
-      <img src="assets/plastic.jpg" alt="Terra Mission" style="width: 100%; height: 100%; object-fit: cover;" />
-    </div>
-    <!-- Text -->
-    <div style="background: linear-gradient(to bottom, #182a4780, #35456d80);  color: white; padding: 24px 32px; box-sizing: border-box;">
-
-      <p style="margin: 0 0 20px; font-size: 18px; line-height: 1.4;">
-        At Terra, we’re on a mission to 
-        <span class="animated-gradient" style="text-decoration: underline;">stop plastic pollution at its source</span>. Every product is designed to make a measurable environmental impact.
-      </p>
-      <!-- <button style="
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 24px;
-        border: none;
-        background-color: white;
-        color: black;
-        border-radius: 999px;
-        font-weight: 500;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.3s;">
-        Learn More
-        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none"
-             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </button> -->
-    </div>
-  </div>
-
-  <!-- Card 2 -->
-  <div style="width: 500px; border: 0.2px solid #5A5A5A80; display: flex; flex-direction: column; border-radius: 30px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background-color: #111;">
-    <!-- Image -->
-    <div style="height: 300px;">
-      <img src="assets/collect.jpg" alt="Sustainability Visual" style="width: 100%; height: 100%; object-fit: cover;" />
-    </div>
-    <!-- Text -->
-    <div style="background: linear-gradient(to bottom, #182a4780, #35456d80);  color: white; padding: 24px 32px; box-sizing: border-box;">
-     
-      <p style="margin: 0 0 20px; font-size: 18px; line-height: 1.4;">
-        For every 10 bottles sold, we aim to fund the collection of 
-        <span class="animated-gradient">11.4kg of ocean-bound plastic</span>, the equivalent of 
-        1,000 plastic bottles.
-      </p>
-      <!-- <button style="
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 24px;
-        border: none;
-        background-color: white;
-        color: black;
-        border-radius: 999px;
-        font-weight: 500;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.3s;">
-        Discover
-        <svg viewBox="0 0 24 24" fill="none"
-             stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-             style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </button> -->
-    </div>
-  </div>
-
-</div>
-
-
-
-
-
-
-<style>
-  @media (max-width: 768px) {
-    .section-reverse {
-      flex-direction: column-reverse !important;
-    }
-  }
-</style>
-
-<style>
-  @media (max-width: 768px) {
-    #learnMoreSection {
-      position: relative !important; /* stack below */
-      
-  top: 0;
-  margin-left: -30px;
- 
-  display: flex;
-  flex-direction: column;
-  padding-right: 100px !important; /* add space from right edge */
-
-    }
-    
-    #learnMoreSection p {
-      width: 100% !important; /* full width on mobile */
-     
-    }
-
-    #learnMoreSection div:first-child {
-      font-size: 28px !important; /* smaller title for mobile */
-    }
-  }
-</style>
-
-
-<!-- Learn More Section -->
-<div id="datapattern" style="
-  position: relative; 
-  width: 100%; 
-    border-top: 0.2px solid #5A5A5A80;
-    /* border-top-left-radius: 50px;
-    border-top-right-radius: 50px; */
-  overflow: hidden;
-">
-  <div id="learnMoreSection" style="position: absolute; top: 60px; left: 60px; display: flex; flex-direction: column;">
-    
-    <!-- Section Title -->
-    <div style="margin-bottom: 30px; font-size: 40px; font-weight: 400;">Data-Driven Design</div>
-    
-    <!-- Description Text -->
-    <p style="margin: 0; font-weight: 300; font-size: 18px; text-transform: none; width: 45%; line-height: 25px;">
-      This design pattern is intended to creatively visualise your personal habits, making the environmental impact of everyday choices such as transport, recycling, and energy use more visible and meaningful.<br><br>
-
-      By translating your responses into colour and form, the pattern encourages thoughtful reflection on your connection to the environment. It is more than just a visually appealing design; it is a tool for raising awareness and supporting mindful, sustainable behaviour.<br><br>
-
-      Our aim is to promote eco-consciousness by providing a tangible reminder that individual actions matter. Carrying this bottle represents your commitment to sustainability and your role in creating positive change.
-    </p>
-
-    <!-- Pill Button -->
-    <div style="margin-top: 30px;">
-      <a href="/generator" style="text-decoration: none;">
-        <button style="
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 24px;
-          border: none;
-          background-color: #465167;
-          color: #f5f4f8;
-          border-radius: 999px;
-          font-weight: 500;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background 0.3s, color 0.3s;
-          /* border: 1px solid white; */
-        "
-  onmouseover="this.style.backgroundColor='#747c8d'; this.querySelector('.arrow-icon').style.transform = 'translateX(4px)';"
-  onmouseout="this.style.backgroundColor='#465167'; this.querySelector('.arrow-icon').style.transform = 'translateX(0)';"
-        >
-          Start Building
-          <svg class="arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            style="transition: transform 0.3s ease, stroke 0.3s ease;"
-          >
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </button>
-      </a>
-    </div>
-  </div>
-</div>
-
-
-
-
-  <div id="datapattern"></div>
-
-
-  <style>
-  @media (max-width: 768px) {
-    #spinbot div[style*="max-width: 600px;"] {
-      width: 90vw; /* shrink the entire form container on mobile */
-    }
-
-    #spinbot input[type="email"] {
-    
-      width: 100%;
-      left: 0 !important;
-      color: white;
-    }
-
-    #spinbot button[type="submit"] {
-      flex-shrink: 0; /* prevent button from shrinking */
-      right: 0 !important;
-    }
-  }
-</style>
-
-<!-- Spinbot Section -->
-<div id="spinbot" style="position: relative; justify-content: center;">
-  <div style="
-    position: absolute;
-    top: 28%;
-    left: 0;
-    width: 100vw;
-    border-top: 0.2px solid #5A5A5A80;
-    border-bottom: 0.2px solid #5A5A5A80;
-    padding: 20px 0;
-    transform: translateY(-50%);
-    background: #0A121C99;
-  ">
-    <div id="formContainer" style="
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      color: white;
-      font-weight: 400;
-      letter-spacing: 1px;
-    ">
-      <p id="headerText" style="font-size: 36px; margin: 20px auto 40px auto; width: 500px; text-align: center;">
-        Sign up to be the first to be notified when we launch
-      </p>
-
-      <form 
-        id="waitlistForm"
-        name="waitlist" 
-        data-netlify="true" 
-        style="margin-top: 20px;"
-        onsubmit="handleSubmit(event)"
-      >
-        <input type="hidden" name="form-name" value="waitlist" />
-
-        <div style="display: flex; justify-content: center; gap: 0px; align-items: center; margin-bottom: 15px;">
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Enter your email" 
-            required 
-            style="
-              padding: 10px;
-              flex-grow: 1;
-              border: none;
-              border-radius: 4px 0 0 4px;
-              font-size: 16px;
-              max-width: 400px;
-              background-color: #5A5A5A30;
-              border: 0.2px solid #5A5A80;
-              color: white !important;
-            "
-          />
-          <button 
-            type="submit" 
-            style="
-              padding: 10px 25px;
-              border-radius: 0 4px 4px 0;
-              border: none;
-              background-color: #fff;
-              cursor: pointer;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            "
-            aria-label="Subscribe"
-            onmouseover="this.querySelector('svg').style.transform = 'translateX(4px)'"
-            onmouseout="this.querySelector('svg').style.transform = 'translateX(0px)'"
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              fill="none" 
-              stroke="#000" 
-              stroke-width="2" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              viewBox="0 0 24 24"
-              style="transition: transform 0.3s ease;"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
+      <div class="hero-content container">
+        <p class="eyebrow">TerraTrace · Launching soon</p>
+        <h1 class="display">Your impact,<br>made visible.</h1>
+        <div class="btn-row">
+          <a href="/generator" class="btn btn--light">Start building <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <button type="button" class="btn btn--outline" data-open-waitlist>Join the waitlist</button>
         </div>
-        <div style="color: #aaaaaa90; font-weight: 300; font-size: 14px; text-align: center;">
-          <label>
-            <input 
-              type="checkbox" 
-              name="marketingConsent" 
-              checked 
-              required
-              style="margin-right: 8px;"
-            />
-            I agree to receive marketing communications from Terra Impact
-          </label>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<style>
-  /* placeholder light gray */
-  #waitlistForm input::placeholder {
-    color: #aaaaaa90 !important;
-    opacity: 1;
-  }
-
-  /* typed text always white */
-  #waitlistForm input {
-    color: white !important;
-    background-color: #5A5A5A30 !important;
-    border: 0.2px solid #5A5A5A80;
-  }
-
-  /* Chrome/Safari autofill fix */
-  #waitlistForm input:-webkit-autofill,
-  #waitlistForm input:-webkit-autofill:hover, 
-  #waitlistForm input:-webkit-autofill:focus, 
-  #waitlistForm input:-webkit-autofill:active {
-    -webkit-text-fill-color: white !important;
-    -webkit-box-shadow: 0 0 0px 1000px #5A5A5A30 inset !important;
-    background-color: #5A5A5A30 !important;
-  }
-
-  /* Firefox autofill fix */
-  input:-moz-autofill {
-    box-shadow: 0 0 0px 1000px #5A5A5A30 inset !important;
-    -moz-text-fill-color: white !important;
-  }
-
-  /* ensure caret is visible */
-  #waitlistForm input {
-    caret-color: white !important;
-  }
-</style>
-
-
-<script>
-async function handleSubmit(event) {
-  event.preventDefault(); // stop default form submit completely
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  try {
-    await fetch("/", {
-      method: "POST",
-      body: formData,
-      headers: { "Accept": "application/x-www-form-urlencoded" },
-    });
-
-    // Replace form with thank you message
-    document.getElementById('formContainer').innerHTML = `
-      <p style="font-size: 36px; margin: 20px auto; width: 500px; text-align: center; font-weight: 400; color: white; letter-spacing: 1px;">
-        Thank you for signing up! We’ll be in touch soon.
-      </p>
-    `;
-  } catch (error) {
-    console.error("Form submission error:", error);
-    alert("Oops! Something went wrong. Please try again.");
-  }
-}
-</script>
-
-
-
-
-<!-- Footer Section -->
-<footer class="footer">
-  <div class="footer-container">
-
-    <!-- Contact Column -->
-    <div class="footer-column">
-      <h4>Contact</h4>
-      <ul>
-        <li>info@terraimpact.design</li>
-      </ul>
-    </div>
-
-    <!-- Links Column -->
-    <div class="footer-column">
-      <h4>Links</h4>
-      <ul>
-        <li><a href="/index">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </div>
-
-    <!-- Subscribe Column (Netlify Form) -->
-    <div class="footer-column">
-      <h4>Subscribe</h4>
-      <form id="subscribeForm" name="subscribe" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <!-- Netlify hidden fields -->
-        <input type="hidden" name="form-name" value="subscribe">
-        <input type="hidden" name="bot-field">
-        <input type="email" name="email" placeholder="Email address" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <div id="subscribeMessage" style="display:none; margin-top:10px; color:#aaa; font-size:14px;">
-        Thanks for subscribing! We’ll notify you soon.
       </div>
-    </div>
+    </section>
 
-    <!-- Social Icons Column -->
-    <div class="footer-column social-icons">
-      <h4>Follow Us</h4>
-      <style>
-        a { margin-right: 5px; display: inline-block; }
-        a:last-child { margin-right: 0; }
-        .social-icon { width: 30px; height: 30px; }
-      </style>
+    <!-- ============ Statement ============ -->
+    <section class="statement section">
+      <div class="container">
+        <h2 class="statement-text reveal">Terra’s goal is to accelerate climate awareness through personalised, data-driven products that reflect your environmental impact.</h2>
+      </div>
+    </section>
 
-      <a href="#" aria-label="Facebook">
-        <svg class="social-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="20" fill="#fff"/>
-          <path fill="#000" d="M26 12H22c-.4 0-.7.3-.7.7v2.3h3.7l-.6 3.2H21.3v8h-4v-8h-2v-3.7h2v-2.4c0-3 2.2-4.6 5-4.6h3v4z" transform="translate(0 3)"/>
-        </svg>
-      </a>
+    <!-- ============ Experience (mosaic) ============ -->
+    <section class="experience section--tight" aria-labelledby="experience-title">
+      <div class="container split">
+        <div class="split-media reveal">
+          <div id="mosaic-intro" class="mosaic-intro" role="img" aria-label="Interactive mosaic tile — hover or tap the shapes to reveal their colours"></div>
+          <p class="hint">Hover or tap the shapes</p>
+        </div>
+        <div class="split-copy reveal reveal-delay-1">
+          <p class="eyebrow">The experience</p>
+          <h2 id="experience-title" class="h2">An experience that turns your choices into visuals.</h2>
+          <div class="prose">
+            <p>Highlighting the tangible difference individuals can make by bringing visibility to the often unseen effects of their actions.</p>
+            <p>This design-driven experience fosters eco-consciousness and encourages a more responsible relationship with the environment.</p>
+          </div>
+          <div class="btn-row">
+            <a href="/generator" class="btn btn--primary">Start building</a>
+            <a href="/about" class="btn btn--outline">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="X (formerly Twitter)">
-        <svg class="social-icon" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="600" cy="613.5" r="600" fill="white"/>
-          <g transform="scale(0.9,1) translate(66,0)">
-            <path d="M834.4 311H986L701.5 599.2L1028 916H818.4L629.7 723.7L408.6 916H257.3L561.6 616.4L247 311h214.2l172.6 178.2L834.4 311Zm-30.2 535.3h64.7L461.1 368h-69.2l412.3 478.3Z" fill="black"/>
-          </g>
-        </svg>
-      </a>
+    <!-- ============ Facts ============ -->
+    <section class="facts section" aria-labelledby="facts-title">
+      <div class="container">
+        <h2 id="facts-title" class="sr-only">Plastic facts</h2>
+        <div class="fact-grid">
+          <a class="fact-card fact-card--1 reveal" href="https://www.earthday.org/fact-sheet-single-use-plastics/" target="_blank" rel="noopener noreferrer">
+            <span class="fact-num">167</span>
+            <p>The average person uses 167 plastic bottles annually, many of which end up in landfills or oceans.</p>
+            <span class="fact-src">Earth Day <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+          </a>
+          <a class="fact-card fact-card--2 reveal reveal-delay-1" href="https://www.un.org/en/exhibits/exhibit/in-images-plastic-forever" target="_blank" rel="noopener noreferrer">
+            <span class="fact-num">450<small>yrs</small></span>
+            <p>Plastic bottles can take up to 450 years to decompose, polluting soil and water for centuries.</p>
+            <span class="fact-src">United Nations <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+          </a>
+          <a class="fact-card fact-card--3 reveal reveal-delay-2" href="https://www.sciencedirect.com/science/article/pii/S2352550924002823" target="_blank" rel="noopener noreferrer">
+            <span class="fact-num">2×</span>
+            <p>Globally, plastic production is expected to double by 2040, making reuse and reduction more urgent than ever.</p>
+            <span class="fact-src">ScienceDirect <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-      <a href="#" aria-label="Instagram">
-        <svg class="social-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="20" fill="white"/>
-          <g transform="translate(10,10)">
-            <path fill="#000" d="M15.75 0H4.25A4.26 4.26 0 000 4.25v11.5A4.26 4.26 0 004.25 20h11.5A4.26 4.26 0 0020 15.75V4.25A4.26 4.26 0 0015.75 0zM18 15.75c0 1.24-1.01 2.25-2.25 2.25H4.25A2.26 2.26 0 012 15.75V4.25C2 3.01 3.01 2 4.25 2h11.5C16.99 2 18 3.01 18 4.25v11.5z"/>
-            <path fill="#000" d="M10 4.88a5.13 5.13 0 100 10.25 5.13 5.13 0 000-10.25zm0 8.38a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zM15.5 4.63a1.12 1.12 0 11-2.25 0 1.12 1.12 0 012.25 0z"/>
-          </g>
-        </svg>
-      </a>
-    </div>
+    <!-- ============ Mission ============ -->
+    <section class="mission section" aria-labelledby="mission-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Our mission</p>
+          <h2 id="mission-title" class="h2">We believe stopping plastic pollution starts with clear and measurable action.</h2>
+          <a href="/about" class="text-link">Read our story <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </header>
+        <div class="mission-grid">
+          <article class="mission-card reveal">
+            <div class="mission-img"><img src="assets/plastic.jpg" alt="Plastic waste washed up on a shoreline" loading="lazy"></div>
+            <p>At Terra, we’re on a mission to stop plastic pollution at its source. Every product is designed to make a measurable environmental impact.</p>
+          </article>
+          <article class="mission-card reveal reveal-delay-1">
+            <div class="mission-img"><img src="assets/collect.jpg" alt="Volunteers collecting ocean-bound plastic" loading="lazy"></div>
+            <p>For every 10 bottles sold, we aim to fund the collection of <strong>11.4&nbsp;kg</strong> of ocean-bound plastic — the equivalent of <strong>1,000</strong> plastic bottles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <!-- ============ Data-driven design ============ -->
+    <section class="datadriven section" aria-labelledby="dd-title">
+      <div class="container split split--reverse">
+        <div class="split-copy reveal">
+          <p class="eyebrow">How it works</p>
+          <h2 id="dd-title" class="h2">Data-Driven Design</h2>
+          <div class="prose">
+            <p>This design pattern is intended to creatively visualise your personal habits, making the environmental impact of everyday choices such as transport, recycling, and energy use more visible and meaningful.</p>
+            <p>By translating your responses into colour and form, the pattern encourages thoughtful reflection on your connection to the environment. It is more than just a visually appealing design; it is a tool for raising awareness and supporting mindful, sustainable behaviour.</p>
+          </div>
+          <ul class="dd-legend" id="dd-legend" aria-label="Pattern key — select a question to highlight its shapes"></ul>
+          <div class="btn-row">
+            <a href="/generator" class="btn btn--primary">Start building</a>
+          </div>
+        </div>
+        <div class="split-media reveal reveal-delay-1">
+          <div class="dd-stage">
+            <div id="datapattern-canvas" class="dd-canvas" role="img" aria-label="Mosaic pattern explaining which shape represents which question"></div>
+            <div class="dd-tooltip" id="dd-tooltip" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer Bottom -->
-  <div class="footer-bottom">
-    &copy; 2025 Terra Impact. All rights reserved.
-  </div>
+    <!-- ============ Waitlist band ============ -->
+    <section class="waitlist-band" aria-labelledby="wl-title">
+      <div id="spinbot" class="spinbot" aria-hidden="true"></div>
+      <div class="container waitlist-inner reveal">
+        <p class="eyebrow">Be first in line</p>
+        <h2 id="wl-title" class="h1">Sign up to be the first to be notified when we launch</h2>
+        <div class="waitlist-form-wrap">
+          <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-ajax class="waitlist-form">
+            <input type="hidden" name="form-name" value="waitlist">
+            <p hidden><label>Don’t fill this out: <input name="bot-field"></label></p>
+            <div class="inline-form inline-form--lg">
+              <label class="sr-only" for="band-email">Email address</label>
+              <input id="band-email" type="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+              <button type="submit" class="btn btn--light">Notify me <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+            <label class="check check--center">
+              <input type="checkbox" name="marketingConsent" value="yes">
+              <span>I agree to receive marketing communications from Terra Impact</span>
+            </label>
+          </form>
+          <p class="form-msg form-msg--success" data-form-success hidden>Thank you! You’re on the list — we’ll be in touch when we launch.</p>
+          <p class="form-msg form-msg--error" data-form-error hidden>Oops! There was a problem submitting your form. Please try again.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <!-- Script for AJAX form submission -->
-  <script>
-    const subscribeForm = document.getElementById('subscribeForm');
-    const subscribeMessage = document.getElementById('subscribeMessage');
+  <footer id="site-footer"></footer>
 
-    subscribeForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(subscribeForm);
+  <!-- Static copies so Netlify detects the forms at deploy time (the visible ones are injected/AJAX). -->
+  <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="email" name="email"><input type="checkbox" name="marketingConsent"><input name="bot-field">
+  </form>
+  <form name="subscribe" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="email" name="email"><input name="bot-field">
+  </form>
 
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(response => {
-        if (response.ok) {
-          subscribeForm.style.display = 'none';
-          subscribeMessage.style.display = 'block';
-        } else {
-          alert('Oops! There was a problem submitting your form.');
-        }
-      })
-      .catch(() => {
-        alert('Oops! There was a problem submitting your form.');
-      });
-    });
-  </script>
-</footer>
-
-
-
-
-
- <!-- Cookie Consent Banner -->
-<div id="cookie-banner" style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.8);
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-font-family: 'Inter Tight', sans-serif;
-  font-size: 14px;
-  z-index: 10000;
-  box-sizing: border-box;
-">
-  <div>
-    We use cookies to improve your experience on our site. By continuing, you agree to our <a href="#" style="color:#ffffff; text-decoration: underline;">Cookie Policy</a>.
-  </div>
-  <div>
-    <button id="manage-cookies" style="
-      background: none;
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      cursor: pointer;
-      text-decoration: underline;
-      font-size: 14px;
-       font-family: 'Inter Tight', sans-serif;
-      margin-right: 10px;
-    ">
-      Manage Cookies
-    </button>
-    <button id="accept-cookies" style="
-      background-color: #aaaaaa50;
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 13px;
-      margin-right: 10px;
-    ">
-      Accept
-    </button>
-    <button id="decline-cookies" style="
-      background-color: #aaaaaa50;
-      border: none;
-      color: white;
-      padding: 8px 16px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 13px;
-     
-    ">
-      Decline
-    </button>
-  </div>
-</div>
-
-<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
-  <input type="email" name="email" />
-  <input type="hidden" name="form-name" value="waitlist" />
-  <input name="bot-field" />
-</form>
-
-
-<!-- Optional JavaScript for exit animation -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('accept-cookies');
-    const declineBtn = document.getElementById('decline-cookies');
-    const manageBtn = document.getElementById('manage-cookies');
-
-    if(localStorage.getItem('cookiesAccepted') === 'true' || localStorage.getItem('cookiesDeclined') === 'true') {
-      banner.style.display = 'none';
-    }
-
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookiesAccepted', 'true');
-      banner.style.display = 'none';
-    });
-
-    declineBtn.addEventListener('click', () => {
-      localStorage.setItem('cookiesDeclined', 'true');
-      banner.style.display = 'none';
-    });
-
-    manageBtn.addEventListener('click', () => {
-      // Implement manage cookies action here, e.g. open a modal
-      alert('Manage Cookies clicked!');
-    });
-  });
-</script>
-
-
-
-
-
-
-  <!-- External JS libraries and scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
-  <script src="menu.js"></script>
-  <script src="datapattern.js"></script>
-  <script src="mosaic.js"></script>
-  <script src="spinbot.js"></script>
-  <script src="sketch.js"></script>
-
-  <script>
-    // Page exit animation on link clicks
-    window.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.remove('exit-animation');
-    });
-
-    document.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        document.body.classList.add('exit-animation');
-        setTimeout(() => {
-          window.location = this.href;
-        }, 900);
-      });
-    });
-  </script>
+  <script src="js/site.js"></script>
+  <script src="js/vendor/p5.min.js" defer></script>
+  <script src="js/lib/survey.js" defer></script>
+  <script src="js/lib/mosaic.js" defer></script>
+  <script src="js/sketches/mosaic-intro.js" defer></script>
+  <script src="js/sketches/datapattern.js" defer></script>
+  <script src="js/sketches/spinbot.js" defer></script>
 </body>
 </html>

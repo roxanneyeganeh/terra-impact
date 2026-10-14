@@ -1,193 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Trace By Terra</title>
-  <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet"/>
-  <link rel="stylesheet" href="productpage.css"/>
- <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script> 
-  <script src="productpage.js" defer></script>
-  <script src="menu.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TerraTrace — Plastic-free bottle | Terra Impact</title>
+  <meta name="description" content="TerraTrace: a fully plastic-free water bottle made from recycled stainless steel and biodegradable materials, printed with your personal mosaic.">
+  <meta name="theme-color" content="#0A121C">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/product.css">
 </head>
-<body>
-  <div class="canvas-background"></div>
+<body class="page-product">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
 
-  <div class="product-layout">
-    <div class="product-image">
-      <div class="image-cropper">
-        <div class="image-cropper-inner">
-          <img id="canvasImage" src="your-image.png" alt="Canvas Image" />
-        </div>
-      </div>
-    </div> <!-- end product-image -->
+  <main id="main" class="container product">
+    <div class="product-media">
+      <figure class="media-frame">
+        <img id="product-image" src="assets/product.jpg" alt="TerraTrace bottle">
+        <figcaption class="media-badge" id="design-badge" hidden>Your design</figcaption>
+      </figure>
+    </div>
 
     <div class="product-info">
-      <h1>Trace by Terra</h1>
-       <p class="price">£59.99</p>
-      <p class="description">
-        a fully plastic-free water bottle made from recycled stainless steel and biodegradable materials. Designed for durability and sustainability, it helps you cut down on single-use waste without compromising on quality or design.
-      </p>
-      <div class="collapsible">
-        <button class="collapsible-btn">Description <span class="arrow">▼</span></button>
-        <div class="collapsible-content">
-          <p>Each bottle features a unique mosaic print generated from your personal input. This pattern reflects your environmental choices and serves as a visual reminder of the positive impact you’re making.</p>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">TerraTrace</span>
+      </nav>
+
+      <div class="title-row">
+        <h1 class="h1">TerraTrace</h1>
+        <p class="price">£59.99</p>
+      </div>
+
+      <p class="lead">A fully plastic-free water bottle made from recycled stainless steel and biodegradable materials. Designed for durability and sustainability, it helps you cut down on single-use waste without compromising on quality or design.</p>
+
+      <div class="your-design" id="your-design" hidden>
+        <div class="your-design-head">
+          <h2 class="h3">Your pattern</h2>
+          <a href="/generator" class="text-link">Edit design</a>
+        </div>
+        <ul class="answer-list" id="answer-list"></ul>
+      </div>
+
+      <div class="product-actions">
+        <button type="button" class="btn btn--light btn--block" data-open-waitlist>Join waitlist</button>
+        <div class="action-pair">
+          <a href="/generator" class="btn btn--outline btn--block" id="build-cta">Build your pattern</a>
+          <button type="button" class="btn btn--outline save-btn" id="save-design" aria-label="Save design" hidden></button>
         </div>
       </div>
 
-      <div class="collapsible">
-        <button class="collapsible-btn">Materials <span class="arrow">▼</span></button>
-        <div class="collapsible-content">
-          <p>TERRA is made from recycled stainless steel and biodegradable materials, completely free of plastic. Both the bottle and its packaging are designed with sustainability in mind, using low-impact processes and renewable energy throughout production.</p>
-        </div>
+      <ul class="perks">
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20c-1.5-6 2-12 13-15-1 9-6 14-13 15z"/><path d="M4 21c3-4 6-7 10-9"/></svg>
+          <span>100% plastic-free</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+          <span>Recycled stainless steel</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Unique to you</span>
+        </li>
+      </ul>
+
+      <div class="accordion" data-accordion>
+        <details open>
+          <summary>Description</summary>
+          <div class="acc-body">
+            <p>Each bottle features a unique mosaic print generated from your personal input. This pattern reflects your environmental choices and serves as a visual reminder of the positive impact you’re making.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Materials</summary>
+          <div class="acc-body">
+            <p>TerraTrace is made from recycled stainless steel and biodegradable materials, completely free of plastic. Both the bottle and its packaging are designed with sustainability in mind, using low-impact processes and renewable energy throughout production.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Shipping details</summary>
+          <div class="acc-body">
+            <p>All orders will be custom made. Please allow <strong>6–8 weeks from launch date</strong> for production and shipping.</p>
+            <p>We’ll email you as soon as pre-orders open. Thanks for your patience and commitment to sustainability.</p>
+          </div>
+        </details>
       </div>
+    </div>
+  </main>
 
-      <!-- New Shipping Instructions Section -->
-      <div class="collapsible">
-        <button class="collapsible-btn">Shipping Details <span class="arrow">▼</span></button>
-        <div class="collapsible-content">
-          <p>All orders will be custom made. Please allow <b>6–8 weeks from launch date</b> for production and shipping.</p>
-<p>We’ll email you as soon as pre-orders open. Thanks for your patience and commitment to sustainability.</p>
+  <footer id="site-footer"></footer>
 
-        </div>
-      </div>
-<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
-  <input type="email" name="email" />
-  <input type="hidden" name="form-name" value="waitlist" />
-  <input name="bot-field" />
-</form>
-
-     
-<div class="action-buttons">
-  <button class="buy-btn">Join Waitlist</button>
-  <button class="save-btn">Save Design</button>
-</div>
-
-
-
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('loaded');
-    });
-
-    document.querySelectorAll('.collapsible-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const section = btn.parentElement;
-        section.classList.toggle('open');
-      });
-    });
-  </script>
-<div id="waitlistModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
-     background-color:#0A121Caa; display:flex; align-items:center; justify-content:center; z-index:2000; font-family:'Inter Tight', sans-serif;">
-  <div style="background:#0A121C; padding:40px; border-radius:16px; max-width:420px; width:90%; box-shadow:0 0 12px rgba(255,255,255,0.05); border:0.2px solid #5A5A5A80; color:white; position:relative;">
-    
-    <!-- Fixed close button -->
-    <button id="closeModal" style="
-        position:absolute; 
-        top:16px; 
-        right:16px; 
-        background:none; 
-        border:none; 
-        font-size:28px; 
-        color:white; 
-        cursor:pointer; 
-        line-height:1;">&times;</button>
-    
-    <h2 style="margin:0 0 30px; font-weight:600; font-size:28px; text-align:center;">Join Our Waitlist</h2>
-    
-    <form name="waitlist" method="POST" data-netlify="true" id="waitlistForm" style="display:flex; flex-direction:column; gap:20px;">
-      <input type="hidden" name="form-name" value="waitlist" />
-      <input type="email" name="email" placeholder="Your email" required style="padding:12px; background-color:#0A121C; color:white; border:0.2px solid #5A5A5A80; border-radius:6px; font-size:16px;" />
-      <button type="submit" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 24px; background-color:white; color:#0A121C; border:none; border-radius:999px; font-weight:500; font-size:16px; cursor:pointer; transition:background 0.3s ease;">
-        Submit
-        <svg class="arrow-icon" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </button>
-    </form>
-
-    <div id="confirmationMessage" style="display:none; margin-top:15px; font-size:14px; color:#aaa; text-align:center;">We’ll notify you once we launch.</div>
-    <div id="errorMessage" style="display:none; margin-top:15px; font-size:14px; color:#ff5555; text-align:center;"></div>
-    
-  </div>
-</div>
-
-<script>
-  // Animate arrow on hover
-  const submitBtn = document.querySelector('#waitlistForm button');
-  const arrow = submitBtn.querySelector('.arrow-icon');
-
-  submitBtn.addEventListener('mouseenter', () => {
-    arrow.style.transform = 'translateX(4px)';
-  });
-
-  submitBtn.addEventListener('mouseleave', () => {
-    arrow.style.transform = 'translateX(0)';
-  });
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('waitlistModal');
-  const closeModalBtn = document.getElementById('closeModal');
-  const form = document.getElementById('waitlistForm');
-  const confirmationMessage = document.getElementById('confirmationMessage');
-  const errorMessage = document.getElementById('errorMessage');
-  const productBtn = document.querySelector('.buy-btn');
-
-  // Open modal
-  productBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
-  });
-
-  // Close modal via X button
-  closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-    form.style.display = 'flex';
-    confirmationMessage.style.display = 'none';
-    errorMessage.style.display = 'none';
-    form.reset();
-  });
-
-  // Optional: Close modal if clicking outside the content
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModalBtn.click(); // re-use close logic
-    }
-  });
-
-  // Form submission
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    }).then(response => {
-      if (response.ok) {
-        form.style.display = 'none';
-        confirmationMessage.style.display = 'block';
-        errorMessage.style.display = 'none';
-      } else {
-        errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-        errorMessage.style.display = 'block';
-      }
-    }).catch(() => {
-      errorMessage.textContent = 'Oops! There was a problem submitting your form.';
-      errorMessage.style.display = 'block';
-    });
-  });
-});
-</script>
-
-
-
-
-  
+  <script src="js/site.js"></script>
+  <script src="js/lib/survey.js"></script>
+  <script src="js/lib/designs.js"></script>
+  <script src="js/product.js"></script>
 </body>
 </html>

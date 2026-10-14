@@ -1,714 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About</title>
- <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter Tight', sans-serif;
-      background-color: #0A121C;
-      color: white;
-      overflow-x: hidden;
-   
-  
-  padding: 0;
-  width: 100%;
-}
-    
-
-      .text-container {
-    position: fixed;
-    /* top: 20vh; */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 900px;
-    text-align: center;
-    font-size: 50px;
-    padding: 0 20px;
-    pointer-events: none;
-    z-index: 1000;
-    transition: opacity 0.5s ease;
-    opacity: 1;
-  }
-  .text-container.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .text1, .text2 {
-    margin: 0;
-    position: relative;
-    transition: opacity 0.3s ease;
-  }
-  .text2 {
-    position: absolute;
-    width: 90%;
-   justify-content: center;
-    opacity: 0;
-    top: 15vh;
-  }
-
-  .text1 {
-  top: 20vh;
-  }
-
-  /* Page content initially hidden */
-  .page-content {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-    padding-top: 60vh; /* So content starts below the fixed text */
-  }
-  .page-content.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* The rest of your styles unchanged */
-  /* ... */
-  /* Just minimal for demo */
-  .scrollable-content {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1rem;
-    font-size: 18px;
-  }
-    
-    .section {
-      padding: 140px 5vw;
-      /* border-bottom: 0.2px solid #5A5A5A80; */
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 140px;
-    }
-
-    .section.reverse {
-      flex-direction: row-reverse;
-    }
-    .section img {
-      height: 400px;
-      width: 100%;
-      max-width: 500px;
-      object-fit: cover;
-      border-radius: 30px;
-    }
-    .section-content {
-      text-align: left;
-      font-weight: 400;
-      max-width: 400px;
-      font-size: 20px;
-      color: white;
-    }
-    .section-content h2 {
-      font-size: 40px;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-    .animated-gradient {
-      background: linear-gradient(to right, #3498db, #ffffff, #5DADD2);
-      background-size: 200% 100%;
-      background-repeat: repeat-x;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: slideGradientReverse 5s linear infinite;
-    }
-    @keyframes slideGradientReverse {
-      from {
-        background-position: 200% 50%;
-      }
-      to {
-        background-position: 0% 50%;
-      }
-    }
-    .pill-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border: none;
-      background-color: white;
-      color: black;
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 30px;
-    }
-    .pill-button:hover svg {
-      transform: translateX(4px);
-    }
-    .pill-button svg {
-      transition: transform 0.3s ease;
-    }
-#fact-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
-  padding: 100px 0;
-  max-width: 90%;
-  margin: 0 auto;
-  
-}
-
-
-.fact-box {
-  background-color: rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  padding: 20px 55px;
-  border-radius: 12px;
-  border: 0.2px solid #5A5A5A80;
-  color: white;
-  text-align: center;
-  font-size: 18px;
-  line-height: 1.5;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.fact-box:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-5px);
-}
-
-    /* Animated Dot Grid Styles */
-    #impact-grid-section {
-      max-width: 600px;
-      margin: 80px auto 120px auto;
-      text-align: center;
-      color: white;
-      font-family: 'Inter Tight', sans-serif;
-    }
-    #impact-grid-section h2 {
-      font-size: 36px;
-      font-weight: 400;
-      margin-bottom: 24px;
-      background: linear-gradient(to right, #3498db, #ffffff, #5DADD2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: slideGradientReverse 5s linear infinite;
-      background-size: 200% 100%;
-    }
-    /* Dot grid container */
-    #dot-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      grid-gap: 12px;
-      justify-items: center;
-      margin-bottom: 24px;
-    }
-    /* Each dot */
-    .dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25);
-      position: relative;
-      cursor: pointer;
-      transform: scale(0);
-      opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    /* The first dot is bigger & highlighted */
-    .dot.first {
-      width: 30px;
-      height: 30px;
-      background: white;
-      transform: scale(0);
-      opacity: 0;
-    }
-    /* Animated in state */
-    .dot.visible {
-      transform: scale(1);
-      opacity: 1;
-    }
-    /* Tooltip styling */
-    .tooltip {
-      position: absolute;
-      bottom: 130%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(13, 42, 82, 0.9);
-      color: #cce6ff;
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 400;
-      white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 10;
-      user-select: none;
-    }
-    .dot.has-tooltip:hover .tooltip {
-      opacity: 1;
-    }
-    /* Blue gradient glow animation for dots without tooltip */
-    .dot.no-tooltip:hover {
-      animation: blueGlowPulse 1.8s ease-in-out infinite;
-    }
-
-    #our-goal-section {
-  position: relative;
-  width: 100vw;
-background: linear-gradient(to bottom, #162a4299 0%, transparent 70%);
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-top: 0.2px solid #5A5A5A80;
-  z-index: 999;
- 
-}
-
- .fact-box {
-    flex: 1 1 auto;
-    max-width: 90%;
-  }
-}
-
-
-    /* Inline styles from your page */
-    body {
-      overflow-x: hidden;
-    }
-
-    /* Footer styles */
-    .footer {
-      background-color: #0A121C99;
-      color: #aaa;
-      padding: 40px 20px;
-      border-top: 0.2px solid #5A5A5A80;
-    }
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-column {
-      flex: 1 1 200px;
-      margin: 10px;
-    }
-
-    .footer-column h4 {
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-column ul li {
-      margin-bottom: 8px;
-    }
-
-    .footer-column ul li a {
-      color: #aaa;
-      text-decoration: none;
-    }
-
-    .footer-column ul li a:hover {
-      /* text-decoration: underline; */
-      color: white;
-    }
-
-    .footer-column form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .footer-column input[type="email"] {
-      padding: 8px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: #0A121C;
-      border: 0.2px solid #5A5A5A80;
-      color: white;
-    }
-
-    .footer-column button {
-      padding: 8px;
-      background-color: #ffffff;
-      color: #0A121C;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .footer-column button:hover {
-      background-color: #ffffff;
-      opacity: 0.8;
-    }
-
-    .social-icons a img {
-      width: 24px;
-      margin-right: 10px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-
-    @keyframes blueGlowPulse {
-      0%, 100% {
-        box-shadow: 0 0 8px 2px rgba(0, 150, 255, 0.4);
-        background: rgba(0, 150, 255, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 12px 5px rgba(0, 200, 255, 0.8);
-        background: rgba(0, 200, 255, 0.5);
-      }
-    }
-    @media (max-width: 768px) {
-      .section {
-        flex-direction: column;
-      }
-      .section.reverse {
-        flex-direction: column-reverse;
-      }
-      .fact-box {
-        /* flex: 1 1 auto; */
-        max-width: 90%;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About — Terra Impact</title>
+  <meta name="description" content="Terra is focused on preventing plastic pollution by creating products that drive real environmental change.">
+  <meta name="theme-color" content="#0A121C">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/about.css">
 </head>
-<body>
-<div class="section">
+<body class="page-about">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
 
+  <main id="main">
 
-  <div id="textContainer" class="text-container">
-    <p class="text1">
-Terra is focused on preventing plastic pollution by creating products that drive real environmental change.
-    </p>
-    <p class="text2">
-     Our approach combines innovative design with measurable impact to help protect ecosystems and reduce plastic waste worldwide.
-    </p>
-  </div>
-
-  <div class="page-content" id="pageContent">
-    <div class="scrollable-content">
-      
-
-
-<script>
-  const container = document.getElementById('textContainer');
-  const text1 = container.querySelector('.text1');
-  const text2 = container.querySelector('.text2');
-  const pageContent = document.getElementById('pageContent');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY < 500) {
-      pageContent.classList.remove('visible');
-      container.classList.remove('hidden');
-
-      const progress = scrollY / 200;
-      text1.style.opacity = 1 - progress;
-      text2.style.opacity = progress;
-
-    } else {
-      pageContent.classList.add('visible');
-      container.classList.add('hidden');
-      text1.style.opacity = 0;
-      text2.style.opacity = 1;
-    }
-  });
-</script>
-
-
-
-    <!-- <img src="assets/plastic.jpg" alt="Ocean Impact Visual" /> -->
-  </div>
-
-
-<section id="our-goal-section">
-  <h2 style="text-align: center; font-weight: 400; font-size: 50px; margin-bottom: 0px; margin-top: 70px;">
-    Our Goal
-  </h2>
-
-  <div id="scroll-wrapper">
-    <section id="fact-container">
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Remove billions of kilograms of plastic from the environment through collective action.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Fund the removal of over 11 kilograms of ocean-bound plastic with every 10 producs sold.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Support thousands of plastic collectors through community-based programs.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Improve waste infrastructure in hundreds of underserved communities.
-      </div>
-
-      <!-- Duplicate for seamless loop -->
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Remove billions of kilograms of plastic from the environment through collective action.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Fund the removal of over 11 kilograms of ocean-bound plastic with every product sold.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Support thousands of plastic collectors through community-based programs.
-      </div>
-      <div class="fact-box" style="flex:0 0 auto; width:200px; height:200px; display:flex; align-items:center; justify-content:center; text-align:center;">
-        Improve waste infrastructure in hundreds of underserved communities.
+    <!-- ============ Intro: two statements cross-fade as you scroll ============ -->
+    <section class="intro" id="intro" aria-label="About Terra">
+      <div class="intro-sticky">
+        <div class="container intro-lines">
+          <p class="intro-line intro-line--1">Terra is focused on preventing plastic pollution by creating products that drive <span class="gradient-text">real environmental change</span>.</p>
+          <p class="intro-line intro-line--2">Our approach combines innovative design with <span class="gradient-text">measurable impact</span> to help protect ecosystems and reduce plastic waste worldwide.</p>
+        </div>
+        <div class="scroll-cue" aria-hidden="true"><span></span></div>
       </div>
     </section>
-  </div>
-</section>
 
-<style>
-  #scroll-wrapper {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  #fact-container {
-    display: flex;
-    flex-wrap: nowrap;
-    animation: scroll-left 20s linear infinite;
-  }
-
-  @keyframes scroll-left {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-</style>
-
-
-
-  <!-- Animated Dot Grid Section -->
-  <section id="impact-grid-section" aria-label="Visual representation of Terra's impact">
-    <h2>One Terra bottle creates a ripple of 100 bottles saved</h2>
-    <div id="dot-grid" aria-hidden="true" role="presentation"></div>
-    <p id="impact-caption">One bottle. One action. One hundred plastic bottles kept from the ocean.</p>
-  </section>
-  <div class="section reverse">
-    <div class="section-content">
-      <h2>Designed for Circularity</h2>
-      Terra products are made with <span class="animated-gradient">67% recycled materials</span>. Every design is modular, repairable, and recyclable. Built for longevity and minimal footprint.
-    </div>
-    <img src="assets/plastic.jpg" alt="Sustainable Bottle Design" />
-  </div>
-  <div class="section">
-    <div class="section-content">
-      <h2>Track Your Impact</h2>
-      Our refill and reuse tracking platform enables users to see the real-time effect of their actions. Every refill contributes to collecting plastic waste from vulnerable regions.
-      <a href="track.html" style="text-decoration: none;">
-        <button class="pill-button">
-          Track Your Refills
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </button>
-      </a>
-    </div>
-    <img src="assets/plastic.jpg" alt="Refill App Visual" />
-  </div>
-  <div class="section reverse">
-    <div class="section-content">
-      <h2>Built on Values</h2>
-      Terra is committed to full transparency and traceability. We publish detailed impact reports and hold ourselves to the highest environmental and social standards.
-    </div>
-    <img src="assets/plastic.jpg" alt="Impact Reporting Visual" />
-  </div>
+    <!-- ============ Our goal ============ -->
+    <section class="goal section--tight" aria-labelledby="goal-title">
+      <div class="container">
+        <p class="eyebrow">What we’re working towards</p>
+        <h2 id="goal-title" class="h1">Our goal</h2>
       </div>
-  </div>
-
-    <!-- Footer Section -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <ul>
-          <li>info@terraimpact.design</li>
-          <!-- <li>Phone: (123) 456-7890</li> -->
-          <!-- <li>Address: 123 Eco Street, Green City</li> -->
+      <div class="marquee" tabindex="0" aria-label="Our goals — hover or focus to pause">
+        <ul class="marquee-track">
+          <li class="goal-card"><span class="goal-num">01</span>Remove billions of kilograms of plastic from the environment through collective action.</li>
+          <li class="goal-card"><span class="goal-num">02</span>Fund the removal of over 11&nbsp;kg of ocean-bound plastic with every 10 products sold.</li>
+          <li class="goal-card"><span class="goal-num">03</span>Support thousands of plastic collectors through community-based programmes.</li>
+          <li class="goal-card"><span class="goal-num">04</span>Improve waste infrastructure in hundreds of underserved communities.</li>
+        </ul>
+        <!-- duplicate for a seamless loop; hidden from screen readers -->
+        <ul class="marquee-track" aria-hidden="true">
+          <li class="goal-card"><span class="goal-num">01</span>Remove billions of kilograms of plastic from the environment through collective action.</li>
+          <li class="goal-card"><span class="goal-num">02</span>Fund the removal of over 11&nbsp;kg of ocean-bound plastic with every 10 products sold.</li>
+          <li class="goal-card"><span class="goal-num">03</span>Support thousands of plastic collectors through community-based programmes.</li>
+          <li class="goal-card"><span class="goal-num">04</span>Improve waste infrastructure in hundreds of underserved communities.</li>
         </ul>
       </div>
-      <div class="footer-column">
-        <h4>Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <!-- <li><a href="#">Features</a></li> -->
-          <!-- <li><a href="#">Pricing</a></li> -->
-          <li><a href="learnMoreSection">About</a></li>
-        </ul>
+    </section>
+
+    <!-- ============ 100 dots ============ -->
+    <section class="ripple section" aria-labelledby="ripple-title">
+      <div class="container ripple-inner">
+        <h2 id="ripple-title" class="h2 reveal">One Terra bottle creates a ripple of <span class="gradient-text">100 bottles saved</span></h2>
+        <div class="dot-grid" id="dot-grid"></div>
+        <p class="dot-readout" id="dot-readout" aria-live="polite">One bottle. One action. One hundred plastic bottles kept from the ocean.</p>
+        <p class="dot-hint muted">Hover or tap the highlighted dots</p>
       </div>
-      <div class="footer-column">
-        <h4>Subscribe</h4>
-        <form>
-          <input type="email" placeholder="Email address" required />
-          <button type="submit">Subscribe</button>
-        </form>
+    </section>
+
+    <!-- ============ Pillars ============ -->
+    <section class="pillars section--tight">
+      <div class="container">
+        <article class="pillar reveal">
+          <div class="pillar-media"><img src="assets/plastic.jpg" alt="Sustainable bottle design" loading="lazy"></div>
+          <div class="pillar-copy">
+            <p class="eyebrow">01 · Materials</p>
+            <h2 class="h2">Designed for circularity</h2>
+            <p>Terra products are made with <span class="gradient-text">67% recycled materials</span>. Every design is modular, repairable and recyclable — built for longevity and a minimal footprint.</p>
+          </div>
+        </article>
+        <article class="pillar pillar--reverse reveal">
+          <div class="pillar-media"><img src="assets/collect.jpg" alt="Refill and reuse tracking" loading="lazy"></div>
+          <div class="pillar-copy">
+            <p class="eyebrow">02 · Tracking</p>
+            <h2 class="h2">Track your impact</h2>
+            <p>Our refill and reuse tracking platform lets you see the real-time effect of your actions. Every refill contributes to collecting plastic waste from vulnerable regions.</p>
+            <a href="/track" class="btn btn--light">Track your refills <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar-media"><img src="assets/product.jpg" alt="Terra impact reporting" loading="lazy"></div>
+          <div class="pillar-copy">
+            <p class="eyebrow">03 · Transparency</p>
+            <h2 class="h2">Built on values</h2>
+            <p>Terra is committed to full transparency and traceability. We publish detailed impact reports and hold ourselves to the highest environmental and social standards.</p>
+          </div>
+        </article>
       </div>
-      <div class="footer-column social-icons">
-        <h4>Follow Us</h4>
-<style>
-  a {
-    margin-right: 5px; /* Adjust spacing here */
-    display: inline-block; /* Makes margin work properly */
-  }
-  a:last-child {
-    margin-right: 0; /* No margin after last icon */
-  }
+    </section>
 
-.arrow-icon {
-  width: 20px;   /* Set the width */
-  height: 20px;  /* Set the height */
-}
-
-  .social-icon {
-  width: 30px;   /* Set the width you want */
-  height: 30px;  /* Set the height you want */
-}
-
-</style>
-
-<a href="#">
-  <svg class="social-icon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="Facebook">
-    <!-- White circle background -->
-    <circle cx="20" cy="20" r="20" fill="#fff"/>
-    <!-- Bigger Facebook "f" -->
-    <path
-      fill="#000"
-      d="M26 12H22c-.4 0-.7.3-.7.7v2.3h3.7l-.6 3.2H21.3v8h-4v-8h-2v-3.7h2v-2.4c0-3 2.2-4.6 5-4.6h3v4z"
-      transform="translate(0 3)"
-    />
-  </svg>
-</a>
-
-<a href="https://twitter.com" target="_blank" rel="noopener" aria-label="X (formerly Twitter)">
-  <svg class="social-icon" viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="600" cy="613.5" r="600" fill="white"/>
-    <g transform="scale(0.9,1) translate(66,0)">
-      <path d="M834.4 311H986L701.5 599.2L1028 916H818.4L629.7 723.7L408.6 916H257.3L561.6 616.4L247 311h214.2l172.6 178.2L834.4 311Zm-30.2 535.3h64.7L461.1 368h-69.2l412.3 478.3Z" fill="black"/>
-    </g>
-  </svg>
-</a>
-
-
-<a href="#">
-  <svg class="social-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram">
-    <!-- White circular background -->
-    <circle cx="20" cy="20" r="20" fill="white"/>
-    <!-- Instagram glyph centered -->
-    <g transform="translate(10,10)">
-      <path fill="#000" d="M15.75 0H4.25A4.26 4.26 0 000 4.25v11.5A4.26 4.26 0 004.25 20h11.5A4.26 4.26 0 0020 15.75V4.25A4.26 4.26 0 0015.75 0zM18 15.75c0 1.24-1.01 2.25-2.25 2.25H4.25A2.26 2.26 0 012 15.75V4.25C2 3.01 3.01 2 4.25 2h11.5C16.99 2 18 3.01 18 4.25v11.5z"/>
-      <path fill="#000" d="M10 4.88a5.13 5.13 0 100 10.25 5.13 5.13 0 000-10.25zm0 8.38a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zM15.5 4.63a1.12 1.12 0 11-2.25 0 1.12 1.12 0 012.25 0z"/>
-    </g>
-  </svg>
-</a>
-
-
-
-
-
+    <!-- ============ Why Terra ============ -->
+    <section class="section" aria-labelledby="why-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Why Terra</p>
+          <h2 id="why-title" class="h2">Making the invisible impact of plastic visible.</h2>
+        </header>
+        <div class="story">
+          <article class="story-item reveal">
+            <span class="story-num">01</span>
+            <h3 class="h3">The problem</h3>
+            <p>Every year, the average person uses 167 plastic bottles. Most end up polluting our land and oceans. Plastic can take up to 450 years to break down — contaminating soil and water for generations. With plastic production expected to double by 2040, the urgency to reduce and reuse is clear.</p>
+          </article>
+          <article class="story-item reveal reveal-delay-1">
+            <span class="story-num">02</span>
+            <h3 class="h3">Our solution</h3>
+            <p>The Sustainable Bottle Generator was created to make the invisible impact of plastic use visible and personal. Through interactive design and data visualisation, it shows how small actions — like switching to a reusable bottle — can add up to a big difference.</p>
+          </article>
+          <article class="story-item reveal reveal-delay-2">
+            <span class="story-num">03</span>
+            <h3 class="h3">Why choose us</h3>
+            <p>This isn’t just a tool or a product. It’s a way to build awareness, inspire pride in sustainable choices, and motivate ongoing action. By pairing the Generator with our reusable bottles, you’re making a tangible step toward reducing waste and protecting the planet — one bottle at a time.</p>
+          </article>
+        </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2025 Terra Impact. All rights reserved.
-    </div>
-  </footer>
+    </section>
 
-  <!-- Include required scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
-  <script src="menu.js"></script>
-  <script>
-    (function() {
-      const facts = [
-        "1 Terra bottle sold",
-        "100 plastic bottles kept out of oceans",
-        "11.4 kg ocean-bound plastic per 10 bottles",
-        "Supports community plastic collection",
-        "Promotes reuse over single-use plastic",
-        "Made with 67% recycled materials",
-        "Designed for longevity and circularity",
-        "Helps reduce ocean plastic pollution",
-        "Contributes to cleaner beaches",
-        "Supports waste infrastructure improvements"
-      ];
-      const grid = document.getElementById('dot-grid');
-      // We'll assign tooltip to ~25 dots; others get glow only
-      const tooltipCount = 25;
-      for (let i = 0; i < 100; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === 0) {
-          dot.classList.add('first');
-          dot.setAttribute('aria-label', facts[0]);
-        }
-        if (i > 0 && i < tooltipCount) {
-          dot.classList.add('has-tooltip');
-          // Assign facts cycling through array (skip first fact reserved for dot 0)
-          const factIndex = (i % (facts.length - 1)) + 1;
-          // Create tooltip element
-          const tooltip = document.createElement('span');
-          tooltip.classList.add('tooltip');
-          tooltip.textContent = facts[factIndex];
-          dot.appendChild(tooltip);
-          dot.setAttribute('aria-label', facts[factIndex]);
-        } else if (i >= tooltipCount) {
-          dot.classList.add('no-tooltip');
-          dot.setAttribute('aria-label', "Saved bottle");
-        }
-        grid.appendChild(dot);
-      }
-      const dots = grid.querySelectorAll('.dot');
-      function animateDots() {
-        dots.forEach((dot, idx) => {
-          setTimeout(() => {
-            dot.classList.add('visible');
-          }, idx * 15);
-        });
-      }
-      const section = document.getElementById('impact-grid-section');
-      let animated = false;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !animated) {
-            animateDots();
-            animated = true;
-            observer.unobserve(section);
-          }
-        });
-      }, {threshold: 0.3});
-      observer.observe(section);
-    })();
-  </script>
+    <!-- ============ Colour guide ============ -->
+    <section class="section guide" id="colour-guide" aria-labelledby="guide-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Colour reference guide</p>
+          <h2 id="guide-title" class="h2">How to read your pattern</h2>
+          <p class="lead">Each tile in your mosaic is made of six parts. Each part answers one question, and its colour shows your answer.</p>
+        </header>
+        <div class="guide-grid" id="guide-grid"></div>
+      </div>
+    </section>
 
+    <section class="cta-band">
+      <div class="container cta-inner reveal">
+        <h2 class="h2">Ready to see your impact?</h2>
+        <div class="btn-row">
+          <a href="/generator" class="btn btn--light">Start building</a>
+          <button type="button" class="btn btn--outline" data-open-waitlist>Join waitlist</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
-  <input type="email" name="email" />
-  <input type="hidden" name="form-name" value="waitlist" />
-  <input name="bot-field" />
-</form>
+  <footer id="site-footer"></footer>
 
-
+  <script src="js/site.js"></script>
+  <script src="js/lib/survey.js"></script>
+  <script src="js/lib/mosaic.js"></script>
+  <script src="js/about.js"></script>
 </body>
 </html>

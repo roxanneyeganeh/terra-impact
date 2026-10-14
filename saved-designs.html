@@ -1,141 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Saved Designs</title>
-  <link href="https://fonts.cdnfonts.com/css/futura-pt" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter Tight PT', sans-serif;
-      background: #0A121C;
-      color: white;
-      margin: 0;
-      min-height: 100vh;
-      
-      /* Only menu.js elements will be positioned absolute/fixed */
-    }
-
-    /* Center saved design container independently */
-    .saved-container-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      box-sizing: border-box;
-      position: relative; /* keeps it above menu effects */
-      z-index: 1; /* make sure menu doesn't overlap */
-    }
-
-    .container {
-      background: #121A25;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.05);
-      text-align: center;
-      max-width: 500px;
-      width: 100%;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      font-weight: 400;
-    }
-
-    #savedImage {
-      max-width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
-    }
-
-    #noDesign {
-      font-size: 18px;
-      color: #aaa;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      font-family: 'Inter Tight', sans-serif;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 16px;
-      cursor: pointer;
-      margin: 8px;
-      text-decoration: none;
-      transition: color 0.3s ease, background-color 0.3s ease;
-    }
-
-    .btn-primary {
-      background: transparent;
-      color: white;
-      border: 1px solid white;
-    }
-
-    .btn-primary:hover {
-        background: #ffffff;
-      color: black;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: white;
-      border: 1px solid white;
-    }
-
-    .btn-secondary:hover {
-      background: #ffffff;
-      color: black;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Saved designs — Terra Impact</title>
+  <meta name="theme-color" content="#0A121C">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/saved.css">
 </head>
-<body>
+<body class="page-saved">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
 
-  <!-- Wrapper that keeps container centered -->
-  <div class="saved-container-wrapper">
-    <div class="container">
-      <h1>My Saved Design</h1>
-      <img id="savedImage" />
-      <p id="noDesign" style="display:none;">No saved design found.</p>
-
+  <main id="main" class="container saved">
+    <header class="saved-head">
       <div>
-        <a href="trace-by-terra.html" class="btn btn-primary">Back to Shop</a>
-        <button id="clearDesign" class="btn btn-secondary">Clear Saved Design</button>
+        <p class="eyebrow">Your collection</p>
+        <h1 class="h1">Saved designs</h1>
+        <p class="muted" id="saved-sub">Designs are saved in this browser.</p>
       </div>
-    </div>
-  </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn--outline btn--sm" id="clear-all" hidden>Clear all</button>
+        <a href="/generator" class="btn btn--light btn--sm">New design</a>
+      </div>
+    </header>
 
-  <script>
-    const savedDesign = localStorage.getItem('savedDesign');
-    const img = document.getElementById('savedImage');
-    const noDesign = document.getElementById('noDesign');
-    const clearBtn = document.getElementById('clearDesign');
+    <ul class="saved-grid" id="saved-grid" aria-live="polite"></ul>
 
-    if (savedDesign) {
-      img.src = savedDesign;
-    } else {
-      img.style.display = 'none';
-      noDesign.style.display = 'block';
-    }
+    <section class="empty" id="empty" hidden>
+      <div class="empty-art" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </div>
+      <h2 class="h3">No saved designs yet</h2>
+      <p class="muted">Build your bottle and tap the heart to keep a design here.</p>
+      <div class="btn-row">
+        <a href="/generator" class="btn btn--primary">Start building</a>
+        <a href="/trace-by-terra" class="btn btn--outline">Back to shop</a>
+      </div>
+    </section>
+  </main>
 
-    clearBtn.addEventListener('click', () => {
-      localStorage.removeItem('savedDesign');
-      img.style.display = 'none';
-      noDesign.style.display = 'block';
-     
-    });
-  </script>
+  <footer id="site-footer"></footer>
 
-  <!-- P5.js and menu.js -->
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
-  <script src="menu.js"></script>
-
+  <script src="js/site.js"></script>
+  <script src="js/lib/survey.js"></script>
+  <script src="js/lib/designs.js"></script>
+  <script src="js/saved.js"></script>
 </body>
 </html>

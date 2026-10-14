@@ -1,155 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Generator</title>
-  <link rel="stylesheet" href="generator.css" />
- <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Build your bottle — Terra Impact</title>
+  <meta name="description" content="Answer six quick questions about your habits and watch them become a unique mosaic pattern on your TerraTrace bottle.">
+  <meta name="theme-color" content="#0A121C">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/builder.css">
 </head>
-<body>
-  <!-- Menu will be created dynamically by menu.js -->
+<body class="page-builder">
+  <a class="skip-link" href="#builder-form">Skip to questions</a>
+  <header id="site-header"></header>
 
-  <div id="controls">
-    <!-- <h2>Terra Impact</h2> -->
+  <main id="main" class="builder">
+    <!-- 3D preview -->
+    <section class="builder-stage" aria-label="Bottle preview">
+      <div id="bottle-canvas" class="bottle-canvas" tabindex="0" aria-label="3D bottle preview. Drag, or use the arrow keys, to rotate."></div>
+      <div class="stage-loading" id="stage-loading"><span class="spinner" aria-hidden="true"></span>Loading bottle…</div>
+      <div class="drag-hint" id="drag-hint" aria-hidden="true"></div>
+      <div class="stage-tools">
+        <button type="button" class="icon-btn icon-btn--glass" id="save-design" aria-label="Save design" title="Save design"></button>
+        <button type="button" class="icon-btn icon-btn--glass" id="reset-view" aria-label="Reset view" title="Reset view"></button>
+      </div>
+      <div class="stage-swatches" id="stage-swatches" aria-hidden="true"></div>
+    </section>
 
-    <label for="commute">Which mode of transport do you use most often?</label>
-    <select id="commute">
-      <option value="drive">Car</option>
-      <option value="public">Public Transport</option>
-      <option value="bike">Bike</option>
-      <option value="walk">Walk</option>
-    </select>
+    <!-- Questions -->
+    <section class="builder-panel" aria-labelledby="builder-title">
+      <div class="panel-head">
+        <p class="eyebrow">Build your bottle</p>
+        <h1 id="builder-title" class="h2">Your habits, your pattern.</h1>
+        <p class="muted">Answer six quick questions. Every answer changes a shape in your mosaic — the preview updates as you go.</p>
+      </div>
 
-    <label>Do you recycle regularly at home?</label>
-    <div class="radio-group">
-      <label><input type="radio" name="recycle" value="yes" checked> Yes</label>
-      <label><input type="radio" name="recycle" value="no"> No</label>
+      <form id="builder-form" class="builder-form" novalidate>
+        <!-- questions are generated from js/lib/survey.js -->
+      </form>
+
+      <div class="panel-foot">
+        <button type="button" class="btn btn--outline btn--sm" id="reset-answers">Reset answers</button>
+      </div>
+    </section>
+
+    <!-- Actions -->
+    <div class="builder-actions">
+      <button type="button" class="btn btn--slate" id="share-design"></button>
+      <button type="button" class="btn btn--primary" id="product-details">Product details <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
     </div>
+  </main>
 
-    <label for="plasticItems">How many single-use plastic items do you use per week?</label>
-    <input type="number" id="plasticItems" value="5" min="0" max="50">
-
-    <label>Do you use energy-efficient appliances or light bulbs?</label>
-    <div class="radio-group">
-      <label><input type="radio" name="energyEfficient" value="yes" checked> Yes</label>
-      <label><input type="radio" name="energyEfficient" value="no"> No</label>
-    </div>
-
-    <label>Do you compost your food or garden waste?</label>
-    <div class="radio-group">
-      <label><input type="radio" name="compost" value="yes" checked> Yes</label>
-      <label><input type="radio" name="compost" value="no"> No</label>
-    </div>
-
-    <label>Do you avoid buying products with excessive packaging?</label>
-    <div class="radio-group">
-      <label><input type="radio" name="excessivePackaging" value="yes" checked> Yes</label>
-      <label><input type="radio" name="excessivePackaging" value="no"> No</label>
-    </div>
-
-    <label for="bottleCount">How many refillable bottles do you currently own?</label>
-    <input type="number" id="bottleCount" value="1" min="0" max="10">
-  </div>
-
-  <div id="canvas-container"></div>
-
-  <!-- <div id="bottom-right-text">
-    Designed and Developed by <br>
-    <a href="https://designedbyroxanne.com" target="_blank" rel="noopener noreferrer">Roxanne Yeganeh</a>
-  </div> -->
-<!-- 
-  <div id="fact-container">
-    <p class="fact1">The average person uses 167 plastic bottles annually, many of which end up in landfills or oceans.</p>
-    <p class="fact2">Plastic bottles can take up to 450 years to decompose, polluting soil and water for centuries.</p>
-    <p class="fact3">Globally, plastic production is expected to double by 2040, making reuse and reduction more urgent than ever.</p>
-  </div> -->
-
-
-  <div class="action-buttons">
-
-
-  <button id="add-to-basket-btn">Product Details</button>
-  <button id="button2">Share Design</button>
-  
-</div>
-  <script>
-  window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-  });
-
-  // Product Details button
-  document.getElementById('add-to-basket-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-    const canvas = document.querySelector('canvas');
-    if (!canvas) {
-      alert("Canvas not found!");
-      return;
-    }
-    const imgData = canvas.toDataURL("image/png");
-    sessionStorage.setItem("savedCanvasImage", imgData);
-    window.location.href = "/trace-by-terra";
-  });
-
-  // Share button
-  document.getElementById('button2').addEventListener('click', async function() {
-    const canvas = document.querySelector('canvas');
-    let imgBlob;
-
-    if (canvas) {
-      const imgData = canvas.toDataURL("image/png");
-      const response = await fetch(imgData);
-      imgBlob = await response.blob();
-    }
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Check out my eco-impact!",
-          text: "Here’s what I generated with Terra Impact 🌍",
-          url: window.location.href,
-          files: imgBlob ? [new File([imgBlob], "impact.png", { type: "image/png" })] : undefined
-        });
-      } catch (err) {
-        console.error("Share failed:", err);
-      }
-    } else {
-      alert("Sharing is not supported on this device. Copy this link instead:\n" + window.location.href);
-    }
-  });
-</script>
-
-
-  <script>
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-
-    document.getElementById('add-to-basket-btn').addEventListener('click', function(event) {
-      event.preventDefault();
-      const canvas = document.querySelector('canvas');
-      if (!canvas) {
-        alert("Canvas not found!");
-        return;
-      }
-      const imgData = canvas.toDataURL("image/png");
-      sessionStorage.setItem("savedCanvasImage", imgData);
-      window.location.href = "/trace-by-terra";
-    });
-    
-  </script>
-
-  <!-- p5 and your scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
-  <script src="menu.js"></script>
-  <script src="generator.js"></script>
-
-  <form name="waitlist" netlify netlify-honeypot="bot-field" hidden>
-  <input type="email" name="email" />
-  <input type="hidden" name="form-name" value="waitlist" />
-  <input name="bot-field" />
-</form>
-
-
+  <script src="js/site.js"></script>
+  <script src="js/vendor/p5.min.js" defer></script>
+  <script src="js/lib/survey.js" defer></script>
+  <script src="js/lib/mosaic.js" defer></script>
+  <script src="js/lib/designs.js" defer></script>
+  <script src="js/generator.js" defer></script>
 </body>
 </html>

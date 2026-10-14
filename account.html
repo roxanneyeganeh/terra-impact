@@ -1,165 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Account Access</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Account — Terra Impact</title>
+  <meta name="theme-color" content="#0A121C">
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <style>
-    /* Reset and body */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter Tight', sans-serif;
-      background-color: #0A121C;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    /* Auth wrapper */
-    .auth-wrapper {
-      background-color: #0A121C;
-      border: 0.2px solid #5A5A5A80;
-      backdrop-filter: blur(5px);
-      padding: 40px 30px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-      text-align: center;
-    }
-
-    h2 {
-      font-weight: 600;
-      font-size: 32px;
-      margin-bottom: 30px;
-    }
-
-    /* Form */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    input {
-      padding: 12px;
-      background-color: #0A121C;
-      color: white;
-      border: 0.2px solid #5A5A5A80;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    input::placeholder {
-      color: #aaa;
-    }
-
-    button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background-color: white;
-      color: #0A121C;
-      border: none;
-      border-radius: 999px;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button svg {
-      transition: transform 0.3s ease;
-    }
-
-    button:hover svg {
-      transform: translateX(4px);
-    }
-
-    .toggle-text {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #aaa;
-    }
-
-    .toggle-text span {
-      color: white;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    canvas {
-      position: absolute !important;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/account.css">
 </head>
-<body>
+<body class="page-account">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
 
-  <div class="auth-wrapper" id="authBox">
-    <h2 id="formTitle">Create Account</h2>
-    <form id="authForm">
-      <input type="text" id="nameField" placeholder="Full Name" required />
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">
-        Continue
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-          stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </button>
-    </form>
-    <div class="toggle-text">
-      Already have an account? <span onclick="toggleForm()">Log in</span>
+  <main id="main" class="auth">
+    <div class="auth-card">
+      <div class="tabs" role="tablist" aria-label="Account">
+        <button type="button" role="tab" id="tab-signup" aria-controls="auth-form" aria-selected="true">Create account</button>
+        <button type="button" role="tab" id="tab-login" aria-controls="auth-form" aria-selected="false">Log in</button>
+        <span class="tabs-pill" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="auth-title" id="auth-title">Create your account</h1>
+      <p class="muted auth-sub" id="auth-sub">Save your designs and get early access when we launch.</p>
+
+      <form id="auth-form" class="stack-form" role="tabpanel" aria-labelledby="auth-title" novalidate>
+        <label class="field" data-signup-only>
+          <span class="field-label">Full name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span class="field-label">Email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span class="field-label">Password</span>
+          <span class="pw-wrap">
+            <input type="password" name="password" autocomplete="new-password" minlength="8" required>
+            <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false">Show</button>
+          </span>
+        </label>
+        <button type="submit" class="btn btn--light btn--block" id="auth-submit">Continue <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <p class="form-msg" id="auth-msg" role="status" hidden></p>
+      </form>
     </div>
-  </div>
+  </main>
 
-  <!-- Hidden Netlify form -->
-  <form name="waitlist" netlify netlify-honeypot="bot-field" style="display:none;">
-    <input type="email" name="email" />
-    <input type="hidden" name="form-name" value="waitlist" />
-    <input name="bot-field" />
-  </form>
+  <footer id="site-footer"></footer>
 
-  <script>
-    const nameField = document.getElementById('nameField');
-    const formTitle = document.getElementById('formTitle');
-    const toggleText = document.querySelector('.toggle-text');
-    let isSignUp = true;
-
-    function toggleForm() {
-      isSignUp = !isSignUp;
-      if (isSignUp) {
-        formTitle.innerText = 'Create Account';
-        nameField.style.display = 'block';
-        toggleText.innerHTML = `Already have an account? <span onclick="toggleForm()">Log in</span>`;
-      } else {
-        formTitle.innerText = 'Log In';
-        nameField.style.display = 'none';
-        toggleText.innerHTML = `Don't have an account? <span onclick="toggleForm()">Sign up</span>`;
-      }
-    }
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.min.js"></script>
-  <script src="menu.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/account.js"></script>
 </body>
 </html>

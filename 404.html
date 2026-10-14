@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page not found — Terra Impact</title>
+  <meta name="theme-color" content="#0A121C">
+  <meta name="robots" content="noindex">
+  <!-- Absolute paths: this page can be served at any URL depth -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <style>
+    .nf {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: clamp(48px, 12vh, 120px) var(--gutter);
+      background: radial-gradient(50% 45% at 50% 40%, rgba(52, 152, 219, .14), transparent 70%);
+    }
+    .nf-inner { display: grid; justify-items: center; gap: 18px; max-width: 560px; }
+    .nf-tile { width: 112px; height: 112px; margin-bottom: 6px; }
+    .nf-tile svg { width: 100%; height: 100%; overflow: visible; }
+    .nf-tile .missing { animation: drift 4s var(--ease) infinite alternate; transform-origin: center; transform-box: fill-box; }
+    @keyframes drift { from { transform: translate(0, 0) rotate(0); } to { transform: translate(18px, -16px) rotate(18deg); } }
+
+    .nf-code {
+      font-size: clamp(5rem, 18vw, 9rem);
+      line-height: .9;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to right, #3498db, #ffffff, #5dadd2, #3498db);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slide 5s linear infinite;
+    }
+    @keyframes slide { from { background-position: 200% 50%; } to { background-position: 0% 50%; } }
+    .nf .lead { max-width: 44ch; }
+    .nf .btn-row { justify-content: center; margin-top: 12px; }
+  </style>
+</head>
+<body class="page-404">
+  <header id="site-header"></header>
+
+  <main id="main" class="nf">
+    <div class="nf-inner">
+      <div class="nf-tile" id="nf-tile" aria-hidden="true"></div>
+      <h1 class="nf-code">404</h1>
+      <h2 class="h3">This piece of the pattern is missing.</h2>
+      <p class="lead">Oops! The page you’re looking for doesn’t exist or has been moved. Let’s get you back on track.</p>
+      <div class="btn-row">
+        <a href="/" class="btn btn--light">Go home</a>
+        <a href="/generator" class="btn btn--outline">Build your bottle</a>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="/js/site.js"></script>
+  <script src="/js/lib/survey.js"></script>
+  <script src="/js/lib/mosaic.js"></script>
+  <script>
+    // A mosaic tile with one spike drifting out of place
+    (function () {
+      var el = document.getElementById('nf-tile');
+      if (!el || !window.Terra || !Terra.mosaic) return;
+      var geo = Terra.mosaic.geometry(100);
+      var c = Terra.colorsFor(Terra.defaultAnswers());
+      var d = function (pts) { return 'M' + pts.map(function (p) { return (p.x + 50).toFixed(1) + ' ' + (p.y + 50).toFixed(1); }).join('L') + 'Z'; };
+      var out = [];
+      var path = function (pts, fill, cls) { out.push('<path' + (cls ? ' class="' + cls + '"' : '') + ' d="' + d(pts) + '" fill="' + fill + '" stroke="#0A121C" stroke-width="1.5"/>'); };
+      geo.corners.forEach(function (p) { path(p, c[5]); });
+      geo.hexes.forEach(function (p, i) { path(p, c[i % 2 ? 4 : 3]); });
+      geo.spikes.forEach(function (p, i) { if (i !== 7) path(p, c[i % 2 ? 2 : 1]); });
+      path(geo.star, c[0]);
+      path(geo.spikes[7], c[2], 'missing');
+      el.innerHTML = '<svg viewBox="0 0 100 100">' + out.join('') + '</svg>';
+    })();
+  </script>
+</body>
+</html>

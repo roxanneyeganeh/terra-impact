@@ -1,19 +1,17 @@
-/account.html                         /account                       301
-/error.html                           /error                         301
-/generator.html                       /generator                     301
-/index.html                           /                              301
-/learnmore.html                        /learnmore                     301
-/productpage.html                     /productpage                   301
-/terra_ocean_impact_with_buttons.html /terra_ocean_impact_with_buttons 301
-/test.html                            /test                          301
-/saved-designs.html                    /saved-designs                 301
+# Old URLs → new pages (permanent)
+/learnmore            /about              301
+/learnmore.html       /about              301
+/productpage          /trace-by-terra     301
+/productpage.html     /trace-by-terra     301
+/index                /                   301
+/page-not-found       /404                301
+/error                /404                301
 
-/account                               /account.html                  200
-/error                                 /error.html                    200
-/generator                             /generator.html                200
-/                                      /index.html                    200
-/learnmore                             /learnmore.html                200
-/productpage                            /productpage.html              200
-/terra_ocean_impact_with_buttons       /terra_ocean_impact_with_buttons.html 200
-/test                                  /test.html                     200
-/saved-designs                          /saved-designs.html            200
+# Pretty URLs (Netlify also does this automatically; kept for clarity)
+/about                /about.html             200
+/generator            /generator.html         200
+/trace-by-terra       /trace-by-terra.html    200
+/account              /account.html           200
+/saved-designs        /saved-designs.html     200
+
+# Anything else → Netlify serves 404.html automatically
