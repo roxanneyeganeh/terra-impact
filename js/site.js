@@ -121,7 +121,7 @@
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
-          <a href="mailto:info@terraimpact.design">info@terraimpact.design</a>
+          <a href="mailto:info@terraimpact.io">info@terraimpact.io</a>
         </div>
         <div class="footer-col">
           <h4>Links</h4>

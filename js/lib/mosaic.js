@@ -186,14 +186,15 @@
 
   /**
    * Draw the textured bottle + cap into a WEBGL p5 instance.
-   * Matte, evenly lit body (no specular streak); glossy dark cap.
+   * Matte, evenly lit body (no specular streak); smooth light-silver metal cap.
    */
   function drawBottle(p, model, tex, rot) {
     // Diffuse-only lighting: p5 adds the ambient term on top of the texture
     // (washes colours out), so light the body with soft directional lights.
-    p.directionalLight(225, 225, 225, 0, 0, -1);
-    p.directionalLight(90, 90, 90, -1, 0, -0.3);
-    p.directionalLight(90, 90, 90, 1, 0, -0.3);
+    p.directionalLight(255, 255, 255, 0, 0, -1);
+    p.directionalLight(150, 150, 150, -1, 0, -0.3);
+    p.directionalLight(150, 150, 150, 1, 0, -0.3);
+    p.directionalLight(70, 70, 70, 0, 1, -0.4);
 
     p.push();
     p.rotateX(180);
@@ -210,18 +211,48 @@
 
     p.push();
     p.translate(0, 90, 0);
-    p.rotateX(180);
-    p.fill('#2B2B2B');
-    p.ambientLight(80);
-    p.directionalLight(255, 255, 255, 0, -1, -1);
-    p.directionalLight(200, 200, 255, 1, 0, -1);
-    p.directionalLight(150, 150, 150, -1, 1, -0.5);
-    p.ambientMaterial(200, 200, 200);
-    p.specularMaterial(255);
-    p.shininess(120);
-    p.cylinder(16, 20);
+    drawCap(p);
     p.pop();
 
+    p.pop();
+  }
+
+
+  /**
+   * Smooth metal cap built from primitives, in the bottle's local space.
+   * +y points away from the bottle (towards the top of the cap).
+   */
+  function drawCap(p) {
+    const R = 16; // outer radius
+    const H = 20; // total height
+    const E = 2.2; // radius of the rounded top edge
+    p.ambientLight(40);
+    p.noStroke();
+    // smooth brushed-steel finish
+    p.fill('#C3C8D0');
+    p.ambientMaterial(190, 195, 202);
+    p.specularMaterial(110);
+    p.shininess(30);
+
+    // main body: one smooth metal cylinder, no ridges or bands
+    const bodyBottom = -H / 2;
+    const bodyTop = H / 2 - E;
+    p.push();
+    p.translate(0, (bodyBottom + bodyTop) / 2, 0);
+    p.cylinder(R, bodyTop - bodyBottom, 64, 1);
+    p.pop();
+
+    // rounded top edge
+    p.push();
+    p.translate(0, bodyTop, 0);
+    p.rotateX(90);
+    p.torus(R - E, E, 64, 16);
+    p.pop();
+
+    // flat top
+    p.push();
+    p.translate(0, bodyTop + E / 2, 0);
+    p.cylinder(R - E + 0.05, E, 64, 1);
     p.pop();
   }
 
