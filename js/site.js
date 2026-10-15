@@ -152,7 +152,7 @@
       </div>
       <div class="container footer-bottom">
         <span>&copy; ${new Date().getFullYear()} Terra Impact. All rights reserved.</span>
-        <span>Designed &amp; developed by <a href="https://designedbyroxanne.com" target="_blank" rel="noopener">Roxanne Yeganeh</a></span>
+        <span>Designed &amp; developed by <a href="https://designedbyroxanne.com" target="_blank" rel="noopener">designedbyroxanne.com</a></span>
       </div>`;
   }
 
