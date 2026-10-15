@@ -544,3 +544,14 @@ input:focus, select:focus { outline: none; border-color: var(--accent); backgrou
   text-align: center;
 }
 .badge--inline { position: static; display: inline-block; vertical-align: middle; margin-left: 6px; font-size: 12px; height: 20px; line-height: 20px; min-width: 20px; }
+
+
+/* ---------- Headline word reveal (js/fx.js) ---------- */
+[data-split].is-split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+[data-split].is-split .w > span {
+  display: inline-block;
+  transform: translateY(105%) rotate(4deg);
+  opacity: 0;
+  transition: transform .9s var(--ease), opacity .9s var(--ease);
+}
+[data-split].is-split.is-in .w > span { transform: none; opacity: 1; }
