@@ -67,7 +67,7 @@
 .answer-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
 .answer-list li { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; font-size: 13px; }
 .answer-list .a-q { color: var(--muted); }
-.answer-list .a-v { grid-column: 2; color: #fff; }
+.answer-list .a-v { grid-column: 2; color: #fff; white-space: nowrap; }
 .swatch {
   display: inline-block;
   width: 12px; height: 12px;
