@@ -7,7 +7,7 @@ A static site built for Netlify. It uses no build step, so you can drag the fold
 **Copy your existing `assets/` folder into this folder.** I didn't receive it, so it isn't in the zip. The site expects these files:
 
 ```
-assets/logo.png  favicon-16.png  favicon-32.png
+assets/logo.svg  favicon-16.png  favicon-32.png
 assets/product.jpg  plastic.jpg  collect.jpg
 assets/bottle.obj
 assets/shape1.svg … shape29.svg   assets/color1.svg … color29.svg
