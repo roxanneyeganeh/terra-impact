@@ -50,7 +50,7 @@
       <div class="header-inner container">
         <nav class="nav nav--primary" aria-label="Primary">${links}</nav>
         <a class="brand" href="/" aria-label="Terra Impact — home">
-          <img src="/assets/logo.svg" alt="Terra" width="124" height="25">
+          <img src="/assets/logo.svg" alt="Terra" width="135" height="25">
         </a>
         <div class="header-actions">
           <a href="/account" class="icon-btn" aria-label="Account"${isActive('/account') ? ' aria-current="page"' : ''}>${icons.user}</a>
@@ -116,7 +116,7 @@
     mount.innerHTML = `
       <div class="container footer-grid">
         <div class="footer-col footer-brand">
-          <img src="/assets/logo.svg" alt="Terra" width="124" height="25">
+          <img src="/assets/logo.svg" alt="Terra" width="135" height="25">
           <p>Personalised, data-driven products that reflect your environmental impact.</p>
         </div>
         <div class="footer-col">
