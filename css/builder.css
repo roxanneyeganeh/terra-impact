@@ -16,6 +16,7 @@
     'stage actions';
   height: calc(100vh - var(--header-h));
   height: calc(100dvh - var(--header-h));
+  padding-right: calc(var(--edge) - var(--gutter)); /* on very wide screens the panel stops where the menu stops */
 }
 
 /* ---------- Stage ---------- */
@@ -95,7 +96,7 @@
 .stage-swatches {
   position: absolute;
   top: 18px;
-  left: 18px;
+  left: var(--edge); /* in line with the menu and page content */
   display: flex;
   gap: 6px;
   padding: 8px 10px;
@@ -124,7 +125,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   border-left: 1px solid var(--line);
-  padding: 32px 32px 24px;
+  padding: 32px var(--gutter) 24px 32px; /* right edge in line with the menu */
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
 }
@@ -265,7 +266,7 @@ input[type='range']:focus-visible::-webkit-slider-thumb { outline: 2px solid var
   display: grid;
   grid-template-columns: 1fr 1.4fr;
   gap: 10px;
-  padding: 16px 32px 20px;
+  padding: 16px var(--gutter) 20px 32px;
   border-left: 1px solid var(--line);
   border-top: 1px solid var(--line);
   background: var(--bg);
@@ -277,6 +278,7 @@ input[type='range']:focus-visible::-webkit-slider-thumb { outline: 2px solid var
   .builder {
     display: block;
     height: auto;
+    padding-right: 0;
   }
   .builder-stage {
     position: sticky;
@@ -291,8 +293,6 @@ input[type='range']:focus-visible::-webkit-slider-thumb { outline: 2px solid var
     border-left: 0;
     overflow: visible;
     padding: 24px var(--gutter) calc(120px + env(safe-area-inset-bottom));
-    max-width: 680px;
-    margin-inline: auto;
   }
   .builder-actions {
     position: fixed;
@@ -305,8 +305,8 @@ input[type='range']:focus-visible::-webkit-slider-thumb { outline: 2px solid var
     backdrop-filter: blur(12px);
   }
   .drag-hint { bottom: 16px; }
-  .stage-swatches { top: 12px; left: 12px; }
-  .stage-tools { top: 10px; right: 10px; }
+  .stage-swatches { top: 12px; left: var(--gutter); }
+  .stage-tools { top: 10px; right: var(--gutter); }
 }
 
 @media (max-width: 420px) {
