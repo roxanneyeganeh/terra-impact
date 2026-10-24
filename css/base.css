@@ -120,32 +120,34 @@ button { cursor: pointer; }
   margin-bottom: 14px;
 }
 
+/* Type scale, used on every page:
+   display (home hero) · h1 page titles · h2 section headings · h3 subheadings · lead intro text · body */
 .display {
-  font-size: clamp(2.4rem, 6vw, 4.75rem);
+  font-size: clamp(2.6rem, 6vw, 4.75rem);
   line-height: 1.02;
   font-weight: 300;
   letter-spacing: -0.035em;
 }
 .h1 {
-  font-size: clamp(2rem, 4.6vw, 3.5rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
   line-height: 1.06;
   font-weight: 300;
   letter-spacing: -0.03em;
 }
 .h2 {
-  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
   line-height: 1.12;
   font-weight: 300;
   letter-spacing: -0.025em;
 }
 .h3 {
-  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
   line-height: 1.3;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.01em;
 }
 .lead {
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.55;
   color: var(--text-2);
   font-weight: 300;
@@ -456,7 +458,7 @@ input:focus, select:focus { outline: none; border-color: var(--accent); backgrou
   box-shadow: var(--shadow);
   text-align: center;
 }
-.modal-card h2 { font-size: 1.9rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; }
+.modal-card h2 { font-size: clamp(1.75rem, 3.2vw, 2.6rem); font-weight: 300; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 8px; }
 .modal-close { position: absolute; top: 12px; right: 12px; }
 
 @keyframes modalIn { from { opacity: 0; transform: translateY(12px) scale(.98); } }

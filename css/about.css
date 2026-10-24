@@ -33,7 +33,7 @@
   align-self: center;
   max-width: 920px;
   margin-inline: auto;
-  font-size: clamp(1.75rem, 4.6vw, 3.5rem);
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 300;
@@ -84,7 +84,7 @@
   border-radius: 0;
   background: linear-gradient(to bottom, rgba(22, 42, 66, .6), transparent 70%);
 }
-.goal .h1 { margin-bottom: clamp(28px, 4vw, 48px); }
+.goal .h2 { margin-bottom: clamp(28px, 4vw, 48px); }
 
 .marquee {
   --gap: 16px;
@@ -122,7 +122,7 @@
   background: rgba(255, 255, 255, .03);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.45;
   transition: background-color .3s, border-color .3s, transform .3s var(--ease);
 }
@@ -177,7 +177,7 @@
 .dot-readout {
   min-height: 3em;
   max-width: 40ch;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-2);
   font-weight: 300;
   transition: color .2s;
@@ -198,7 +198,7 @@
 .pillar-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .pillar:hover .pillar-media img { transform: scale(1.04); }
 .pillar-copy .h2 { margin-bottom: 16px; }
-.pillar-copy p:not(.eyebrow) { color: var(--text-2); font-size: 1.1rem; font-weight: 300; max-width: 46ch; }
+.pillar-copy p:not(.eyebrow) { color: var(--text-2); font-size: 1.05rem; font-weight: 300; max-width: 46ch; }
 .pillar-copy .btn { margin-top: 28px; }
 
 @media (max-width: 859px) {

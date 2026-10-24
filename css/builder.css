@@ -130,7 +130,7 @@
 }
 .panel-head { margin-bottom: 28px; }
 .panel-head .h2 { margin-bottom: 10px; }
-.panel-head .muted { font-size: 15px; }
+.panel-head .muted { font-size: 1rem; }
 
 .builder-form { display: flex; flex-direction: column; gap: 12px; }
 

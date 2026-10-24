@@ -54,8 +54,8 @@
 }
 .auth-card[data-mode='login'] .tabs-pill { transform: translateX(100%); }
 
-.auth-title { font-size: 1.9rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
-.auth-sub { font-size: 15px; }
+.auth-title { font-size: clamp(1.75rem, 3.2vw, 2.6rem); font-weight: 300; letter-spacing: -0.025em; line-height: 1.12; margin-bottom: 6px; }
+.auth-sub { font-size: 1rem; }
 
 .field { display: grid; gap: 6px; }
 .field-label { font-size: 13px; color: var(--text-2); }
