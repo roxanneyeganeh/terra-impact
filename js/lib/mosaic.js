@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Terra mosaic — the "mosaic31" tile geometry and drawing routines.
+   Terra mosaic: the "mosaic31" tile geometry and drawing routines.
    Previously copy-pasted into generator.js, spinbot.js, sketch.js, test.js
    and datapattern.js; now shared. Pure maths (degrees), works with any
    p5 renderer or p5.Graphics passed in as `g`.

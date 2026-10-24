@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Terra — base styles shared by every page
+   Terra: base styles shared by every page
    tokens · reset · type · buttons · header · footer · modal · forms · utils
    ========================================================================== */
 
@@ -22,12 +22,12 @@
 
   --font: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --radius-sm: 8px;
-  --radius: 14px;
-  --radius-lg: 22px;
-  --pill: 999px;
+  --radius-sm: 2px;
+  --radius: 2px;
+  --radius-lg: 4px;
+  --pill: 0px; /* buttons, chips and fields are square */
 
-  --container: 1240px;
+  --container: 1440px;
   --gutter: clamp(16px, 4vw, 40px);
   --section: clamp(64px, 10vw, 128px);
   --header-h: 68px;
@@ -122,19 +122,19 @@ button { cursor: pointer; }
 .display {
   font-size: clamp(2.4rem, 6vw, 4.75rem);
   line-height: 1.02;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: -0.035em;
 }
 .h1 {
   font-size: clamp(2rem, 4.6vw, 3.5rem);
   line-height: 1.06;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: -0.03em;
 }
 .h2 {
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1.12;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: -0.025em;
 }
 .h3 {
@@ -215,11 +215,9 @@ button { cursor: pointer; }
   align-items: center;
   gap: 6px;
   color: var(--text);
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 2px;
-  transition: border-color .2s, color .2s;
+  transition: color .2s;
 }
-.text-link:hover { border-color: var(--accent); color: var(--accent); }
+.text-link:hover { color: var(--accent); }
 
 /* ---------- Header ---------- */
 .site-header {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Terra survey config — single source of truth for the questions, answers
+   Terra survey config: single source of truth for the questions, answers
    and the colour each answer maps to. Used by the generator, the
    "Data-Driven Design" grid on the home page and the About page legend,
    so they can never drift out of sync again.

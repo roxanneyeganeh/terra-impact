@@ -36,7 +36,7 @@
   font-size: clamp(1.75rem, 4.6vw, 3.5rem);
   line-height: 1.15;
   letter-spacing: -0.03em;
-  font-weight: 400;
+  font-weight: 300;
   text-wrap: balance;
   will-change: opacity, transform;
 }
@@ -81,7 +81,7 @@
 /* ---------- Our goal (marquee) ---------- */
 .goal {
   border-top: 1px solid var(--line);
-  border-radius: 40px 40px 0 0;
+  border-radius: 0;
   background: linear-gradient(to bottom, rgba(22, 42, 66, .6), transparent 70%);
 }
 .goal .h1 { margin-bottom: clamp(28px, 4vw, 48px); }

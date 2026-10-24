@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Saved designs — stored in this browser (localStorage).
+   Saved designs: stored in this browser (localStorage).
    Each design: { id, created, image (small JPEG data URL), answers }
    Used by the generator (save), product page (save) and /saved-designs.
    ========================================================================== */

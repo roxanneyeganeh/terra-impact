@@ -54,7 +54,7 @@
 }
 .auth-card[data-mode='login'] .tabs-pill { transform: translateX(100%); }
 
-.auth-title { font-size: 1.9rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 6px; }
+.auth-title { font-size: 1.9rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 6px; }
 .auth-sub { font-size: 15px; }
 
 .field { display: grid; gap: 6px; }
@@ -80,7 +80,8 @@
   border: 0;
   background: none;
   color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  font-weight: 500;
   font-size: inherit;
+  transition: color .2s;
 }
+.link-btn:hover { color: var(--accent); }

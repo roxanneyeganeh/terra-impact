@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Product page — show the visitor's own design (from the generator) if
+   Product page: show the visitor's own design (from the generator) if
    there is one, plus a summary of the answers that made it.
    ========================================================================== */
 (function () {
@@ -30,7 +30,7 @@
           save.classList.add('is-saved');
           Terra.toast('Saved to your designs');
         } else if (res === 'exists') Terra.toast('This design is already saved');
-        else Terra.toast('Couldn’t save — storage may be full');
+        else Terra.toast('Couldn’t save. Storage may be full.');
       });
     }
   }

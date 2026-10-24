@@ -1,4 +1,4 @@
-# Terra Impact — website
+# Terra Impact website
 
 A static site built for Netlify. It uses no build step, so you can drag the folder into Netlify or push it to your repo.
 
@@ -34,7 +34,7 @@ css/
 js/
   site.js               Header + mobile menu, footer, waitlist modal,
                         Netlify AJAX forms, cookie banner, scroll reveal, toast
-  lib/survey.js         ★ Questions, answers and colours — the ONE place to edit them
+  lib/survey.js         ★ Questions, answers and colours: the ONE place to edit them
   lib/mosaic.js         Mosaic tile geometry, pattern texture and bottle drawing
   sketches/             Home page canvases (mosaic intro, data pattern, floating bottle)
   lib/designs.js        Save / list / delete designs (localStorage)

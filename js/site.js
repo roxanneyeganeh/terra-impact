@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Terra site shell — header, mobile menu, waitlist modal, footer,
+   Terra site shell: header, mobile menu, waitlist modal, footer,
    Netlify AJAX forms, cookie banner, scroll reveal, toast.
    Plain HTML/JS (replaces the old p5-built menu.js), so it loads instantly,
    is keyboard accessible and works on every page.
@@ -49,7 +49,7 @@
     mount.innerHTML = `
       <div class="header-inner container">
         <nav class="nav nav--primary" aria-label="Primary">${links}</nav>
-        <a class="brand" href="/" aria-label="Terra Impact — home">
+        <a class="brand" href="/" aria-label="Terra Impact home">
           <img src="/assets/logo.svg" alt="Terra" width="135" height="25">
         </a>
         <div class="header-actions">
@@ -139,7 +139,7 @@
             <button type="submit" class="btn btn--light btn--sm">Subscribe</button>
           </form>
           <p class="form-msg" data-form-success hidden>Thanks for subscribing! We’ll notify you soon.</p>
-          <p class="form-msg form-msg--error" data-form-error hidden>Something went wrong — please try again.</p>
+          <p class="form-msg form-msg--error" data-form-error hidden>Something went wrong. Please try again.</p>
         </div>
         <div class="footer-col">
           <h4>Follow us</h4>
@@ -181,7 +181,7 @@
           </label>
           <button type="submit" class="btn btn--light btn--block">Submit ${icons.arrow}</button>
         </form>
-        <p class="form-msg form-msg--success" data-form-success hidden>You’re on the list — we’ll notify you once we launch.</p>
+        <p class="form-msg form-msg--success" data-form-success hidden>You’re on the list. We’ll notify you once we launch.</p>
         <p class="form-msg form-msg--error" data-form-error hidden>Oops! There was a problem submitting your form.</p>
       </div>`;
     document.body.appendChild(dlg);

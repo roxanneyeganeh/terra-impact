@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Terra FX — small entrance animations (off for reduced motion).
+   Terra FX: small entrance animations (off for reduced motion).
 
    [data-split]   headline words rise in one by one
    [data-count]   number counts up when it scrolls into view

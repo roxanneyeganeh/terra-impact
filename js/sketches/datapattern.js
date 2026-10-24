@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Home · "Data-Driven Design" — explains which shape = which question.
+   Home · "Data-Driven Design": explains which shape = which question.
    Hover / tap a shape (or pick a chip in the key) to highlight every
    matching shape and see the colour options. Colours come from the shared
    survey config, so this always matches the generator.

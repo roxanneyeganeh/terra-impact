@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Home · waitlist band — a patterned bottle floating diagonally behind
+   Home · waitlist band: a patterned bottle floating diagonally behind
    the sign-up form. Sized to its section (not the window), only animates
    while visible, and stays still for prefers-reduced-motion.
    ========================================================================== */

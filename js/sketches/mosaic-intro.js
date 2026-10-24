@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Home · "The experience" — interactive mosaic "T".
+   Home · "The experience": interactive mosaic "T".
    Each piece flips between white and its colour when hovered (mouse) or
    tapped (touch).
 

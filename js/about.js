@@ -1,6 +1,6 @@
 /* ==========================================================================
    About page
-   1. Intro — two statements cross-fade as you scroll (sticky, no fixed hacks)
+   1. Intro: two statements cross-fade as you scroll (sticky, no fixed hacks)
    2. 100-dot "ripple" grid with facts (hover, tap or keyboard)
    3. Colour reference guide generated from the survey config
    ========================================================================== */

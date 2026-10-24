@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Generator — "Build your bottle"
+   Generator: "Build your bottle"
    • Questions are generated from js/lib/survey.js
    • Pattern texture is re-rendered only when an answer changes
    • 3D preview (p5 instance mode) sized to its container, drag / arrow-key
@@ -177,7 +177,7 @@
           loading.classList.add('is-done');
         },
         () => {
-          loading.innerHTML = 'Sorry — the 3D bottle couldn’t be loaded.';
+          loading.innerHTML = 'Sorry, the 3D bottle couldn’t be loaded.';
         }
       );
 
@@ -239,7 +239,7 @@
       saveBtn.classList.add('is-saved');
       Terra.toast('Saved to your designs');
     } else if (res === 'exists') Terra.toast('This design is already saved');
-    else Terra.toast('Couldn’t save — storage may be full');
+    else Terra.toast('Couldn’t save. Storage may be full.');
   });
   form.addEventListener('input', () => saveBtn.classList.remove('is-saved'));
 
@@ -258,7 +258,7 @@
     try {
       if (data) sessionStorage.setItem(IMAGE_KEY, data);
     } catch (_) {
-      /* storage full — product page falls back to the stock photo */
+      /* storage full: product page falls back to the stock photo */
     }
     save();
     window.location.href = '/trace-by-terra';
@@ -297,7 +297,7 @@
       }
     } catch (err) {
       if (err && err.name === 'AbortError') return;
-      Terra.toast('Couldn’t share — try again');
+      Terra.toast('Couldn’t share. Please try again.');
     }
   });
 

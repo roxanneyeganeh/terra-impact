@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Account page — sign-up / log-in toggle.
+   Account page: sign-up / log-in toggle.
    There is no auth backend yet, so submitting validates the fields and
    shows a friendly "coming soon" message instead of silently doing nothing.
    Hook your real auth (Netlify Identity, Supabase, etc.) into onSubmit().
