@@ -27,7 +27,7 @@
 }
 .hx--floor .container { width: 100%; }
 .hx-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
-.hx .display { margin-bottom: 20px; }
+.hx .display { margin-bottom: 36px; }
 .hx-sub { color: var(--text-2); font-weight: 300; font-size: clamp(1.05rem, 1.4vw, 1.2rem); max-width: 38ch; margin-bottom: 32px; text-wrap: pretty; }
 .hx-stage { position: relative; height: clamp(440px, 78vh, 740px); }
 .hx-bottle { position: absolute; inset: 0; z-index: 1; }
