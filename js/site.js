@@ -28,10 +28,16 @@
   };
   Terra.icons = icons;
 
+  /* ---------------- Mosaic star (the 4-point star from the homepage T) ---------------- */
+  const STAR_POINTS = '-36.1,-36.9 0,-20 36.1,-36.9 20.1,0 36.1,36.9 0,20 -36.1,36.9 -20.1,0';
+  const star = (cls) => `<svg class="${cls}" viewBox="-48 -49 96 98" aria-hidden="true" focusable="false"><polygon points="${STAR_POINTS}"/></svg>`;
+  // colours from the mosaic: one per header item
+  const STAR_COLOURS = { build: '#76bd81', about: '#65b8e7', account: '#f59e45', saved: '#ec675a', cta: '#76bd81' };
+
   /* ---------------- Header ---------------- */
   const navLinks = [
-    { href: '/generator', label: 'Build' },
-    { href: '/about', label: 'About' },
+    { href: '/generator', label: 'Build', colour: '#76bd81' },
+    { href: '/about', label: 'About', colour: '#65b8e7' },
   ];
 
   function isActive(href) {
@@ -42,7 +48,7 @@
     const mount = document.getElementById('site-header');
     if (!mount) return;
     const links = navLinks
-      .map((l) => `<a href="${l.href}" class="nav-link"${isActive(l.href) ? ' aria-current="page"' : ''}>${l.label}</a>`)
+      .map((l) => `<a href="${l.href}" class="nav-link star-link" style="--c:${l.colour}"${isActive(l.href) ? ' aria-current="page"' : ''}>${l.label}${star('star-under')}</a>`)
       .join('');
 
     mount.className = 'site-header';
@@ -53,11 +59,11 @@
           <img src="/assets/logo.svg" alt="Terra" width="135" height="25">
         </a>
         <div class="header-actions">
-          <a href="/account" class="icon-btn" aria-label="Account"${isActive('/account') ? ' aria-current="page"' : ''}>${icons.user}</a>
-          <a href="/saved-designs" class="icon-btn saved-link" aria-label="Saved designs"${isActive('/saved-designs') ? ' aria-current="page"' : ''}>${icons.heart}<span class="badge" data-saved-count hidden></span></a>
-          <button type="button" class="btn btn--light btn--sm header-cta" data-open-waitlist>Join waitlist</button>
+          <a href="/account" class="icon-btn star-link" style="--c:${STAR_COLOURS.account}" aria-label="Account"${isActive('/account') ? ' aria-current="page"' : ''}>${icons.user}${star('star-under')}</a>
+          <a href="/saved-designs" class="icon-btn star-link saved-link" style="--c:${STAR_COLOURS.saved}" aria-label="Saved designs"${isActive('/saved-designs') ? ' aria-current="page"' : ''}>${icons.heart}<span class="badge" data-saved-count hidden></span>${star('star-under')}</a>
+          <button type="button" class="btn btn--sm header-cta" data-open-waitlist>${star('cta-star')}Join waitlist</button>
           <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-            <span></span><span></span>
+            ${star('menu-star')}
           </button>
         </div>
       </div>
@@ -325,8 +331,18 @@
     });
   }
 
+  function starLinks() {
+    document.querySelectorAll('main .text-link').forEach((a) => {
+      if (a.querySelector('.star-under')) return;
+      a.classList.add('star-link');
+      a.style.setProperty('--c', STAR_COLOURS.build);
+      a.insertAdjacentHTML('beforeend', star('star-under'));
+    });
+  }
+
   function init() {
     renderHeader();
+    starLinks();
     renderFooter();
     renderModal();
     wireForms();
