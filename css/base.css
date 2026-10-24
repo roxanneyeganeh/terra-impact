@@ -244,7 +244,7 @@ button { cursor: pointer; }
   gap: 16px;
 }
 
-.nav--primary { display: flex; gap: 4px; }
+.nav--primary { display: flex; gap: 4px; margin-left: -14px; } /* pull the first word onto the page edge, in line with the content below */
 .nav-link {
   position: relative;
   padding: 8px 14px;
@@ -259,7 +259,7 @@ button { cursor: pointer; }
 .brand { justify-self: center; display: inline-flex; }
 .brand img { height: 25px; width: auto; }
 
-.header-actions { justify-self: end; display: flex; align-items: center; gap: 4px; }
+.header-actions { justify-self: end; display: flex; align-items: center; gap: 4px; margin-right: -12px; } /* "Join waitlist" ends on the page edge */
 .header-cta { margin-left: 8px; }
 
 /* ---------- Mosaic star under links (header, text links) ---------- */
