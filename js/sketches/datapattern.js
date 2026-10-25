@@ -141,21 +141,24 @@
     p.draw = () => {
       p.background('#0b1520');
       if (!geo) return;
-      let t = 0;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < rows; c++, t++) {
-          let cols = baseColors;
-          if (highlight != null) {
-            // Show the whole range of answers across the grid
-            const q = Terra.questionBySlot(highlight);
-            const opts = Terra.legendFor(q);
-            cols = baseColors.slice();
-            cols[highlight] = opts[(r + c) % opts.length].color;
+      // all colours first, then all outlines, so lines from neighbouring tiles meet the corner stars cleanly
+      for (const pass of ['fill', 'lines']) {
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < rows; c++) {
+            let cols = baseColors;
+            if (highlight != null) {
+              // Show the whole range of answers across the grid
+              const q = Terra.questionBySlot(highlight);
+              const opts = Terra.legendFor(q);
+              cols = baseColors.slice();
+              cols[highlight] = opts[(r + c) % opts.length].color;
+            }
+            M.drawTile(p, geo, (c + 0.5) * sz, (r + 0.5) * sz, cols, {
+              highlight,
+              dimColor: '#162233',
+              pass,
+            });
           }
-          M.drawTile(p, geo, (c + 0.5) * sz, (r + 0.5) * sz, cols, {
-            highlight,
-            dimColor: '#162233',
-          });
         }
       }
       // continuous frame round the edge, the same weight as the pattern's outlines, so the strokes cut by

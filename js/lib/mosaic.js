@@ -82,25 +82,42 @@
     const col = (slot) => (hl == null || hl === slot ? colors[slot] : dim);
     const sz = geo.sz;
 
+    // opts.pass: 'fill' draws only the colours, 'lines' only the outlines. Drawing a whole grid's fills
+    // before its outlines stops a tile's corner piece painting over its neighbours' lines.
+    const pass = opts.pass;
     g.push();
     g.translate(x, y);
     g.noStroke();
 
-    g.fill(col(0));
-    poly(g, geo.star);
+    if (pass !== 'lines') {
+      g.fill(col(0));
+      poly(g, geo.star);
 
-    geo.spikes.forEach((p, i) => {
-      g.fill(col(i % 2 === 0 ? 1 : 2));
-      poly(g, p);
-    });
+      geo.spikes.forEach((p, i) => {
+        g.fill(col(i % 2 === 0 ? 1 : 2));
+        poly(g, p);
+      });
 
-    g.fill(col(5));
-    geo.corners.forEach((p) => poly(g, p));
+      g.fill(col(5));
+      geo.corners.forEach((p) => poly(g, p));
+    }
+
+    if (pass === 'fill') {
+      geo.hexes.forEach((p, i) => {
+        g.fill(col(i % 2 === 0 ? 3 : 4));
+        poly(g, p);
+      });
+      g.fill(col(0));
+      poly(g, geo.star);
+      g.pop();
+      return;
+    }
 
     g.strokeWeight(sz * W_OUTER);
     g.stroke(opts.outline || STROKE_OUTER);
+    if (pass === 'lines') { g.noFill(); if (g.strokeJoin && g.ROUND) g.strokeJoin(g.ROUND); }
     geo.hexes.forEach((p, i) => {
-      g.fill(col(i % 2 === 0 ? 3 : 4));
+      if (pass !== 'lines') g.fill(col(i % 2 === 0 ? 3 : 4));
       poly(g, p);
     });
 
