@@ -1,7 +1,7 @@
 /* ==========================================================================
    About page
    1. Intro: two statements cross-fade as you scroll (sticky, no fixed hacks)
-   2. 100-dot "ripple" grid with facts (hover, tap or keyboard)
+   2. Bottle count: 100 bottles fill in as a counter climbs to 100
    3. Colour reference guide generated from the survey config
    ========================================================================== */
 (function () {
@@ -36,85 +36,39 @@
     }
   }
 
-  /* ---------------- 2. Dot grid ---------------- */
-  const grid = document.getElementById('dot-grid');
-  const readout = document.getElementById('dot-readout');
-  if (grid && readout) {
-    const FACTS = [
-      '1 Terra bottle sold',
-      '100 plastic bottles kept out of oceans',
-      '11.4 kg ocean-bound plastic per 10 bottles',
-      'Supports community plastic collection',
-      'Promotes reuse over single-use plastic',
-      'Made with 67% recycled materials',
-      'Designed for longevity and circularity',
-      'Helps reduce ocean plastic pollution',
-      'Contributes to cleaner beaches',
-      'Supports waste infrastructure improvements',
-    ];
-    const DEFAULT = readout.textContent;
-    // spread the fact dots across the grid instead of clumping them at the start
-    const FACT_POS = [0, 7, 13, 22, 28, 36, 44, 51, 57, 63, 69, 75, 82, 88, 94];
-
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < 100; i++) {
-      const k = FACT_POS.indexOf(i);
-      let el;
-      if (k >= 0) {
-        el = document.createElement('button');
-        el.type = 'button';
-        el.className = 'dot dot--fact' + (i === 0 ? ' dot--first' : '');
-        el.dataset.fact = i === 0 ? FACTS[0] : FACTS[(k % (FACTS.length - 1)) + 1];
-        el.setAttribute('aria-label', el.dataset.fact);
-      } else {
-        el = document.createElement('span');
-        el.className = 'dot';
-        el.setAttribute('aria-hidden', 'true');
-      }
-      el.style.setProperty('--i', i);
-      frag.appendChild(el);
-    }
-    grid.appendChild(frag);
-
-    let active = null;
-    const show = (dot) => {
-      if (active) active.classList.remove('is-active');
-      active = dot;
-      if (dot) {
-        dot.classList.add('is-active');
-        readout.textContent = dot.dataset.fact;
-        readout.classList.add('is-fact');
-      } else {
-        readout.textContent = DEFAULT;
-        readout.classList.remove('is-fact');
-      }
-    };
-    grid.addEventListener('pointerover', (e) => {
-      const d = e.target.closest('.dot--fact');
-      if (d && e.pointerType === 'mouse') show(d);
-    });
-    grid.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && show(null));
-    grid.addEventListener('click', (e) => {
-      const d = e.target.closest('.dot--fact');
-      if (d) show(active === d && e.pointerType !== 'mouse' ? null : d);
-    });
-    grid.addEventListener('focusin', (e) => {
-      const d = e.target.closest('.dot--fact');
-      if (d) show(d);
-    });
-
-    if (reduce || !('IntersectionObserver' in window)) grid.classList.add('is-in');
-    else {
+  /* ---------------- 2. Bottle count ---------------- */
+  const bottles = document.getElementById('bottle-grid');
+  if (bottles) {
+    const BOTTLE = '<svg viewBox="0 0 12 26" aria-hidden="true"><path d="M4 0h4v3.2c0 .6.4 1.1.9 1.5C10.8 6 12 7.6 12 10v14.2c0 1-.8 1.8-1.8 1.8H1.8C.8 26 0 25.2 0 24.2V10c0-2.4 1.2-4 3.1-5.3.5-.4.9-.9.9-1.5z"/></svg>';
+    bottles.innerHTML = new Array(101).join(BOTTLE);
+    const section = bottles.closest('.ripple');
+    const num = document.getElementById('ripple-n');
+    const facts = section.querySelectorAll('.ripple-facts li');
+    // without motion (or IntersectionObserver) everything simply shows filled at 100
+    if (!reduce && 'IntersectionObserver' in window) {
+      const svgs = bottles.querySelectorAll('svg');
+      section.classList.add('is-counting');
+      num.textContent = '0';
+      const count = () => {
+        let k = 0;
+        const t = setInterval(() => {
+          svgs[k].classList.add('on');
+          k++;
+          num.textContent = k === 1 ? '0' : String(k);
+          facts.forEach((li) => k >= +li.dataset.at && li.classList.add('on'));
+          if (k >= svgs.length) clearInterval(t);
+        }, 28);
+      };
       const io = new IntersectionObserver(
         (en) => {
           if (en[0].isIntersecting) {
-            grid.classList.add('is-in');
             io.disconnect();
+            setTimeout(count, 300);
           }
         },
-        { threshold: 0.3 }
+        { threshold: 0.4 }
       );
-      io.observe(grid);
+      io.observe(bottles);
     }
   }
 

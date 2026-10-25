@@ -136,54 +136,35 @@
   .goal-card { flex: 1 1 220px; width: auto; }
 }
 
-/* ---------- Ripple / dot grid ---------- */
-.ripple-inner { display: grid; justify-items: center; text-align: center; gap: 28px; }
-.ripple .h2 { max-width: 22ch; text-wrap: balance; }
-
-.dot-grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: clamp(8px, 2vw, 14px);
-  width: min(100%, 460px);
-  justify-items: center;
-  align-items: center;
+/* ---------- Ripple / bottle count ---------- */
+.ripple-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.ripple-count { display: flex; align-items: baseline; gap: 12px; margin: 28px 0 10px; }
+.ripple-count b { font-size: clamp(4.5rem, 10vw, 8rem); font-weight: 300; letter-spacing: -0.05em; line-height: .9; font-variant-numeric: tabular-nums; }
+.ripple-count span { color: var(--muted); font-size: 1.1rem; }
+.ripple-sub { color: var(--text-2); font-weight: 300; font-size: 1.05rem; max-width: 38ch; margin: 0 0 28px; }
+.ripple-facts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ripple-facts li { display: grid; grid-template-columns: 88px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--text-2); transition: opacity .5s; }
+.ripple-facts strong { color: #fff; font-weight: 400; font-size: 1.25rem; letter-spacing: -0.02em; }
+.ripple-vis { justify-self: end; width: min(100%, 560px); }
+.bottle-grid { display: grid; grid-template-columns: repeat(20, 1fr); gap: clamp(4px, .7vw, 9px) clamp(3px, .5vw, 7px); }
+.bottle-grid svg { width: 100%; height: auto; display: block; }
+.bottle-grid path { fill: var(--accent); transition: fill .3s; }
+.bottle-grid svg:first-child path { fill: #fff; }
+.ripple-key { display: flex; gap: 22px; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.ripple-key i { display: inline-block; width: 8px; height: 14px; margin-right: 8px; vertical-align: -2px; background: var(--accent); }
+.ripple-key .k-me { background: #fff; }
+/* counting up: bottles start dark and fill in one by one as the section comes into view */
+.ripple.is-counting .bottle-grid path { fill: #1d2a3b; }
+.ripple.is-counting .bottle-grid svg.on path { fill: var(--accent); }
+.ripple.is-counting .bottle-grid svg.on:first-child path { fill: #fff; }
+.ripple.is-counting .ripple-facts li { opacity: .35; }
+.ripple.is-counting .ripple-facts li.on { opacity: 1; }
+@media (max-width: 859px) {
+  .ripple-inner { grid-template-columns: 1fr; }
+  .ripple-vis { justify-self: start; }
+  .bottle-grid { grid-template-columns: repeat(10, 1fr); gap: 6px; }
+  .bottle-grid svg { width: 62%; margin: 0 auto; }
 }
-.dot {
-  width: clamp(14px, 3.4vw, 20px);
-  aspect-ratio: 1;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .2);
-  transform: scale(0);
-  opacity: 0;
-  transition: transform .35s var(--ease), opacity .35s var(--ease), background-color .25s, box-shadow .25s;
-  transition-delay: calc(var(--i) * 12ms);
-}
-.dot-grid.is-in .dot { transform: scale(1); opacity: 1; }
-.dot--fact { background: rgba(77, 162, 255, .55); cursor: pointer; }
-.dot--first { background: #fff; transform: scale(0); }
-.dot-grid.is-in .dot--first { transform: scale(1.6); }
-.dot--fact:hover,
-.dot--fact:focus-visible,
-.dot--fact.is-active {
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(77, 162, 255, .25), 0 0 18px 4px rgba(77, 162, 255, .5);
-  outline: none;
-  transition-delay: 0s;
-}
-.dot--first.is-active, .dot--first:hover { background: #fff; }
-
-.dot-readout {
-  min-height: 3em;
-  max-width: 40ch;
-  font-size: 1.05rem;
-  color: var(--text-2);
-  font-weight: 300;
-  transition: color .2s;
-}
-.dot-readout.is-fact { color: #fff; font-weight: 400; }
-.dot-hint { font-size: 13px; margin-top: -16px; }
 
 /* ---------- Pillars ---------- */
 .pillars .container { display: grid; gap: clamp(56px, 9vw, 120px); }
