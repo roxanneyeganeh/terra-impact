@@ -330,3 +330,38 @@
   .inline-form--lg input { text-align: center; padding-left: 16px; }
   .check--center { text-align: left; }
 }
+
+/* ---------- Hero: answer tags around the bottle (js/sketches/hero-tags.js) ---------- */
+.hx-tags { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hx-tag-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hx-tag-lines path { fill: none; stroke: rgba(255, 255, 255, .35); stroke-width: 1; stroke-dasharray: 200; stroke-dashoffset: 200; transition: stroke-dashoffset .6s var(--ease) calc(var(--i) * 50ms); }
+.hx-tag-lines circle { fill: #fff; opacity: 0; transition: opacity .3s calc(var(--i) * 50ms + .3s); }
+.hx-tag {
+  position: absolute;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 18, 28, .78);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  font-size: 13px; white-space: nowrap;
+  opacity: 0; transform: translateY(-50%);
+  transition: opacity .35s calc(var(--i) * 60ms);
+}
+.hx-tag span { color: var(--muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.hx-tag b { color: #fff; font-weight: 500; }
+.hx-tag-ico { width: 26px; height: 26px; flex: none; display: block; }
+.hx-stage:hover .hx-tag, .hx-stage.is-show .hx-tag { opacity: 1; }
+.hx-stage:hover .hx-tag-lines path, .hx-stage.is-show .hx-tag-lines path { stroke-dashoffset: 0; }
+.hx-stage:hover .hx-tag-lines circle, .hx-stage.is-show .hx-tag-lines circle { opacity: 1; }
+.hx-tags.is-below { position: relative; inset: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 0 12px; pointer-events: auto; }
+.hx-tags.is-below .hx-tag-lines { display: none; }
+.hx-tags.is-below .hx-tag { position: static; transform: none; }
+@media (min-width: 860px) {
+  .hx-tags.is-below { position: absolute; inset: auto 0 0 0; padding: 0; opacity: 0; transition: opacity .35s; }
+  .hx-stage:hover .hx-tags.is-below, .hx-stage.is-show .hx-tags.is-below { opacity: 1; }
+}
+@media (max-width: 859px) {
+  .hx-tags.is-below { display: none; }
+  .hx-stage.is-show .hx-tags.is-below { display: grid; animation: hxIn .35s ease; }
+  .hx-tags.is-below .hx-tag { opacity: 1; }
+}
