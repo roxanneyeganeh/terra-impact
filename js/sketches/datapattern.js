@@ -158,6 +158,13 @@
           });
         }
       }
+      // continuous frame round the edge, the same weight as the pattern's outlines, so the strokes cut by
+      // the edge (and the corners, which have no outline of their own) meet cleanly all the way round
+      const w = sz * 0.03;
+      p.noFill();
+      p.stroke('ivory');
+      p.strokeWeight(w);
+      p.rect(w / 2, w / 2, p.width - w, p.height - w);
     };
   }, mount);
 })();
