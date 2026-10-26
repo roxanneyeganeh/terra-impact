@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-tone="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/theme.css">
 </head>
 <body class="page-about">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -81,7 +82,7 @@
         <article class="pillar reveal">
           <div class="pillar-media"><img src="assets/about-materials.jpg" alt="Collected plastic bottles piled up for recycling" loading="lazy"></div>
           <div class="pillar-copy">
-            <p class="eyebrow">01 · Materials</p>
+            <span class="story-num pillar-num">01</span>
             <h2 class="h2">Designed for circularity</h2>
             <p>Terra products are made with <span class="gradient-text">67% recycled materials</span>. Every design is modular, repairable and recyclable, built for longevity and a minimal footprint.</p>
           </div>
@@ -89,7 +90,7 @@
         <article class="pillar pillar--reverse reveal">
           <div class="pillar-media"><img src="assets/about-bottle.jpg" alt="A smiling woman at the beach with a Terra bottle in her backpack" loading="lazy"></div>
           <div class="pillar-copy">
-            <p class="eyebrow">02 · Tracking</p>
+            <span class="story-num pillar-num">02</span>
             <h2 class="h2">Track your impact</h2>
             <p>Our refill and reuse tracking platform lets you see the real-time effect of your actions. Every refill contributes to collecting plastic waste from vulnerable regions.</p>
             <a href="/track" class="btn btn--light">Track your refills <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -98,7 +99,7 @@
         <article class="pillar reveal">
           <div class="pillar-media"><img src="assets/about-cleanup.jpg" alt="Volunteers collecting plastic waste on a beach" loading="lazy"></div>
           <div class="pillar-copy">
-            <p class="eyebrow">03 · Transparency</p>
+            <span class="story-num pillar-num">03</span>
             <h2 class="h2">Built on values</h2>
             <p>Terra is committed to full transparency and traceability. We publish detailed impact reports and hold ourselves to the highest environmental and social standards.</p>
           </div>
@@ -162,5 +163,6 @@
   <script src="js/lib/survey.js"></script>
   <script src="js/lib/mosaic.js"></script>
   <script src="js/about.js"></script>
+  <script src="js/mosaic-fields.js"></script>
 </body>
 </html>

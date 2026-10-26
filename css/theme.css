@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Theme: the brand palette and Inter Tight on Midnight, with sections as
+   rounded panels inset from the edges, a floating frosted header, pill
+   buttons, frosted glass cards and mosaic fields behind the sign-up areas.
+   Loaded after each page's own stylesheet. The dark tone (data-tone="dark"
+   on <html>) is the one in use.
+   ========================================================================== */
+:root {
+  /* brand palette */
+  --midnight: #0A121C;
+  --slate: #465167;
+  --bright-blue: #1C88FF;
+  --whisper: #F5F4F8;
+  --teal: #1ABC9C;
+  --sky: #4DA2FF;
+  --light-green: #58D68D;
+  --muted-blue: #5DACE2;
+  --bg: var(--midnight);
+  --bg-2: #0f1925;
+  --accent: var(--sky);
+  --accent-hover: var(--bright-blue);
+  --ice: var(--whisper);
+  --mist: #FFFFFF;
+  --ink: var(--midnight);
+  --cobalt: var(--bright-blue);
+  --steel: linear-gradient(165deg, var(--midnight) 0%, #1f2a3b 45%, var(--slate) 100%);
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --tile: 28px;
+  --pill: 999px;
+}
+body { background: var(--bg); }
+
+/* ---------- Type: Inter Tight throughout (brand font) ---------- */
+.eyebrow { letter-spacing: .1em; }
+
+/* ---------- Header: floating frosted bar ---------- */
+.site-header {
+  top: 12px;
+  margin: 12px 12px 0;
+  border-radius: 20px;
+  background: rgba(10, 18, 28, .45);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  backdrop-filter: saturate(160%) blur(18px);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+.site-header.is-scrolled { background: rgba(10, 18, 28, .75); border-color: rgba(255, 255, 255, .14); }
+.hx--floor { margin-top: calc((var(--header-h) + 12px) * -1); padding-top: calc(var(--header-h) + 12px); }
+
+/* ---------- Buttons: pills ---------- */
+.btn { border-radius: var(--pill); padding-inline: 26px; }
+.btn--primary { --btn-bg: var(--cobalt); box-shadow: 0 8px 24px -10px rgba(28, 136, 255, .7), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.btn--outline { --btn-bg: rgba(255, 255, 255, .08); --btn-bd: rgba(255, 255, 255, .22); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn--light { box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .08); }
+
+/* ---------- Tiles: sections become rounded panels inset from the edges ---------- */
+.statement, .experience, .facts, .mission, .datadriven, .waitlist-band,
+.goal, .ripple, .pillars, .guide, .cta-band {
+  margin: 12px;
+  border-radius: var(--tile);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* light tiles flip the colour tokens so every component follows */
+.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band {
+  --text: var(--ink);
+  --text-2: #3a4a5f;
+  --muted: #64738a;
+  --line: rgba(13, 23, 38, .12);
+  --line-strong: rgba(13, 23, 38, .24);
+  --surface: rgba(255, 255, 255, .55);
+  --accent: var(--bright-blue);
+  color: var(--ink);
+}
+.statement, .goal, .guide, .cta-band { background: var(--ice); }
+.experience, .waitlist-band, .ripple { background: var(--mist); }
+.statement .h2, .experience .h2, .waitlist-band .h2, .goal .h2, .ripple .h2, .guide .h2, .cta-band .h2,
+.statement-text, .experience .prose p { color: var(--ink); }
+:is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--outline { --btn-fg: var(--ink); --btn-bg: rgba(255, 255, 255, .5); --btn-bd: rgba(13, 23, 38, .16); }
+:is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--outline:hover { --btn-bg: var(--ink); --btn-fg: #fff; }
+:is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--light { --btn-bg: var(--ink); --btn-fg: #fff; }
+.gradient-text { background-image: linear-gradient(90deg, var(--bright-blue), var(--muted-blue), var(--teal), var(--bright-blue)); -webkit-text-fill-color: transparent; }
+
+/* dark tiles: the steel gradient from deep navy to blue grey */
+.datadriven, .facts { background: var(--steel); }
+.mission, .pillars { background: var(--bg-2); }
+
+/* ---------- Hero and mosaic fields ---------- */
+.mosaic-field { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.mosaic-field canvas { width: 100%; height: 100%; display: block; }
+.hx-tag { border-radius: 14px !important; background: rgba(10, 18, 28, .5) !important; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-color: rgba(255, 255, 255, .16) !important; }
+.hx-tag-ico { border-radius: 6px; }
+
+/* ---------- Statement ---------- */
+.statement { padding-block: clamp(96px, 14vw, 180px); }
+
+/* ---------- Experience: the T on its own panel ---------- */
+.experience .split-media { background: var(--steel); border-radius: 22px; padding: clamp(24px, 3vw, 40px); box-shadow: 0 30px 60px -30px rgba(13, 23, 38, .45); }
+
+/* ---------- Facts: frosted cards in brand blues and teal ---------- */
+.fact-card { border-radius: 22px; border: 1px solid rgba(255, 255, 255, .18) !important; }
+.fact-card::before { background: rgba(28, 136, 255, .2) !important; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.fact-card--2::before { background: rgba(93, 172, 226, .2) !important; }
+.fact-card--3::before { background: rgba(26, 188, 156, .18) !important; }
+
+/* ---------- Mission ---------- */
+.mission-img, .pillar-media { border-radius: 22px; overflow: hidden; }
+
+/* ---------- Data-driven ---------- */
+.dd-canvas, .dd-canvas canvas { border-radius: 22px; overflow: hidden; }
+.dd-canvas { box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6); }
+.dd-tooltip { border-radius: 16px !important; background: rgba(10, 18, 28, .6) !important; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-color: rgba(255, 255, 255, .18) !important; }
+.dd-legend button { border-radius: var(--pill) !important; background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .16) !important; }
+
+/* ---------- Waitlist: frosted card over the mosaic ---------- */
+.waitlist-band { background: var(--whisper); border-top: 0; }
+.waitlist-band .spinbot { display: none; }
+.mosaic-field--bed { top: 0; }
+.waitlist-inner { position: relative; padding: clamp(28px, 4vw, 48px); border-radius: 26px; background: rgba(245, 244, 248, .6); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, .7); box-shadow: 0 30px 60px -30px rgba(10, 18, 28, .35); }
+.waitlist-band .inline-form--lg { background: rgba(255, 255, 255, .7); border-color: rgba(13, 23, 38, .12); }
+.waitlist-band .inline-form--lg input { color: var(--ink); }
+.waitlist-band .check, .waitlist-band label { color: var(--text-2); }
+
+/* ---------- Footer ---------- */
+.site-footer { margin: 12px; border-radius: var(--tile); background: var(--bg-2); border-top: 0; }
+
+/* ---------- About ---------- */
+.intro { background: var(--steel); margin: 0 12px; border-radius: 0 0 var(--tile) var(--tile); }
+.goal-card { border-radius: 20px !important; background: rgba(255, 255, 255, .55) !important; border-color: rgba(255, 255, 255, .8) !important; color: var(--ink); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.goal-card p { font-size: 1.15rem; line-height: 1.25; color: var(--ink); }
+.goal-num { color: var(--bright-blue) !important; }
+.ripple .bottle-grid path { fill: var(--cobalt); }
+.ripple .bottle-grid svg:first-child path, .ripple.is-counting .bottle-grid svg.on:first-child path { fill: var(--ink); }
+.ripple.is-counting .bottle-grid path { fill: #dfe3ea; }
+.ripple.is-counting .bottle-grid svg.on path { fill: var(--cobalt); }
+.ripple .k-me { background: var(--ink) !important; }
+.ripple .ripple-key i:not(.k-me) { background: var(--cobalt); }
+.ripple-facts strong { color: var(--ink) !important; }
+.guide .card, .guide-card { border-radius: 20px !important; background: rgba(255, 255, 255, .6) !important; border-color: rgba(255, 255, 255, .9) !important; }
+.cta-band { background: var(--ice); }
+.mosaic-field--cta { opacity: 1; }
+
+/* ---------- Build page ---------- */
+.builder-stage { background: var(--steel) !important; margin: 12px; border-radius: var(--tile); overflow: hidden; }
+.builder-panel .q, .builder-panel fieldset, .question { border-radius: 18px !important; }
+.choice-body { border-radius: 12px !important; }
+.stage-swatches { border-radius: var(--pill) !important; }
+
+
+/* square icon-only buttons keep their own sizing (the heart on the product page) */
+.btn.save-btn { padding: 0; width: 48px; }
+
+/* ==========================================================================
+   Dark tone: the same layout using Midnight and Slate Blue instead of the
+   light tiles, with white kept for text and buttons only.
+   ========================================================================== */
+html[data-tone=dark] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) {
+  --text: #fff;
+  --text-2: #c4cad4;
+  --muted: #8c95a4;
+  --line: rgba(255, 255, 255, .1);
+  --line-strong: rgba(255, 255, 255, .22);
+  --surface: rgba(255, 255, 255, .05);
+  --accent: var(--sky);
+  --ink: #fff;
+  color: #fff;
+}
+html[data-tone=dark] :is(.statement, .goal, .guide, .cta-band) { background: var(--slate); }
+html[data-tone=dark] :is(.experience, .ripple) { background: #0f1925; }
+html[data-tone=dark] .waitlist-band { background: var(--midnight); }
+html[data-tone=dark] .experience .split-media { background: linear-gradient(165deg, #1f2a3b, var(--slate)); }
+html[data-tone=dark] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--light { --btn-bg: #fff; --btn-fg: var(--midnight); }
+html[data-tone=dark] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--outline { --btn-fg: #fff; --btn-bg: rgba(255, 255, 255, .08); --btn-bd: rgba(255, 255, 255, .24); }
+html[data-tone=dark] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--outline:hover { --btn-bg: #fff; --btn-fg: var(--midnight); }
+html[data-tone=dark] .waitlist-inner { background: rgba(10, 18, 28, .6); border-color: rgba(255, 255, 255, .14); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+html[data-tone=dark] .waitlist-band .inline-form--lg { background: rgba(10, 18, 28, .7); border-color: rgba(255, 255, 255, .2); }
+html[data-tone=dark] .waitlist-band .inline-form--lg input { color: #fff; }
+html[data-tone=dark] .goal-card { background: rgba(10, 18, 28, .35) !important; border-color: rgba(255, 255, 255, .14) !important; color: #fff; }
+html[data-tone=dark] .goal-card p { color: #fff; }
+html[data-tone=dark] .goal-num { color: var(--sky) !important; }
+html[data-tone=dark] .guide .card, html[data-tone=dark] .guide-card { background: rgba(10, 18, 28, .35) !important; border-color: rgba(255, 255, 255, .14) !important; }
+html[data-tone=dark] .ripple .bottle-grid svg:first-child path, html[data-tone=dark] .ripple.is-counting .bottle-grid svg.on:first-child path { fill: #fff; }
+html[data-tone=dark] .ripple.is-counting .bottle-grid path { fill: #1d2a3b; }
+html[data-tone=dark] .ripple .k-me { background: #fff !important; }
+html[data-tone=dark] .ripple-facts strong { color: #fff !important; }
+html[data-tone=dark] .gradient-text { background-image: linear-gradient(90deg, var(--sky), #fff, var(--muted-blue), var(--sky)); }
+
+/* no small titles above headings; numbers stay */
+.eyebrow { display: none !important; }
+.pillar-num { display: block; margin-bottom: 14px; }
+
+/* About closing section: heading and buttons on a card, like the sign-up */
+.cta-band .cta-inner { position: relative; z-index: 1; width: fit-content; max-width: calc(100% - 32px); margin-inline: auto; padding: clamp(28px, 4vw, 48px) clamp(28px, 5vw, 64px); border-radius: 26px; background: rgba(10, 18, 28, .6); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+
+/* filled bottles stay blue in the dark version (must come after the empty-bottle colour) */
+html[data-tone=dark] .ripple.is-counting .bottle-grid svg.on path { fill: var(--bright-blue); }
+html[data-tone=dark] .ripple.is-counting .bottle-grid svg.on:first-child path { fill: #fff; }
+
+/* smooth rounded corners: Chrome clips layered content (canvas, frosted glass) with jagged
+   edges unless the clip is a mask, so give clipped panels a mask and round the glass layers too */
+.statement, .experience, .facts, .mission, .datadriven, .waitlist-band, .goal, .ripple, .pillars, .guide, .cta-band,
+.builder-stage, .dd-canvas, .mission-img, .pillar-media, .experience .split-media, .fact-card, .site-footer {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+}
+.fact-card::before { border-radius: inherit; }
+.dd-canvas canvas { border-radius: inherit; }
+
+/* fact cards: glass on the card itself (an inner frosted layer clips with jagged corners) */
+.fact-card { background: rgba(28, 136, 255, .2); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); -webkit-mask-image: none; mask-image: none; }
+.fact-card--2 { background: rgba(93, 172, 226, .2); }
+.fact-card--3 { background: rgba(26, 188, 156, .18); }
+.fact-card::before { display: none; }
+
+/* ==========================================================================
+   Other pages, same system: content on rounded panels, mosaic behind frosted
+   cards where a page has a single focus (account, 404).
+   ========================================================================== */
+/* account: the sign-in card on a frosted panel over the cascading mosaic, like the sign-up */
+.auth { position: relative; isolation: isolate; overflow: hidden; margin: 12px; border-radius: var(--tile); background: var(--midnight); min-height: calc(100vh - var(--header-h) - 36px); -webkit-mask-image: -webkit-radial-gradient(white, black); mask-image: radial-gradient(white, black); }
+.auth-card { position: relative; z-index: 1; border-radius: 26px; background: rgba(10, 18, 28, .6); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-color: rgba(255, 255, 255, .14); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+.auth-card input { border-radius: 12px; }
+
+/* 404: same treatment */
+.nf { position: relative; isolation: isolate; overflow: hidden; margin: 12px; border-radius: var(--tile); background: var(--midnight); -webkit-mask-image: -webkit-radial-gradient(white, black); mask-image: radial-gradient(white, black); }
+.nf-inner { position: relative; z-index: 1; padding: clamp(28px, 4vw, 48px); border-radius: 26px; background: rgba(10, 18, 28, .6); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+
+/* saved designs and product: content sits on a panel like the home sections */
+.saved, .product { margin-top: 12px; margin-bottom: 12px; width: calc(100% - 24px); max-width: none; border-radius: var(--tile); background: var(--bg-2); padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter) - 12px)); }
+.saved { padding-block: clamp(32px, 5vw, 56px); }
+.product { padding-block: clamp(24px, 3vw, 40px); }
+.empty, .saved .card, .design-card { border-radius: 22px !important; }
+.media-frame { border-radius: 22px; overflow: hidden; }
+.accordion, .accordion-item, details { border-radius: 0; }
+.answer-card, .pattern-card, .your-pattern { border-radius: 18px !important; }
+
+/* build page: questions on a panel too */
+.builder { padding: 12px; gap: 12px; height: calc(100dvh - var(--header-h) - 12px); }
+.builder-panel { border-left: 0; border-radius: var(--tile) var(--tile) 0 0; background: var(--bg-2); }
+.builder-actions { border-radius: 0 0 var(--tile) var(--tile); background: var(--bg-2); }
+.builder-stage { margin: 0 !important; }
+.product .media-frame { border-radius: 22px !important; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); mask-image: radial-gradient(white, black); }

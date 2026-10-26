@@ -113,7 +113,7 @@
       return;
     }
 
-    g.strokeWeight(sz * W_OUTER);
+    g.strokeWeight(sz * (opts.outerW || W_OUTER));
     g.stroke(opts.outline || STROKE_OUTER);
     if (pass === 'lines') { g.noFill(); if (g.strokeJoin && g.ROUND) g.strokeJoin(g.ROUND); }
     geo.hexes.forEach((p, i) => {

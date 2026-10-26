@@ -12,6 +12,7 @@
   if (!mount || !window.p5 || !window.Terra || !Terra.mosaic) return;
 
   const M = Terra.mosaic;
+  const LINE = 0.02; // ivory line weight, as a share of the tile size
   const baseColors = Terra.colorsFor(Terra.defaultAnswers());
   let highlight = null; // slot number or null
   let pinned = false; // chosen from legend / tap
@@ -157,17 +158,19 @@
               highlight,
               dimColor: '#162233',
               pass,
+              outerW: LINE,
             });
           }
         }
       }
       // continuous frame round the edge, the same weight as the pattern's outlines, so the strokes cut by
       // the edge (and the corners, which have no outline of their own) meet cleanly all the way round
-      const w = sz * 0.03;
+      // rounded to match the frame's corners, so the outline follows the curve instead of being cut off
+      const w = sz * LINE, rad = parseFloat(getComputedStyle(mount).borderTopLeftRadius) || 0;
       p.noFill();
       p.stroke('ivory');
       p.strokeWeight(w);
-      p.rect(w / 2, w / 2, p.width - w, p.height - w);
+      p.rect(w / 2, w / 2, p.width - w, p.height - w, Math.max(0, rad - w / 2));
     };
   }, mount);
 })();
