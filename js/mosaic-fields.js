@@ -15,7 +15,7 @@
     { commute: 'public', recycle: 'yes', plasticItems: 14, energyEfficient: 'no', compost: 'no', excessivePackaging: 'yes' },
   ];
   const setFor = (i) => Terra.colorsFor(ANSWERS[i] || ANSWERS[0]);
-  const DIM = '#2a3446';
+  const DIM = '#0A121C';
 
   function adapter(ctx) {
     let fillOn = true, strokeOn = true, first = true;
@@ -62,10 +62,10 @@
       sz = Math.max(48, Math.min(72, W / 19));
       img = tileSprite(sz, colors, dpr);
       // muted pattern, then for each question a set of tiles showing its real answer colours
-      slotImgs = [tileSprite(sz, colors.map(() => DIM), dpr, { outline: '#3a465a' })];
+      slotImgs = [tileSprite(sz, colors.map(() => DIM), dpr, { outline: '#465167' })];
       for (let slot = 0; slot < 6; slot++) {
         const opts = Terra.legendFor(Terra.questionBySlot(slot));
-        slotImgs.push(opts.map((o) => tileSprite(sz, colors.map((c, k) => (k === slot ? o.color : DIM)), dpr, { outline: '#3a465a' })));
+        slotImgs.push(opts.map((o) => tileSprite(sz, colors.map((c, k) => (k === slot ? o.color : DIM)), dpr, { outline: '#465167' })));
       }
       draw(performance.now());
     }

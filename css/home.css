@@ -203,7 +203,6 @@
 }
 .mission-img { aspect-ratio: 5 / 4; overflow: hidden; }
 .mission-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
-.mission-card:hover .mission-img img { transform: scale(1.04); }
 .mission-card p {
   position: absolute;
   left: 0; right: 0; bottom: 0;
