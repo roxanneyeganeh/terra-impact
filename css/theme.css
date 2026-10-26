@@ -295,7 +295,7 @@ html[data-palette=brand] .dd-legend button[aria-pressed='true'] { background: va
 /* cards and glass in deep Midnight */
 html[data-palette=brand] .goal-card, html[data-palette=brand] .guide-card { background: rgba(15, 25, 37, .55) !important; border-color: rgba(245, 244, 248, .12) !important; color: var(--cloud); }
 html[data-palette=brand] .goal-card p { color: var(--cloud); }
-html[data-palette=brand] :is(.waitlist-inner, .cta-band .cta-inner, .auth-card, .nf-inner) { background: rgba(15, 25, 37, .7); border-color: rgba(26, 188, 156, .25); }
+html[data-palette=brand] :is(.waitlist-inner, .cta-band .cta-inner, .auth-card, .nf-inner) { background: rgba(15, 25, 37, .7); border-color: transparent; }
 html[data-palette=brand] .hx-tag, html[data-palette=brand] .dd-tooltip { background: rgba(15, 25, 37, .7) !important; }
 html[data-palette=brand] .experience .split-media { background: linear-gradient(165deg, var(--harbour), var(--tidewater)); }
 html[data-palette=brand] .builder-stage { background: linear-gradient(165deg, var(--midnight), var(--harbour) 60%, var(--tidewater)) !important; }
