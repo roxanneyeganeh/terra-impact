@@ -196,7 +196,7 @@
 
       if (!interacted && !reduce && !dragging) rot.y += 0.25 * ((p.deltaTime || 16) / 16.67);
 
-      const s = Math.min(p.height / 245, p.width / 150) * 0.68;
+      const s = Math.min(p.height / 245, p.width / 150) * 0.76;
       p.push();
       p.scale(s);
       Terra.mosaic.drawBottle(p, model, tex, rot);
