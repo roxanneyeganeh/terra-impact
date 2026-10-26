@@ -104,7 +104,6 @@
         return `
           <article class="guide-card">
             <div class="guide-tile">${tileSVG(q.slot, base[q.slot])}</div>
-            <p class="guide-part">${q.part}</p>
             <h3 class="guide-q">${q.title}</h3>
             <ul class="guide-swatches${q.type === 'range' ? ' guide-swatches--range' : ''}" aria-label="Answers for ${q.short}. Choose one to colour the shape.">${rows}</ul>
           </article>`;
