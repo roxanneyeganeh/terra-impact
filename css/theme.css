@@ -322,3 +322,10 @@ html[data-palette=brand] .datadriven { background: var(--midnight); }
 html[data-palette=brand] .waitlist-inner { background: linear-gradient(135deg, color-mix(in srgb, #0A121C 75%, transparent), color-mix(in srgb, #465167 75%, transparent), color-mix(in srgb, #5DACE2 75%, transparent)); }
 /* about */
 html[data-palette=brand] :is(.intro, .goal, .pillars, .guide, .cta-band) { background: var(--midnight); }
+
+/* the pattern's outer tile lines run along the panel's top and sides; this carries that
+   same Slate Blue line round the rounded corners so it reads as one unbroken edge */
+html[data-palette=brand] :is(.cta-band, .nf)::after {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  border-radius: inherit; border: 2px solid #465167;
+}
