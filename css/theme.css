@@ -242,3 +242,81 @@ html[data-tone=dark] .ripple.is-counting .bottle-grid svg.on:first-child path { 
 .builder-actions { border-radius: 0 0 var(--tile) var(--tile); background: var(--bg-2); }
 .builder-stage { margin: 0 !important; }
 .product .media-frame { border-radius: 22px !important; overflow: hidden; -webkit-mask-image: -webkit-radial-gradient(white, black); mask-image: radial-gradient(white, black); }
+
+
+/* ==========================================================================
+   Brand colour placement (data-palette="brand" on <html>)
+   Roles: Midnight base · lifted Midnight (#0F1925) deep panels · Slate Blue
+   raised panels · Teal Green main buttons, numbers and selections (Light Green
+   on hover) · Sky Blue impact numbers · Whisper text. The variable names
+   (--seaglass for the main accent, --kiln for impact, --tidewater for raised
+   panels, --harbour for deep panels, --cloud for text) say which job each does.
+   ========================================================================== */
+html[data-palette=brand] {
+  --harbour: #0F1925; --tidewater: #465167; --seaglass: #1ABC9C; --kiln: #4DA2FF; --cloud: #F5F4F8; --mist: #8c95a4;
+  --bg: var(--midnight); --bg-2: var(--harbour); --slate: var(--tidewater);
+  --text: var(--cloud); --text-2: #c9d4dd; --muted: var(--mist);
+  --accent: var(--seaglass); --accent-hover: #58D68D; --cobalt: var(--seaglass); --bright-blue: var(--seaglass); --sky: var(--seaglass);
+  --line: rgba(245, 244, 248, .1); --line-strong: rgba(245, 244, 248, .22);
+  --steel: linear-gradient(165deg, var(--midnight) 0%, var(--harbour) 45%, var(--tidewater) 100%);
+}
+html[data-palette=brand] body { color: var(--cloud); }
+html[data-palette=brand] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) { --text: var(--cloud); --text-2: #c9d4dd; --muted: var(--mist); --accent: var(--seaglass); --ink: var(--cloud); color: var(--cloud); }
+html[data-palette=brand] :is(.statement, .goal, .guide, .cta-band) { background: var(--tidewater); }
+html[data-palette=brand] :is(.experience, .ripple, .mission, .pillars) { background: var(--harbour); }
+html[data-palette=brand] .site-footer { background: var(--harbour); }
+html[data-palette=brand] .site-header { background: rgba(15, 25, 37, .6); border-color: rgba(245, 244, 248, .1); }
+
+/* buttons: Teal Green for the main action, Whisper for the light one */
+html[data-palette=brand] .btn--primary { --btn-bg: var(--seaglass); --btn-fg: var(--midnight); }
+html[data-palette=brand] .btn--primary:hover { --btn-bg: #58D68D; }
+html[data-palette=brand] .btn--light { --btn-bg: var(--cloud); --btn-fg: var(--midnight); }
+html[data-palette=brand] :is(.statement, .experience, .waitlist-band, .goal, .ripple, .guide, .cta-band) .btn--light { --btn-bg: var(--cloud); --btn-fg: var(--midnight); }
+
+/* impact moments (big numbers, your bottle) in Sky Blue */
+html[data-palette=brand] .gradient-text { background-image: linear-gradient(90deg, var(--seaglass), var(--cloud), var(--kiln), var(--seaglass)); }
+html[data-palette=brand] .ripple-count b, html[data-palette=brand] .fact-num { color: var(--kiln) !important; }
+html[data-palette=brand] .fact-card, html[data-palette=brand] .fact-card--2, html[data-palette=brand] .fact-card--3 { background: rgba(70, 81, 103, .55); border-color: rgba(245, 244, 248, .12) !important; }
+html[data-palette=brand] .ripple.is-counting .bottle-grid svg.on path, html[data-palette=brand] .ripple .bottle-grid path { fill: var(--seaglass); }
+html[data-palette=brand] .ripple.is-counting .bottle-grid path { fill: #1b2b3a; }
+html[data-palette=brand] .ripple.is-counting .bottle-grid svg.on path { fill: var(--seaglass); }
+html[data-palette=brand] .ripple .bottle-grid svg:first-child path, html[data-palette=brand] .ripple.is-counting .bottle-grid svg.on:first-child path { fill: var(--kiln); }
+html[data-palette=brand] .ripple .k-me { background: var(--kiln) !important; }
+html[data-palette=brand] .ripple .ripple-key i:not(.k-me) { background: var(--seaglass); }
+html[data-palette=brand] .ripple-facts strong { color: var(--cloud) !important; }
+
+/* numbers and selections in Teal Green */
+html[data-palette=brand] .story-num, html[data-palette=brand] .goal-num, html[data-palette=brand] .q-num { color: var(--seaglass) !important; }
+html[data-palette=brand] .choice input:checked + .choice-body { border-color: var(--seaglass); }
+html[data-palette=brand] .dd-legend button[aria-pressed='true'] { background: var(--seaglass) !important; color: var(--midnight) !important; }
+
+/* cards and glass in deep Midnight */
+html[data-palette=brand] .goal-card, html[data-palette=brand] .guide-card { background: rgba(15, 25, 37, .55) !important; border-color: rgba(245, 244, 248, .12) !important; color: var(--cloud); }
+html[data-palette=brand] .goal-card p { color: var(--cloud); }
+html[data-palette=brand] :is(.waitlist-inner, .cta-band .cta-inner, .auth-card, .nf-inner) { background: rgba(15, 25, 37, .7); border-color: rgba(26, 188, 156, .25); }
+html[data-palette=brand] .hx-tag, html[data-palette=brand] .dd-tooltip { background: rgba(15, 25, 37, .7) !important; }
+html[data-palette=brand] .experience .split-media { background: linear-gradient(165deg, var(--harbour), var(--tidewater)); }
+html[data-palette=brand] .builder-stage { background: linear-gradient(165deg, var(--midnight), var(--harbour) 60%, var(--tidewater)) !important; }
+html[data-palette=brand] .builder-panel, html[data-palette=brand] .builder-actions, html[data-palette=brand] .saved, html[data-palette=brand] .product { background: var(--harbour); }
+html[data-palette=brand] .q { background: rgba(70, 81, 103, .35); }
+
+
+
+/* no glows or soft shadows behind elements */
+.btn, .btn--primary, .btn--light, .btn--outline, .btn--primary:hover,
+.dd-canvas, .experience .split-media, .waitlist-inner, .cta-band .cta-inner, .auth-card, .nf-inner,
+.fact-card, .goal-card, .guide-card, .hx-tag, .dd-tooltip, .media-frame, .site-header,
+html[data-tone] .waitlist-inner, html[data-palette] :is(.waitlist-inner, .cta-band .cta-inner, .auth-card, .nf-inner) { box-shadow: none !important; }
+
+/* ==========================================================================
+   Section colours chosen with the colour picker
+   ========================================================================== */
+/* home */
+html[data-palette=brand] .statement { background: var(--midnight); }
+html[data-palette=brand] .experience .split-media { background: transparent; }
+html[data-palette=brand] .facts { background: var(--midnight); }
+html[data-palette=brand] :is(.fact-card, .fact-card--2, .fact-card--3) { background: linear-gradient(135deg, color-mix(in srgb, #0A121C 25%, transparent), color-mix(in srgb, #465167 25%, transparent)); }
+html[data-palette=brand] .datadriven { background: var(--midnight); }
+html[data-palette=brand] .waitlist-inner { background: linear-gradient(135deg, color-mix(in srgb, #0A121C 75%, transparent), color-mix(in srgb, #465167 75%, transparent), color-mix(in srgb, #5DACE2 75%, transparent)); }
+/* about */
+html[data-palette=brand] :is(.intro, .goal, .pillars, .guide, .cta-band) { background: var(--midnight); }

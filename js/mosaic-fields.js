@@ -52,7 +52,7 @@
     const cv = document.createElement('canvas');
     host.appendChild(cv);
     const g = cv.getContext('2d');
-    let W = 0, H = 0, dpr = 1, sz = 64, img = null, slotImgs = [], visible = true, raf = 0, bg = '#0A121C';
+    let W = 0, H = 0, dpr = 1, sz = 64, img = null, slotImgs = [], visible = true, raf = 0;
     const t0 = performance.now();
 
     function layout() {
@@ -67,7 +67,6 @@
         const opts = Terra.legendFor(Terra.questionBySlot(slot));
         slotImgs.push(opts.map((o) => tileSprite(sz, colors.map((c, k) => (k === slot ? o.color : DIM)), dpr, { outline: '#3a465a' })));
       }
-      bg = getComputedStyle(host.parentElement).backgroundColor || bg;
       draw(performance.now());
     }
 
@@ -79,13 +78,6 @@
     // tiles cycle through a question's answer colours, diagonally, like the data pattern's key
     function optionGrid(sprites) {
       for (let r = 0, y = 0; y < H; r++, y += sz) for (let c = 0, x = 0; x < W; c++, x += sz) g.drawImage(sprites[(r + c) % sprites.length], x, y, sz, sz);
-    }
-    function scrim(cx, cy, rx, ry, a) {
-      g.save(); g.translate(cx, cy); g.scale(1, ry / rx);
-      const r = g.createRadialGradient(0, 0, 0, 0, 0, rx);
-      const c = bg.replace('rgb(', 'rgba(').replace(')', ', ');
-      r.addColorStop(0, c + a + ')'); r.addColorStop(0.7, c + a * 0.9 + ')'); r.addColorStop(1, c + '0)');
-      g.fillStyle = r; g.fillRect(-rx, -rx, rx * 2, rx * 2); g.restore();
     }
 
     function draw(now) {
@@ -104,7 +96,6 @@
           g.drawImage(img, c * sz, r * sz, sz, sz);
         }
         g.globalAlpha = 1;
-        scrim(W / 2, H / 2, Math.min(W * 0.36, 520), Math.min(H * 0.32, 190), 0.92);
       } else if (id === 'slots') {
         const step = 2.6, n = 6, i = Math.floor(t / step) % n, f = Math.min(1, ((t % step) / step) * 3);
         pattern(0, 0, slotImgs[0]);
