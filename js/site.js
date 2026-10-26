@@ -132,7 +132,7 @@
         <div class="footer-col">
           <h4>Links</h4>
           <a href="/">Home</a>
-          <a href="/generator">Build your bottle</a>
+          <a href="/generator">Build</a>
           <a href="/about">About</a>
         </div>
         <div class="footer-col footer-subscribe">
