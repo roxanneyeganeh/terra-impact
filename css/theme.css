@@ -300,7 +300,7 @@ html[data-palette=brand] .hx-tag, html[data-palette=brand] .dd-tooltip { backgro
 html[data-palette=brand] .experience .split-media { background: linear-gradient(165deg, var(--harbour), var(--tidewater)); }
 html[data-palette=brand] .builder-stage { background: linear-gradient(165deg, var(--midnight), var(--harbour) 60%, var(--tidewater)) !important; }
 html[data-palette=brand] .builder-panel, html[data-palette=brand] .builder-actions, html[data-palette=brand] .saved, html[data-palette=brand] .product { background: var(--harbour); }
-html[data-palette=brand] .q { background: var(--midnight); }
+html[data-palette=brand] .q { background: #0E1620; }
 
 
 
