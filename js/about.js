@@ -84,7 +84,7 @@
       const parts = [];
       const add = (pts, s) => {
         const on = s === slot;
-        parts.push(`<path d="${d(pts)}" fill="${on ? color : '#162233'}" stroke="${on ? '#fff' : 'rgba(255,255,255,.18)'}" stroke-width="${on ? 1.6 : 1}"/>`);
+        parts.push(`<path${on ? ' class="on"' : ''} d="${d(pts)}" fill="${on ? color : '#162233'}" stroke="${on ? '#fff' : 'rgba(255,255,255,.18)'}" stroke-width="${on ? 1.6 : 1}"/>`);
       };
       geo.corners.forEach((p) => add(p, 5));
       geo.spikes.forEach((p, i) => add(p, i % 2 ? 2 : 1));
@@ -97,17 +97,26 @@
     guide.innerHTML = Terra.QUESTIONS.slice()
       .sort((a, b) => a.slot - b.slot)
       .map((q) => {
+        // each answer is a button: pick one to see its colour on the shape
         const rows = Terra.legendFor(q)
-          .map((r) => `<li><span class="swatch" style="--c:${r.color}"></span>${r.label}</li>`)
+          .map((r) => `<li><button type="button" data-color="${r.color}" aria-pressed="${r.color === base[q.slot]}"><span class="swatch" style="--c:${r.color}"></span>${r.label}</button></li>`)
           .join('');
         return `
           <article class="guide-card">
             <div class="guide-tile">${tileSVG(q.slot, base[q.slot])}</div>
             <p class="guide-part">${q.part}</p>
             <h3 class="guide-q">${q.title}</h3>
-            <ul class="guide-swatches${q.type === 'range' ? ' guide-swatches--range' : ''}">${rows}</ul>
+            <ul class="guide-swatches${q.type === 'range' ? ' guide-swatches--range' : ''}" aria-label="Answers for ${q.short}. Choose one to colour the shape.">${rows}</ul>
           </article>`;
       })
       .join('');
+
+    guide.addEventListener('click', (e) => {
+      const b = e.target.closest('.guide-swatches button');
+      if (!b) return;
+      const card = b.closest('.guide-card');
+      card.querySelectorAll('.guide-tile path.on').forEach((p) => p.setAttribute('fill', b.dataset.color));
+      card.querySelectorAll('.guide-swatches button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    });
   }
 })();
