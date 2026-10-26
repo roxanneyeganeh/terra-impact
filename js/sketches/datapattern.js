@@ -67,7 +67,7 @@
     const rowsHtml = Terra.legendFor(q)
       .map((r) => `<li><span class="swatch" style="--c:${r.color}"></span>${r.label}</li>`)
       .join('');
-    tip.innerHTML = `<div class="tt-part">${q.part}</div><div class="tt-title">${q.title}</div><ul>${rowsHtml}</ul>`;
+    tip.innerHTML = `<div class="tt-title">${q.title}</div><ul>${rowsHtml}</ul>`;
     tip.hidden = false;
     // keep inside the stage horizontally
     const stage = tip.parentElement.getBoundingClientRect();
