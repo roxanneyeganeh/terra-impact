@@ -20,7 +20,8 @@
   --danger: #ff6b6b;
   --success: #6be0a0;
 
-  --font: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-num: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace; /* numbers read like data */
 
   --radius-sm: 2px;
   --radius: 2px;

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Theme: the brand palette and Inter Tight on Midnight, with sections as
+   Theme: the brand palette and Geist on Midnight, with sections as
    rounded panels inset from the edges, a floating frosted header, pill
    buttons, frosted glass cards and mosaic fields behind the sign-up areas.
    Loaded after each page's own stylesheet. The dark tone (data-tone="dark"
@@ -32,7 +32,9 @@
 }
 body { background: var(--bg); }
 
-/* ---------- Type: Inter Tight throughout (brand font) ---------- */
+/* ---------- Type: Geist throughout, Geist Mono for numbers ---------- */
+:is(.fact-num, .ripple-count b, .q-num, .story-num, .goal-num, .pillar-num, .range-value strong, .ripple-facts strong, .price, [data-out]) { font-family: var(--font-num); }
+:is(.fact-num, .ripple-count b) { letter-spacing: -0.06em; font-weight: 300; }
 .eyebrow { letter-spacing: .1em; }
 
 /* ---------- Header: floating frosted bar ---------- */
